@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Health/Fill
+  - Health/Still
+  - Health/Text
+  - UI
+  - UI/GameCanvas
+  - UI/ControlConfigCanvas
+  - ActiveProjectiles
+  - Entity/Enemy
+  - Environment
+  - ContainerControl/Container
+  - ActiveEntities
+  - UI/MenuCanvas
+  - UI/RetryCanvas
+  - UI/InventoryCanvas
+  - ContainerControl/InventoryContainer
+  - ContainerControl/InventoryContainer/TopRow
+  - ContainerControl/InventoryContainer/BottomRow
+  - Entity/PurpleBall
+  - ContainerControl/InventoryContainer/QuickItem
+  - UI/QuickItemCanvas
+  - Inventory/QuickItem
+  - Player/Head
+  - Entity/BlueBall
+  - Entity/YellowBall
+  - Manager/ProjectileManager
+  - Manager/NavMeshManager
+  - Entity/Pillar
+  - Entity/BasicHealth
+  - Entity/InterMedHealth
+  - Entity/AdvancedHealth
+  - Environment/Obstacle
+  - Entity/Buff/SpeedBuff
+  - Manager/BuffManager
+  - Entity/TeleportProjectile
+  - Container/BuffContainer
+  - Container/ItemPickUpContainer
+  - UI/PauseCanvas
+  - UI/SettingsCanvas
+  - Container/SettingsContainer
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Camera
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
