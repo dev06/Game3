@@ -2,46 +2,40 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-public class ResolutionButton : ButtonEventHandler {
+public class AntiAliasingButton : ButtonEventHandler {
 
-	public Vector2 resolution;
-
-	private Transform _moreResolution;
-
-	// members only for current resolution button
+	public int antiAliasing;
 	private GameObject _dropDownIcon;
-	private GameObject _currentResoultionButton;
-	private Text _currentResoultionButtonText;
+	private GameObject _currentAAButton;
+	private Text _currentAAButtonText;
 	private Vector3 _dropDownIcon_Rotation;
-
-
-	void Start () {
+	private Transform _moreAA;
+	void Start ()
+	{
 		Init();
-		_moreResolution = transform.parent.transform.FindChild("MoreResolution");
-		if (buttonID == ButtonID.RESOLUTION_BUTTON)
+		_moreAA = transform.parent.transform.FindChild("MoreAntiAliasing");
+		if (buttonID == ButtonID.AA_BUTTON)
 		{
 			_dropDownIcon = transform.FindChild("dropDownIcon").gameObject;
 			_dropDownIcon_Rotation = Vector3.zero;
-			_currentResoultionButton = _dropDownIcon.transform.parent.gameObject;
-			_currentResoultionButtonText =	_currentResoultionButton.transform.GetChild(0).GetComponent<Text>();
-			_currentResoultionButtonText.text = Screen.currentResolution.width + " x " +   Screen.currentResolution.height;
+			_currentAAButton = _dropDownIcon.transform.parent.gameObject;
+			_currentAAButtonText =	_currentAAButton.transform.GetChild(0).GetComponent<Text>();
+			_currentAAButtonText.text = SwitchText(antiAliasing);
 		} else {
-			_currentResoultionButton = GameObject.FindWithTag("Container/SettingsContainer/Resolution/CurrentResolution");
-			_currentResoultionButtonText =	_currentResoultionButton.transform.GetChild(0).GetComponent<Text>();
+			_currentAAButton = GameObject.FindWithTag("Container/SettingsContainer/AntiAliasing/CurrentAntiAliasing");
+			_currentAAButtonText =	_currentAAButton.transform.GetChild(0).GetComponent<Text>();
 
 		}
-
 	}
 
 	// Update is called once per frame
 	void Update ()
 	{
-		if (buttonID == ButtonID.RESOLUTION_BUTTON)
+		if (buttonID == ButtonID.AA_BUTTON)
 		{
 			_dropDownIcon.transform.rotation = Quaternion.Lerp(_dropDownIcon.transform.rotation, Quaternion.Euler(_dropDownIcon_Rotation), Time.deltaTime * 10.0f);
 		}
 	}
-
 	/// <summary>
 	/// Overrides the on pointer enter from base class.
 	/// </summary>
@@ -61,13 +55,33 @@ public class ResolutionButton : ButtonEventHandler {
 	public override void OnPointerExit(PointerEventData data)
 	{
 		base.OnPointerExit(data);
-
-
-
-
-
-
 	}
+
+	string SwitchText(int i)
+	{
+		switch (i)
+		{
+			case 0:
+			{
+				return "Disabled";
+			}
+			case 1:
+			{
+				return "2x multi sampling";
+			}
+			case 2:
+			{
+				return "4x multi sampling";
+			}
+			case 3:
+			{
+				return "8x multi sampling";
+			}
+		}
+
+		return "";
+	}
+
 
 	/// <summary>
 	/// Overrides the on pointer click from base class
@@ -78,11 +92,11 @@ public class ResolutionButton : ButtonEventHandler {
 
 		base.OnPointerClick(data);
 
-		if (buttonID == ButtonID.RESOLUTION_BUTTON)
+		if (buttonID == ButtonID.AA_BUTTON)
 		{
 
-			_moreResolution.gameObject.SetActive(!_moreResolution.gameObject.activeSelf);
-			if (_moreResolution.gameObject.activeSelf)
+			_moreAA.gameObject.SetActive(!_moreAA.gameObject.activeSelf);
+			if (_moreAA.gameObject.activeSelf)
 			{
 				_dropDownIcon_Rotation = new Vector3(0, 0, -180);
 			} else {
@@ -90,11 +104,13 @@ public class ResolutionButton : ButtonEventHandler {
 			}
 		}
 
-		if (buttonID == ButtonID.RESOLUTION_BUTTON_OPTION)
+		if (buttonID == ButtonID.AA_BUTTON_OPTION)
 		{
-			_currentResoultionButtonText.text = resolution.x + " x " + resolution.y;
-			Screen.SetResolution((int)resolution.x, (int)resolution.y, Screen.fullScreen);
+			QualitySettings.antiAliasing = antiAliasing;
+			_currentAAButtonText.text = SwitchText((int)Mathf.Log(antiAliasing, 2));
+
 		}
+
 	}
 
 
@@ -102,7 +118,5 @@ public class ResolutionButton : ButtonEventHandler {
 	{
 		gameObject.SetActive(b);
 	}
-
-
 
 }

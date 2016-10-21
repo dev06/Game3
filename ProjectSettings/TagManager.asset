@@ -43,6 +43,10 @@ TagManager:
   - UI/PauseCanvas
   - UI/SettingsCanvas
   - Container/SettingsContainer
+  - Container/SettingsContainer/Resolution/CurrentResolution
+  - Settings/Resolutions
+  - Settings/FullScreen
+  - Container/SettingsContainer/AntiAliasing/CurrentAntiAliasing
   layers:
   - Default
   - TransparentFX

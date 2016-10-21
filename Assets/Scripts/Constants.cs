@@ -138,4 +138,6 @@ public class Constants  {
 
 
 	public static GameObject Resolution_Option = (GameObject)Resources.Load("Prefabs/UIPrefabs/Menu/Setting/Resolution/_resolution");
+	public static GameObject AA_Option = (GameObject)Resources.Load("Prefabs/UIPrefabs/Menu/Setting/AA/_aa");
+
 }
