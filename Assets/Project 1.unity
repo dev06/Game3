@@ -14481,7 +14481,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1935724518}
   m_HandleRect: {fileID: 1935724517}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0.9999997
   m_Size: 0.66045684
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -20516,13 +20516,13 @@ RectTransform:
   m_GameObject: {fileID: 1935724516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5624849, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 6387243}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0.33954316}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0.33954307}
+  m_AnchorMax: {x: 1, y: 0.9999999}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -20538,7 +20538,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.5953452, b: 0.71323526, a: 1}
+  m_Color: {r: 0, g: 0.2946038, b: 0.35294116, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
