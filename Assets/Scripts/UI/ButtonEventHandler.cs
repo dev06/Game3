@@ -35,7 +35,7 @@ public class ButtonEventHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
 	{
 		_image = (GetComponent<Image>() != null) ? GetComponent<Image>() : null;
 		_rectTransform = (GetComponent<RectTransform>() != null) ? GetComponent<RectTransform>() : null;
-		_gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+		_gameController = GameController.Instance;
 
 		if (_image != null)
 		{

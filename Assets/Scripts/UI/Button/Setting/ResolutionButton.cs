@@ -9,37 +9,29 @@ public class ResolutionButton : ButtonEventHandler {
 	private Transform _moreResolution;
 
 	// members only for current resolution button
-	private GameObject _dropDownIcon;
 	private GameObject _currentResoultionButton;
 	private Text _currentResoultionButtonText;
-	private Vector3 _dropDownIcon_Rotation;
+
 
 
 	void Start () {
 		Init();
-		_moreResolution = transform.parent.transform.FindChild("MoreResolution");
+		_moreResolution = GameObject.FindWithTag("Settings/Resolutions").transform.FindChild("MoreResolution");
 		if (buttonID == ButtonID.RESOLUTION_BUTTON)
 		{
-			_dropDownIcon = transform.FindChild("dropDownIcon").gameObject;
-			_dropDownIcon_Rotation = Vector3.zero;
-			_currentResoultionButton = _dropDownIcon.transform.parent.gameObject;
+			_currentResoultionButton = gameObject;
 			_currentResoultionButtonText =	_currentResoultionButton.transform.GetChild(0).GetComponent<Text>();
 			_currentResoultionButtonText.text = Screen.currentResolution.width + " x " +   Screen.currentResolution.height;
 		} else {
 			_currentResoultionButton = GameObject.FindWithTag("Container/SettingsContainer/Resolution/CurrentResolution");
 			_currentResoultionButtonText =	_currentResoultionButton.transform.GetChild(0).GetComponent<Text>();
-
 		}
-
 	}
 
 	// Update is called once per frame
 	void Update ()
 	{
-		if (buttonID == ButtonID.RESOLUTION_BUTTON)
-		{
-			_dropDownIcon.transform.rotation = Quaternion.Lerp(_dropDownIcon.transform.rotation, Quaternion.Euler(_dropDownIcon_Rotation), Time.deltaTime * 10.0f);
-		}
+
 	}
 
 	/// <summary>
@@ -48,11 +40,7 @@ public class ResolutionButton : ButtonEventHandler {
 	/// <param name="data"></param>
 	public override void OnPointerEnter(PointerEventData data)
 	{
-
 		base.OnPointerEnter(data);
-
-
-
 	}
 	/// <summary>
 	/// Overrides the on pointer exit from base class
@@ -61,12 +49,6 @@ public class ResolutionButton : ButtonEventHandler {
 	public override void OnPointerExit(PointerEventData data)
 	{
 		base.OnPointerExit(data);
-
-
-
-
-
-
 	}
 
 	/// <summary>
@@ -80,19 +62,13 @@ public class ResolutionButton : ButtonEventHandler {
 
 		if (buttonID == ButtonID.RESOLUTION_BUTTON)
 		{
-
-			_moreResolution.gameObject.SetActive(!_moreResolution.gameObject.activeSelf);
-			if (_moreResolution.gameObject.activeSelf)
-			{
-				_dropDownIcon_Rotation = new Vector3(0, 0, -180);
-			} else {
-				_dropDownIcon_Rotation = new Vector3(0, 0, 0);
-			}
+			SetActive(!_moreResolution.gameObject.activeSelf);
 		}
 
 		if (buttonID == ButtonID.RESOLUTION_BUTTON_OPTION)
 		{
 			_currentResoultionButtonText.text = resolution.x + " x " + resolution.y;
+			GameController.Instance.WindowResolution = resolution;
 			Screen.SetResolution((int)resolution.x, (int)resolution.y, Screen.fullScreen);
 		}
 	}
@@ -100,7 +76,7 @@ public class ResolutionButton : ButtonEventHandler {
 
 	public void SetActive(bool b)
 	{
-		gameObject.SetActive(b);
+		_moreResolution.gameObject.SetActive(b);
 	}
 
 

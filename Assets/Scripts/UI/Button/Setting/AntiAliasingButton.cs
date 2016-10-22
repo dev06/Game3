@@ -5,20 +5,19 @@ using UnityEngine.UI;
 public class AntiAliasingButton : ButtonEventHandler {
 
 	public int antiAliasing;
-	private GameObject _dropDownIcon;
+
 	private GameObject _currentAAButton;
 	private Text _currentAAButtonText;
-	private Vector3 _dropDownIcon_Rotation;
+
 	private Transform _moreAA;
 	void Start ()
 	{
 		Init();
-		_moreAA = transform.parent.transform.FindChild("MoreAntiAliasing");
+		_moreAA = GameObject.FindWithTag("Settings/AA").transform.FindChild("MoreAntiAliasing");
 		if (buttonID == ButtonID.AA_BUTTON)
 		{
-			_dropDownIcon = transform.FindChild("dropDownIcon").gameObject;
-			_dropDownIcon_Rotation = Vector3.zero;
-			_currentAAButton = _dropDownIcon.transform.parent.gameObject;
+
+			_currentAAButton = gameObject;
 			_currentAAButtonText =	_currentAAButton.transform.GetChild(0).GetComponent<Text>();
 			_currentAAButtonText.text = SwitchText(antiAliasing);
 		} else {
@@ -31,10 +30,7 @@ public class AntiAliasingButton : ButtonEventHandler {
 	// Update is called once per frame
 	void Update ()
 	{
-		if (buttonID == ButtonID.AA_BUTTON)
-		{
-			_dropDownIcon.transform.rotation = Quaternion.Lerp(_dropDownIcon.transform.rotation, Quaternion.Euler(_dropDownIcon_Rotation), Time.deltaTime * 10.0f);
-		}
+
 	}
 	/// <summary>
 	/// Overrides the on pointer enter from base class.
@@ -61,19 +57,19 @@ public class AntiAliasingButton : ButtonEventHandler {
 	{
 		switch (i)
 		{
-			case 0:
+		case 0:
 			{
 				return "Disabled";
 			}
-			case 1:
+		case 1:
 			{
 				return "2x multi sampling";
 			}
-			case 2:
+		case 2:
 			{
 				return "4x multi sampling";
 			}
-			case 3:
+		case 3:
 			{
 				return "8x multi sampling";
 			}
@@ -95,20 +91,13 @@ public class AntiAliasingButton : ButtonEventHandler {
 		if (buttonID == ButtonID.AA_BUTTON)
 		{
 
-			_moreAA.gameObject.SetActive(!_moreAA.gameObject.activeSelf);
-			if (_moreAA.gameObject.activeSelf)
-			{
-				_dropDownIcon_Rotation = new Vector3(0, 0, -180);
-			} else {
-				_dropDownIcon_Rotation = new Vector3(0, 0, 0);
-			}
+			SetActive(!_moreAA.gameObject.activeSelf);
 		}
 
 		if (buttonID == ButtonID.AA_BUTTON_OPTION)
 		{
 			QualitySettings.antiAliasing = antiAliasing;
 			_currentAAButtonText.text = SwitchText((int)Mathf.Log(antiAliasing, 2));
-
 		}
 
 	}
@@ -116,7 +105,7 @@ public class AntiAliasingButton : ButtonEventHandler {
 
 	public void SetActive(bool b)
 	{
-		gameObject.SetActive(b);
+		_moreAA.gameObject.SetActive(b);
 	}
 
 }

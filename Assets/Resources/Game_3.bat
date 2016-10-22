@@ -1,0 +1,1 @@
+start Game3.EXE -popupwindow

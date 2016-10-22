@@ -47,6 +47,11 @@ TagManager:
   - Settings/Resolutions
   - Settings/FullScreen
   - Container/SettingsContainer/AntiAliasing/CurrentAntiAliasing
+  - Container/SettingsContainer/Resolution/CurrentAntiAliasing
+  - Settings/TextureQuality
+  - Settings/AA
+  - Container/SettingsContainer/TextureQuality/CurrentTextureQuality
+  - Settings/Borderless
   layers:
   - Default
   - TransparentFX
