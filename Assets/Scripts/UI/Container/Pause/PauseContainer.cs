@@ -9,12 +9,14 @@ public class PauseContainer : Container {
 		EventManager.OnPause += OnPause;
 		EventManager.OnUnpause += OnUnpause;
 		EventManager.OnSettingUnactive += OnSettingUnactive;
+		EventManager.OnSettingActive += OnSettingActive;
 	}
 
 	void OnDisable()
 	{
 		EventManager.OnPause -= OnPause;
 		EventManager.OnUnpause -= OnUnpause;
+		EventManager.OnSettingActive -= OnSettingActive;
 		EventManager.OnSettingUnactive -= OnSettingUnactive;
 	}
 
@@ -48,14 +50,6 @@ public class PauseContainer : Container {
 				}
 			}
 		}
-
-		if (GameController.Instance.menuActive == MenuActive.SETTING)
-		{
-			if (EventManager.OnSettingUnactive != null)
-			{
-				EventManager.OnSettingUnactive();
-			}
-		}
 	}
 
 	void OnPause()
@@ -72,6 +66,11 @@ public class PauseContainer : Container {
 	void OnSettingUnactive()
 	{
 		PlayAnimation(1);
+	}
+
+	void OnSettingActive()
+	{
+		PlayAnimation(-1);
 	}
 
 	void Start () {

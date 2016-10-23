@@ -52,9 +52,4 @@ public class ShadowQualityContainer : Container {
 
 	}
 
-	void OnDisable()
-	{
-
-		Debug.Log("fasf");
-	}
 }

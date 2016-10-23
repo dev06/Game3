@@ -4,19 +4,20 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class ShadowQualityButton : SettingButton {
 
+
 	public int shadowQuality;
 
 	private Light[] _lights;
 
 	void OnEnable()
 	{
-
+		ChangeShadowSettings(2);
 	}
 
 	void OnDisable()
 	{
 
-		SetLightShadow(LightShadows.None);
+		ChangeShadowSettings(0);
 	}
 
 	void Start ()
@@ -103,7 +104,6 @@ public class ShadowQualityButton : SettingButton {
 		if (buttonID == ButtonID.SHADOW_BUTTON_OPTION)
 		{
 			ChangeShadowSettings(shadowQuality);
-			_selectorButton_Text.text = SwitchText(shadowQuality);
 		}
 
 
@@ -135,6 +135,11 @@ public class ShadowQualityButton : SettingButton {
 				break;
 			}
 		}
+
+		if (_selectorButton_Text != null)
+		{
+			_selectorButton_Text.text = SwitchText(level);
+		}
 	}
 
 	private void SetLightShadow(LightShadows _shadowType)
@@ -143,7 +148,10 @@ public class ShadowQualityButton : SettingButton {
 		{
 			foreach (Light light in _lights)
 			{
-				light.shadows = _shadowType;
+				if (light != null)
+				{
+					light.shadows = _shadowType;
+				}
 			}
 		}
 	}
@@ -153,9 +161,10 @@ public class ShadowQualityButton : SettingButton {
 		if (_lights != null)
 		{
 			SetLightShadow(LightShadows.None);
-			Debug.Log("Hit");
-
 		}
-
+	}
+	void OnShadowToggleActive()
+	{
+		ChangeShadowSettings(shadowQuality);
 	}
 }

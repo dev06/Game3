@@ -36,6 +36,7 @@ public class EventManager : MonoBehaviour {
 	//local events
 	public delegate void ShadowToggle();
 	public static ShadowToggle OnShadowToggleUnactive;
+	public static ShadowToggle OnShadowToggleActive;
 
 
 }

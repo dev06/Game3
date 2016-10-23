@@ -45,8 +45,7 @@ public class BackButton : SettingButton {
 			EventManager.OnSettingUnactive();
 		}
 
-		GameController.Instance.menuActive = MenuActive.PAUSE;
-		GameController.Instance.EnableMenu(GameController.Instance.menuActive);
+
 	}
 
 }

@@ -14228,6 +14228,7 @@ GameObject:
   - 222: {fileID: 988860215}
   - 114: {fileID: 988860214}
   - 114: {fileID: 988860213}
+  - 111: {fileID: 988860216}
   m_Layer: 0
   m_Name: SettingContainer
   m_TagString: Container/SettingsContainer
@@ -14303,6 +14304,21 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 988860211}
+--- !u!111 &988860216
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 988860211}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: d30aa9b24097a8a4882fa823463cd9d1, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: d30aa9b24097a8a4882fa823463cd9d1, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1004296654
 GameObject:
   m_ObjectHideFlags: 0
