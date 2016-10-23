@@ -39,9 +39,6 @@ public class PauseButton : ButtonEventHandler {
 
 		PlayAnimation(-1);
 
-
-
-
 	}
 
 	/// <summary>
@@ -54,14 +51,18 @@ public class PauseButton : ButtonEventHandler {
 		base.OnPointerClick(data);
 		if (buttonID == ButtonID.RESUME)
 		{
-
-
-
 			if (EventManager.OnUnpause != null)
 			{
 				EventManager.OnUnpause();
 			}
+		}
 
+		if (buttonID == ButtonID.SETTINGS)
+		{
+			if (EventManager.OnSettingActive != null)
+			{
+				EventManager.OnSettingActive();
+			}
 		}
 
 		if (buttonID == ButtonID.QUIT)

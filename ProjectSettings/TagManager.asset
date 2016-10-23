@@ -51,7 +51,10 @@ TagManager:
   - Settings/TextureQuality
   - Settings/AA
   - Container/SettingsContainer/TextureQuality/CurrentTextureQuality
-  - Settings/Borderless
+  - Settings/ShadowQuality
+  - Container/SettingsContainer/ShadowQuality/CurrentShadowQuality
+  - Settings/ToggleShadow
+  - Settings/VSync
   layers:
   - Default
   - TransparentFX

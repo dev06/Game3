@@ -27,4 +27,15 @@ public class EventManager : MonoBehaviour {
 	public static PauseGame OnPause;
 	public static PauseGame OnUnpause;
 
+
+	public delegate void Setting();
+	public static Setting OnSettingActive;
+	public static Setting OnSettingUnactive;
+
+
+	//local events
+	public delegate void ShadowToggle();
+	public static ShadowToggle OnShadowToggleUnactive;
+
+
 }

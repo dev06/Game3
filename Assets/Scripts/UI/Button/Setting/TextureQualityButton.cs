@@ -2,28 +2,28 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-public class TextureQualityButton : ButtonEventHandler {
+public class TextureQualityButton : SettingButton {
 
 	public int textureQuality;
-	private Transform _moreTextureQuality;
-	private GameObject _dropDownIcon;
-	private GameObject _currentTextureQualityButton;
-	private Text _currentTextureQualityButtonText;
-	private Vector3 _dropDownIcon_Rotation;
 	void Start ()
 	{
-		Init();
-		_moreTextureQuality = GameObject.FindWithTag("Settings/TextureQuality").transform.FindChild("MoreTextureQuality");
+		InitInstance();
+	}
+
+	void InitInstance()
+	{
+		InitSettingButton();
+		_moreOptions = GameObject.FindWithTag("Settings/TextureQuality").transform.FindChild("MoreTextureQuality");
+
 		if (buttonID == ButtonID.TEXTURE_QUALITY_BUTTON)
 		{
-			_dropDownIcon = transform.FindChild("dropDownIcon").gameObject;
-			_dropDownIcon_Rotation = Vector3.zero;
-			_currentTextureQualityButton = gameObject;
-			_currentTextureQualityButtonText =	_currentTextureQualityButton.transform.GetChild(0).GetComponent<Text>();
-			_currentTextureQualityButtonText.text = SwitchText(textureQuality);
+			settingButtons.Add(this);
+			_selectorButton = gameObject;
+			_selectorButton_Text =	_selectorButton.transform.GetChild(0).GetComponent<Text>();
+			_selectorButton_Text.text = SwitchText(textureQuality);
 		} else {
-			_currentTextureQualityButton = GameObject.FindWithTag("Container/SettingsContainer/TextureQuality/CurrentTextureQuality");
-			_currentTextureQualityButtonText =	_currentTextureQualityButton.transform.GetChild(0).GetComponent<Text>();
+			_selectorButton = GameObject.FindWithTag("Container/SettingsContainer/TextureQuality/CurrentTextureQuality");
+			_selectorButton_Text =	_selectorButton.transform.GetChild(0).GetComponent<Text>();
 		}
 	}
 
@@ -52,19 +52,19 @@ public class TextureQualityButton : ButtonEventHandler {
 	{
 		switch (i)
 		{
-		case 0:
+			case 0:
 			{
 				return "Full Res";
 			}
-		case 1:
+			case 1:
 			{
 				return "Half Res";
 			}
-		case 2:
+			case 2:
 			{
 				return "Quarter Res";
 			}
-		case 3:
+			case 3:
 			{
 				return "Eighth Res";
 			}
@@ -84,19 +84,18 @@ public class TextureQualityButton : ButtonEventHandler {
 
 		if (buttonID == ButtonID.TEXTURE_QUALITY_BUTTON)
 		{
-			SetActive(!_moreTextureQuality.gameObject.activeSelf);
 		}
 
 		if (buttonID == ButtonID.TEXTURE_QUALITY_OPTION_BUTTON)
 		{
 			QualitySettings.masterTextureLimit = textureQuality;
-			_currentTextureQualityButtonText.text = SwitchText(textureQuality);
+			_selectorButton_Text.text = SwitchText(textureQuality);
 		}
+
+		//SetActive(_moreOptions.gameObject, !_moreOptions.gameObject.activeSelf);
 	}
 
-	public void SetActive(bool b)
-	{
-		_moreTextureQuality.gameObject.SetActive(b);
-	}
+
+
 
 }

@@ -2,20 +2,20 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-public class FullScreenButton : SettingButton {
+public class VSyncButton : SettingButton {
 
-	public bool isFullScreen;
+	public bool isVSyncOn;
 
 	void Start () {
 		Init();
 		_selectorCheckMark = transform.FindChild("checkmark").gameObject;
-		isFullScreen = Screen.fullScreen;
-		_selectorCheckMark.SetActive(isFullScreen);
+		isVSyncOn = true;
+		_selectorCheckMark.SetActive(isVSyncOn);
 	}
 
 	void Update ()
 	{
-		_selectorCheckMark.SetActive(isFullScreen);
+		_selectorCheckMark.SetActive(isVSyncOn);
 	}
 
 	/// <summary>
@@ -43,11 +43,9 @@ public class FullScreenButton : SettingButton {
 	public override void OnPointerClick(PointerEventData data)
 	{
 		base.OnPointerClick(data);
-		isFullScreen = !isFullScreen;
-		_selectorCheckMark.SetActive(isFullScreen);
-		Screen.fullScreen = isFullScreen;
-		Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, isFullScreen);
-
+		isVSyncOn = !isVSyncOn;
+		_selectorCheckMark.SetActive(isVSyncOn);
+		QualitySettings.vSyncCount = (isVSyncOn) ? 1 : 0;
 	}
 
 }

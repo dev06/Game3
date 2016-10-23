@@ -8,12 +8,14 @@ public class PauseContainer : Container {
 	{
 		EventManager.OnPause += OnPause;
 		EventManager.OnUnpause += OnUnpause;
+		EventManager.OnSettingUnactive += OnSettingUnactive;
 	}
 
 	void OnDisable()
 	{
 		EventManager.OnPause -= OnPause;
 		EventManager.OnUnpause -= OnUnpause;
+		EventManager.OnSettingUnactive -= OnSettingUnactive;
 	}
 
 	void Update()
@@ -46,6 +48,14 @@ public class PauseContainer : Container {
 				}
 			}
 		}
+
+		if (GameController.Instance.menuActive == MenuActive.SETTING)
+		{
+			if (EventManager.OnSettingUnactive != null)
+			{
+				EventManager.OnSettingUnactive();
+			}
+		}
 	}
 
 	void OnPause()
@@ -57,6 +67,11 @@ public class PauseContainer : Container {
 	{
 		PlayAnimation(_animation, -1);
 		StartCoroutine("DiablePauseMenu");
+	}
+
+	void OnSettingUnactive()
+	{
+		PlayAnimation(1);
 	}
 
 	void Start () {

@@ -2,19 +2,17 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-public class BorderlessWindowButton : ButtonEventHandler {
+public class BackButton : SettingButton {
 
-	public bool isBorderLess;
-	private GameObject _checkMark;
-	void Start () {
+
+
+	void Start ()
+	{
 		Init();
-		_checkMark = transform.FindChild("checkmark").gameObject;
-		isBorderLess = false;
-		_checkMark.SetActive(isBorderLess);
 	}
 
-	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 
 	}
 
@@ -33,7 +31,6 @@ public class BorderlessWindowButton : ButtonEventHandler {
 	public override void OnPointerExit(PointerEventData data)
 	{
 		base.OnPointerExit(data);
-
 	}
 
 	/// <summary>
@@ -43,24 +40,13 @@ public class BorderlessWindowButton : ButtonEventHandler {
 	public override void OnPointerClick(PointerEventData data)
 	{
 		base.OnPointerClick(data);
-		isBorderLess = !isBorderLess;
-		_checkMark.SetActive(isBorderLess);
-#if !UNITY_EDITOR
-		if (isBorderLess)
+		if (EventManager.OnSettingUnactive != null)
 		{
-			GameController.Instance.gameObject.GetComponent<WindowHandler>().SetBorderlessWindow();
-		} else {
-			// int width = (int)1920;
-			// int height = (int)1080;
-			// GameController.Instance.WindowResolution.x = width;
-			// GameController.Instance.WindowResolution.y = height;
-
-			Screen.SetResolution((int)1920, (int)1080, false);
+			EventManager.OnSettingUnactive();
 		}
 
-#endif
-
-
-
+		GameController.Instance.menuActive = MenuActive.PAUSE;
+		GameController.Instance.EnableMenu(GameController.Instance.menuActive);
 	}
+
 }

@@ -97,19 +97,14 @@ public class GameController : MonoBehaviour {
 	int sy = 0;
 	void Update ()
 	{
-
 		if (menuActive == MenuActive.GAME)
+
 		{
 			if (Input.GetMouseButtonDown(1))
 			{
 
 				UseItem();
 			}
-		}
-
-		if (Input.GetKeyDown(KeyCode.U))
-		{
-			GetComponent<WindowHandler>().SetBorderlessWindow();
 		}
 
 		SpawnBots(Constants.StartBotSpawningDelay, Constants.BotSpawnDelay, KeepSpawning);
@@ -145,33 +140,33 @@ public class GameController : MonoBehaviour {
 
 		switch (_menu)
 		{
-		case MenuActive.GAME:
-			ActivateUICanvas(false, "GameCanvas");
-			GameObject.FindGameObjectWithTag("UI/GameCanvas").GetComponent<Canvas>().enabled = true;
-			ActivateChild(GameObject.FindWithTag("UI/GameCanvas"), "", true);
-			menuActive = MenuActive.GAME;
-			break;
-		case MenuActive.MENU:
-			GameObject.FindGameObjectWithTag("UI/MenuCanvas").GetComponent<Canvas>().enabled = true;
-			ActivateUICanvas(false, "MenuCanvas");
-			menuActive = MenuActive.MENU;
-			break;
-		case MenuActive.RETRY:
-			GameObject.FindGameObjectWithTag("UI/RetryCanvas").GetComponent<Canvas>().enabled = true;
-			ActivateUICanvas(false, "RetryCanvas");
-			menuActive = MenuActive.RETRY;
-			break;
-		case MenuActive.INVENTORY:
-			GameObject.FindGameObjectWithTag("UI/InventoryCanvas").GetComponent<Canvas>().enabled = true;
-			ActivateUICanvas(false, "InventoryCanvas");
-			ActivateChild(GameObject.FindWithTag("UI/GameCanvas"), "QuickItem", false);
-			menuActive = MenuActive.INVENTORY;
-			break;
-		case MenuActive.PAUSE:
-			GameObject.FindGameObjectWithTag("UI/PauseCanvas").GetComponent<Canvas>().enabled = true;
-			ActivateUICanvas(false, "PauseCanvas");
-			menuActive = MenuActive.PAUSE;
-			break;
+			case MenuActive.GAME:
+				ActivateUICanvas(false, "GameCanvas");
+				GameObject.FindGameObjectWithTag("UI/GameCanvas").GetComponent<Canvas>().enabled = true;
+				ActivateChild(GameObject.FindWithTag("UI/GameCanvas"), "", true);
+				menuActive = MenuActive.GAME;
+				break;
+			case MenuActive.MENU:
+				GameObject.FindGameObjectWithTag("UI/MenuCanvas").GetComponent<Canvas>().enabled = true;
+				ActivateUICanvas(false, "MenuCanvas");
+				menuActive = MenuActive.MENU;
+				break;
+			case MenuActive.RETRY:
+				GameObject.FindGameObjectWithTag("UI/RetryCanvas").GetComponent<Canvas>().enabled = true;
+				ActivateUICanvas(false, "RetryCanvas");
+				menuActive = MenuActive.RETRY;
+				break;
+			case MenuActive.INVENTORY:
+				GameObject.FindGameObjectWithTag("UI/InventoryCanvas").GetComponent<Canvas>().enabled = true;
+				ActivateUICanvas(false, "InventoryCanvas");
+				ActivateChild(GameObject.FindWithTag("UI/GameCanvas"), "QuickItem", false);
+				menuActive = MenuActive.INVENTORY;
+				break;
+			case MenuActive.PAUSE:
+				GameObject.FindGameObjectWithTag("UI/PauseCanvas").GetComponent<Canvas>().enabled = true;
+				ActivateUICanvas(false, "PauseCanvas");
+				menuActive = MenuActive.PAUSE;
+				break;
 		}
 	}
 
@@ -181,22 +176,22 @@ public class GameController : MonoBehaviour {
 		GameObject quickItemInventory = GameObject.FindWithTag("ContainerControl/InventoryContainer/QuickItem").gameObject;
 		switch (key)
 		{
-		case KeyCode.Alpha1:
-			inventoryManager.AddToQuickItem(inventoryManager.hoverItem, quickItemInventory.transform.FindChild("QS_Slot1").GetComponent<InventorySlot>());
-			qsIndex = 1;
-			break;
-		case KeyCode.Alpha2:
-			inventoryManager.AddToQuickItem(inventoryManager.hoverItem, quickItemInventory.transform.FindChild("QS_Slot2").GetComponent<InventorySlot>());
-			qsIndex = 2;
-			break;
-		case KeyCode.Alpha3:
-			inventoryManager.AddToQuickItem(inventoryManager.hoverItem, quickItemInventory.transform.FindChild("QS_Slot3").GetComponent<InventorySlot>());
-			qsIndex = 3;
-			break;
-		case KeyCode.Alpha4:
-			inventoryManager.AddToQuickItem(inventoryManager.hoverItem, quickItemInventory.transform.FindChild("QS_Slot4").GetComponent<InventorySlot>());
-			qsIndex = 4;
-			break;
+			case KeyCode.Alpha1:
+				inventoryManager.AddToQuickItem(inventoryManager.hoverItem, quickItemInventory.transform.FindChild("QS_Slot1").GetComponent<InventorySlot>());
+				qsIndex = 1;
+				break;
+			case KeyCode.Alpha2:
+				inventoryManager.AddToQuickItem(inventoryManager.hoverItem, quickItemInventory.transform.FindChild("QS_Slot2").GetComponent<InventorySlot>());
+				qsIndex = 2;
+				break;
+			case KeyCode.Alpha3:
+				inventoryManager.AddToQuickItem(inventoryManager.hoverItem, quickItemInventory.transform.FindChild("QS_Slot3").GetComponent<InventorySlot>());
+				qsIndex = 3;
+				break;
+			case KeyCode.Alpha4:
+				inventoryManager.AddToQuickItem(inventoryManager.hoverItem, quickItemInventory.transform.FindChild("QS_Slot4").GetComponent<InventorySlot>());
+				qsIndex = 4;
+				break;
 
 		}
 	}
@@ -410,6 +405,7 @@ public enum MenuActive
 	MENU,
 	GAME,
 	PAUSE,
+	SETTING,
 	CONTROL,
 	RETRY,
 	INVENTORY
@@ -484,6 +480,17 @@ public enum ButtonID
 
 	TEXTURE_QUALITY_BUTTON,
 	TEXTURE_QUALITY_OPTION_BUTTON,
+
+	SHADOW_BUTTON,
+	SHADOW_BUTTON_OPTION,
+
+	TOGGLE_SHADOW,
+
+	VSync_BUTTON,
+
+
+
+	BACK_BUTTON,
 
 	NONE,
 

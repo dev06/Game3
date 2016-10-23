@@ -49,11 +49,7 @@ public class ButtonEventHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
 
 	}
 
-	/// <summary>
-	/// Triggered on OnPointerEnter
-	/// </summary>
-	/// <param name="data"></param>
-	public virtual void OnPointerEnter(PointerEventData data)
+	protected void OnEnter()
 	{
 		hovering = true;
 		if (_image != null)
@@ -66,12 +62,10 @@ public class ButtonEventHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
 		{
 			_rectTransform.localScale = new Vector3(HoverSize, HoverSize, 1);
 		}
+
 	}
-	/// <summary>
-	/// Triggered when OnPointer Exit
-	/// </summary>
-	/// <param name="data"></param>
-	public virtual void OnPointerExit(PointerEventData data)
+
+	protected void OnExit()
 	{
 		hovering = false;
 		if (_image != null)
@@ -88,6 +82,23 @@ public class ButtonEventHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
 		GameController.selectedButtonID = ButtonID.NONE;
 
 	}
+
+	/// <summary>
+	/// Triggered on OnPointerEnter
+	/// </summary>
+	/// <param name="data"></param>
+	public virtual void OnPointerEnter(PointerEventData data)
+	{
+		OnEnter();
+	}
+	/// <summary>
+	/// Triggered when OnPointer Exit
+	/// </summary>
+	/// <param name="data"></param>
+	public virtual void OnPointerExit(PointerEventData data)
+	{
+		OnExit();
+	}
 	/// <summary>
 	/// Triggered on OnClick
 	/// </summary>
@@ -96,4 +107,19 @@ public class ButtonEventHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
 	{
 
 	}
+
+
+
+	public void SetActive(GameObject _container, bool value)
+	{
+		_container.gameObject.SetActive(value);
+		if (value)
+		{
+			OnEnter();
+		} else {
+			OnExit();
+		}
+	}
+
+
 }

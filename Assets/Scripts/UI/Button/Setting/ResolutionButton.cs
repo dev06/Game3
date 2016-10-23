@@ -2,36 +2,39 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-public class ResolutionButton : ButtonEventHandler {
+public class ResolutionButton : SettingButton {
 
 	public Vector2 resolution;
 
-	private Transform _moreResolution;
+	void Start ()
+	{
+		InitInstance();
+	}
 
-	// members only for current resolution button
-	private GameObject _currentResoultionButton;
-	private Text _currentResoultionButtonText;
+	void InitInstance()
+	{
+		InitSettingButton();
+		_moreOptions = GameObject.FindWithTag("Settings/Resolutions").transform.FindChild("MoreResolution");
 
-
-
-	void Start () {
-		Init();
-		_moreResolution = GameObject.FindWithTag("Settings/Resolutions").transform.FindChild("MoreResolution");
 		if (buttonID == ButtonID.RESOLUTION_BUTTON)
 		{
-			_currentResoultionButton = gameObject;
-			_currentResoultionButtonText =	_currentResoultionButton.transform.GetChild(0).GetComponent<Text>();
-			_currentResoultionButtonText.text = Screen.currentResolution.width + " x " +   Screen.currentResolution.height;
+			settingButtons.Add(this);
+			_selectorButton = gameObject;
+			_selectorButton_Text =	_selectorButton.transform.GetChild(0).GetComponent<Text>();
+			_selectorButton_Text.text = Screen.currentResolution.width + " x " +   Screen.currentResolution.height;
 		} else {
-			_currentResoultionButton = GameObject.FindWithTag("Container/SettingsContainer/Resolution/CurrentResolution");
-			_currentResoultionButtonText =	_currentResoultionButton.transform.GetChild(0).GetComponent<Text>();
+			_selectorButton = GameObject.FindWithTag("Container/SettingsContainer/Resolution/CurrentResolution");
+			_selectorButton_Text =	_selectorButton.transform.GetChild(0).GetComponent<Text>();
 		}
 	}
 
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
 	{
-
+		if (buttonID == ButtonID.RESOLUTION_BUTTON)
+		{
+			_selectorButton_Text.text = Screen.width  + " x " +   Screen.height;
+		}
 	}
 
 	/// <summary>
@@ -62,21 +65,16 @@ public class ResolutionButton : ButtonEventHandler {
 
 		if (buttonID == ButtonID.RESOLUTION_BUTTON)
 		{
-			SetActive(!_moreResolution.gameObject.activeSelf);
 		}
 
 		if (buttonID == ButtonID.RESOLUTION_BUTTON_OPTION)
 		{
-			_currentResoultionButtonText.text = resolution.x + " x " + resolution.y;
+			_selectorButton_Text.text = resolution.x + " x " + resolution.y;
 			GameController.Instance.WindowResolution = resolution;
 			Screen.SetResolution((int)resolution.x, (int)resolution.y, Screen.fullScreen);
+
 		}
-	}
-
-
-	public void SetActive(bool b)
-	{
-		_moreResolution.gameObject.SetActive(b);
+		//	SetActive(_moreOptions.gameObject, !_moreOptions.gameObject.activeSelf);
 	}
 
 

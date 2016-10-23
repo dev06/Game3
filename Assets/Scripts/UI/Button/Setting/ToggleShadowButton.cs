@@ -2,20 +2,22 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-public class FullScreenButton : SettingButton {
+public class ToggleShadowButton : SettingButton {
 
-	public bool isFullScreen;
+	public bool isShadowOn;
 
+	private GameObject _shadowQuality;
 	void Start () {
 		Init();
+		isShadowOn = true;
 		_selectorCheckMark = transform.FindChild("checkmark").gameObject;
-		isFullScreen = Screen.fullScreen;
-		_selectorCheckMark.SetActive(isFullScreen);
+		_selectorCheckMark.SetActive(isShadowOn);
+		_shadowQuality = GameObject.FindWithTag("Settings/ShadowQuality").gameObject;
 	}
 
 	void Update ()
 	{
-		_selectorCheckMark.SetActive(isFullScreen);
+		_selectorCheckMark.SetActive(isShadowOn);
 	}
 
 	/// <summary>
@@ -43,11 +45,21 @@ public class FullScreenButton : SettingButton {
 	public override void OnPointerClick(PointerEventData data)
 	{
 		base.OnPointerClick(data);
-		isFullScreen = !isFullScreen;
-		_selectorCheckMark.SetActive(isFullScreen);
-		Screen.fullScreen = isFullScreen;
-		Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, isFullScreen);
+		isShadowOn = !isShadowOn;
+		_selectorCheckMark.SetActive(isShadowOn);
+		_shadowQuality.SetActive(isShadowOn);
+		if (isShadowOn == false)
+		{
+			if (EventManager.OnShadowToggleUnactive != null)
+			{
+				EventManager.OnShadowToggleUnactive();
+			}
+
+		}
+
 
 	}
+
+
 
 }

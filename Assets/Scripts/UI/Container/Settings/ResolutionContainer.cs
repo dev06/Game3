@@ -5,6 +5,8 @@ public class ResolutionContainer : MonoBehaviour {
 
 	public GameObject _parent;
 	private float _spacing;
+
+
 	void Start ()
 	{
 		//_parent = GameObject.FindWithTag("Container/SettingsContainer").transform.FindChild("Resolution").transform.gameObject;
@@ -25,11 +27,4 @@ public class ResolutionContainer : MonoBehaviour {
 
 	}
 
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetKeyDown(KeyCode.T))
-		{
-			GameObject.Find("SettingsCanvas").GetComponent<Canvas>().enabled = !GameObject.Find("SettingsCanvas").GetComponent<Canvas>().enabled;
-		}
-	}
 }
