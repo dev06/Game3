@@ -52,6 +52,8 @@ public class SettingContainer : MonoBehaviour
 			}
 		}
 
+
+
 		if (_animation.isPlaying == false)
 		{
 			_animation[_animation.clip.name].speed = 0;
