@@ -39,4 +39,12 @@ public class EventManager : MonoBehaviour {
 	public static ShadowToggle OnShadowToggleActive;
 
 
+
+	public delegate void MenuButtonEvent();
+	public static MenuButtonEvent OnNewGame;
+	public static MenuButtonEvent OnLoadGame;
+	public static MenuButtonEvent OnSetting;
+	public static MenuButtonEvent OnCredit;
+
+
 }

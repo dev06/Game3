@@ -17,26 +17,19 @@ public class GameController : MonoBehaviour {
 	public InventoryManager inventoryManager;
 	public ProjectileManager projectileManager;
 	public BuffManager buffManager;
-	[HideInInspector]
 	public NavMeshController navMeshController;
 	public static ButtonID selectedButtonID;
 	public MenuActive menuActive;
-	[HideInInspector]
 	public KeyCode[] customKey;
-	[HideInInspector]
 	public bool TogglePlayerMovement;
-	[HideInInspector]
 	public bool ToggleMouseControl;
 	public bool onContainer;
 	public bool SpawnEnemy;
 	public bool KeepSpawning;
-	[HideInInspector]
+	public bool HasGameStarted;
 	public GameObject Player;
-	[HideInInspector]
 	public int botCounter;
-	[HideInInspector]
 	public GameObject activeEntities;
-	[HideInInspector]
 	public float TotalEnemiesSpawned;
 	#endregion ----------- /PUBLIC MEMBERS----------
 
@@ -458,7 +451,7 @@ public enum ButtonID
 	ROT_UP,
 	ROT_DOWN,
 
-	PLAY,
+	NEWGAME,
 	CREDIT,
 	CONTROL,
 	QUIT,
@@ -491,6 +484,8 @@ public enum ButtonID
 
 
 	BACK_BUTTON,
+
+	LOADGAME,
 
 	NONE,
 

@@ -65,12 +65,18 @@ public class PauseContainer : Container {
 
 	void OnSettingUnactive()
 	{
-		PlayAnimation(1);
+		if (GameController.Instance.HasGameStarted)
+		{
+			PlayAnimation(1);
+		}
 	}
 
 	void OnSettingActive()
 	{
-		PlayAnimation(-1);
+		if (GameController.Instance.HasGameStarted)
+		{
+			PlayAnimation(-1);
+		}
 	}
 
 	void Start () {

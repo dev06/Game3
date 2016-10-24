@@ -44,8 +44,6 @@ public class BackButton : SettingButton {
 		{
 			EventManager.OnSettingUnactive();
 		}
-
-
 	}
 
 }

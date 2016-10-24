@@ -12,6 +12,9 @@ public class SettingContainer : MonoBehaviour
 
 
 	private Animation _animation;
+
+
+	private bool _animationState;
 	void OnEnable()
 	{
 		EventManager.OnSettingActive += OnSettingActive;
@@ -33,18 +36,40 @@ public class SettingContainer : MonoBehaviour
 
 	void Update()
 	{
-		if (_animation != null)
+		if (GameController.Instance.HasGameStarted)
 		{
-			if (_animation[_animation.clip.name].speed == -1)
+			if (_animation != null)
 			{
-				if (_animation.isPlaying == false)
-				{
-					GameController.Instance.menuActive = MenuActive.PAUSE;
-					GameController.Instance.EnableMenu(GameController.Instance.menuActive);
-					_animation[_animation.clip.name].speed = 0;
-				}
+				// if (_animation[_animation.clip.name].speed == -1)
+				// {
+				// 	if (_animation.isPlaying == false)
+				// 	{
+				// 		GameController.Instance.menuActive = MenuActive.PAUSE;
+				// 		GameController.Instance.EnableMenu(GameController.Instance.menuActive);
+				// 		_animation[_animation.clip.name].speed = 0;
+				// 	}
+				// }
 			}
 		}
+
+		if (_animation.isPlaying == false)
+		{
+			_animation[_animation.clip.name].speed = 0;
+		}
+
+
+		if (_animation[_animation.clip.name].time ==  _animation[_animation.clip.name].length)
+		{
+			if (GameController.Instance.HasGameStarted == false)
+			{
+				GameController.Instance.menuActive = MenuActive.MENU;
+			} else {
+				GameController.Instance.menuActive = MenuActive.PAUSE;
+
+			}
+			GameController.Instance.EnableMenu(GameController.Instance.menuActive);
+		}
+
 	}
 
 
@@ -59,14 +84,6 @@ public class SettingContainer : MonoBehaviour
 	void OnSettingUnactive()
 	{
 		PlayAnimation(-1);
-		//StartCoroutine("RevertToPause");
-	}
-
-	IEnumerator RevertToPause()
-	{
-		yield return new WaitForSeconds(.5f);
-		GameController.Instance.menuActive = MenuActive.PAUSE;
-		GameController.Instance.EnableMenu(GameController.Instance.menuActive);
 	}
 
 	public void PlayAnimation(int direction)

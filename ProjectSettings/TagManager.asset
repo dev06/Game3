@@ -55,6 +55,8 @@ TagManager:
   - Container/SettingsContainer/ShadowQuality/CurrentShadowQuality
   - Settings/ToggleShadow
   - Settings/VSync
+  - MenuPanels/CreditPanel
+  - MenuPanels/SettingPanel
   layers:
   - Default
   - TransparentFX

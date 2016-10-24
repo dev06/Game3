@@ -63,6 +63,7 @@ public class ResolutionButton : SettingButton {
 
 		base.OnPointerClick(data);
 
+
 		if (buttonID == ButtonID.RESOLUTION_BUTTON)
 		{
 		}
