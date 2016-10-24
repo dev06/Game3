@@ -23,6 +23,7 @@ public class Menu_PanelController : MonoBehaviour {
 		EventManager.OnCredit -= OnCredit;
 	}
 
+	// this is also a test line for commit
 	void Start ()
 	{
 		_creditPanel = transform.GetChild(0).gameObject;
