@@ -58,17 +58,17 @@ public class SettingContainer : MonoBehaviour
 		}
 
 
-		if (_animation[_animation.clip.name].time ==  _animation[_animation.clip.name].length)
-		{
-			if (GameController.Instance.HasGameStarted == false)
-			{
-				GameController.Instance.menuActive = MenuActive.MENU;
-			} else {
-				GameController.Instance.menuActive = MenuActive.PAUSE;
+		// if (_animation[_animation.clip.name].time ==  _animation[_animation.clip.name].length)
+		// {
+		// 	if (GameController.Instance.HasGameStarted == false)
+		// 	{
+		// 		GameController.Instance.menuActive = MenuActive.MENU;
+		// 	} else {
+		// 		GameController.Instance.menuActive = MenuActive.PAUSE;
 
-			}
-			GameController.Instance.EnableMenu(GameController.Instance.menuActive);
-		}
+		// 	}
+		// 	GameController.Instance.EnableMenu(GameController.Instance.menuActive);
+		// }
 
 	}
 
