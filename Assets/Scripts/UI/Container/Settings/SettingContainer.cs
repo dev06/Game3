@@ -6,15 +6,13 @@ public class SettingContainer : MonoBehaviour
 
 {
 	public FullScreenButton fullScreenButton;
-
-
 	public List <ButtonEventHandler> settingButtons;
 
-
 	private Animation _animation;
-
-
 	private bool _animationState;
+
+	private MenuActive _previousMenuActive;
+
 	void OnEnable()
 	{
 		EventManager.OnSettingActive += OnSettingActive;
@@ -31,61 +29,74 @@ public class SettingContainer : MonoBehaviour
 		settingButtons = new List<ButtonEventHandler>();
 		fullScreenButton = GameObject.FindWithTag("Settings/FullScreen").transform.FindChild("CheckBackGround").GetComponent<FullScreenButton>();
 		_animation = GetComponent<Animation>();
+		_animation[_animation.clip.name].speed = 0;
 
 	}
 
 	void Update()
 	{
-		if (GameController.Instance.HasGameStarted)
-		{
-			if (_animation != null)
-			{
-				// if (_animation[_animation.clip.name].speed == -1)
-				// {
-				// 	if (_animation.isPlaying == false)
-				// 	{
-				// 		GameController.Instance.menuActive = MenuActive.PAUSE;
-				// 		GameController.Instance.EnableMenu(GameController.Instance.menuActive);
-				// 		_animation[_animation.clip.name].speed = 0;
-				// 	}
-				// }
-			}
-		}
-
-		// THIS IS A TEST LINE FOR COMMIT
-
-		if (_animation.isPlaying == false)
-		{
-			_animation[_animation.clip.name].speed = 0;
-		}
-
-
-		// if (_animation[_animation.clip.name].time ==  _animation[_animation.clip.name].length)
+		// if (!GameController.Instance.HasGameStarted)
 		// {
-		// 	if (GameController.Instance.HasGameStarted == false)
+		// 	if (GetAnimationState() == 0)
 		// 	{
 		// 		GameController.Instance.menuActive = MenuActive.MENU;
-		// 	} else {
-		// 		GameController.Instance.menuActive = MenuActive.PAUSE;
-
+		// 		GameController.Instance.EnableMenu(GameController.Instance.menuActive);
 		// 	}
-		// 	GameController.Instance.EnableMenu(GameController.Instance.menuActive);
-		// }
+		// } else
+		// {
 
+		if (_previousMenuActive != MenuActive.NONE)
+		{
+			if (GetAnimationState() == 0)
+			{
+				GameController.Instance.menuActive = _previousMenuActive;
+				GameController.Instance.EnableMenu(GameController.Instance.menuActive);
+				_previousMenuActive = MenuActive.NONE;
+			}
+		}
 	}
 
 
 
 	void OnSettingActive()
 	{
-		GameObject.Find("SettingsCanvas").GetComponent<Canvas>().enabled = !GameObject.Find("SettingsCanvas").GetComponent<Canvas>().enabled;
+		GameObject.Find("SettingsCanvas").GetComponent<Canvas>().enabled = true;
+		_previousMenuActive = GameController.Instance.menuActive;
+
 		GameController.Instance.menuActive = MenuActive.SETTING;
 		PlayAnimation(1);
+		Debug.Log(_previousMenuActive);
 	}
 
 	void OnSettingUnactive()
 	{
 		PlayAnimation(-1);
+	}
+
+	/// <summary>
+	/// Return an int between 0 and 1 representing the state of the animation.
+	///[0] when anim is at start [1] when anim is at end and [-1] if speed is any other #
+	/// </summary>
+
+	private int GetAnimationState()
+	{
+		if (_animation[_animation.clip.name].speed == -1)
+		{
+			if (_animation.isPlaying == false)
+			{
+				return 0;
+
+			}
+		} else if (_animation[_animation.clip.name].speed == 1)
+		{
+			if (_animation.isPlaying == false)
+			{
+				return 1;
+			}
+		}
+
+		return -1;
+
 	}
 
 	public void PlayAnimation(int direction)

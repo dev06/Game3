@@ -9,6 +9,8 @@ public class Menu_PanelController : MonoBehaviour {
 
 	void OnEnable()
 	{
+
+
 		EventManager.OnNewGame += OnNewGame;
 		EventManager.OnLoadGame += OnLoadGame;
 		EventManager.OnSetting += OnSetting;
@@ -17,6 +19,8 @@ public class Menu_PanelController : MonoBehaviour {
 
 	void OnDisable()
 	{
+
+
 		EventManager.OnNewGame -= OnNewGame;
 		EventManager.OnLoadGame -= OnLoadGame;
 		EventManager.OnSetting -= OnSetting;
