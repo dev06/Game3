@@ -19,6 +19,8 @@ public class Menu_ButtonContainer : Container {
 		EventManager.OnSettingUnactive += OnSettingUnactive;
 		EventManager.OnSettingActive += OnSettingActive;
 		EventManager.OnCreditUnactive += OnCreditUnacitve;
+		EventManager.OnCreditActive += OnCreditActive;
+
 	}
 
 	void OnDisable()
@@ -29,6 +31,8 @@ public class Menu_ButtonContainer : Container {
 		EventManager.OnSettingUnactive -= OnSettingUnactive;
 		EventManager.OnSettingActive -= OnSettingActive;
 		EventManager.OnCreditUnactive -= OnCreditUnacitve;
+		EventManager.OnCreditActive -= OnCreditActive;
+
 
 
 	}
@@ -76,6 +80,11 @@ public class Menu_ButtonContainer : Container {
 	private void OnCreditUnacitve()
 	{
 		PlayAnimation(1);
+	}
+
+	private void OnCreditActive()
+	{
+		PlayAnimation(-1);
 	}
 
 	void Update()

@@ -58,6 +58,7 @@ TagManager:
   - MenuPanels/CreditPanel
   - MenuPanels/SettingPanel
   - Version
+  - UI/CreditCanvas
   layers:
   - Default
   - TransparentFX

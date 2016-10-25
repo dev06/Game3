@@ -25,8 +25,6 @@ public class Menu_PanelController : MonoBehaviour {
 	// this is also a test line for commit
 	void Start ()
 	{
-		_creditPanel = transform.GetChild(0).gameObject;
-		_settingPanel = transform.GetChild(1).gameObject;
 	}
 
 	void Update ()
@@ -42,7 +40,7 @@ public class Menu_PanelController : MonoBehaviour {
 	{
 		switch (id)
 		{
-			case ButtonID.NEWGAME:
+		case ButtonID.NEWGAME:
 			{
 				GameController.Instance.HasGameStarted = true;
 				GameController.Instance.menuActive = MenuActive.GAME;
@@ -50,20 +48,21 @@ public class Menu_PanelController : MonoBehaviour {
 				break;
 			}
 
-			case ButtonID.CREDIT:
-			{
-				GameController.Instance.menuActive = MenuActive.CREDIT;
-				//GameController.Instance.EnableMenu(GameController.Instance.menuActive);
-				_creditPanel.SetActive(!_creditPanel.activeSelf);
-				break;
-			}
+			// case ButtonID.CREDIT:
+			// 	{
+			// 		GameController.Instance.menuActive = MenuActive.CREDIT;
+			// 		GameController.Instance.EnableMenu(GameController.Instance.menuActive);
+			// 		break;
+			// 	}
 		}
+
+
 	}
 
 	void OnCreditUnactive()
 	{
-		_creditPanel.SetActive(!_creditPanel.activeSelf);
-		GameController.Instance.menuActive = MenuActive.MENU;
-		GameController.Instance.EnableMenu(GameController.Instance.menuActive);
+		// _creditPanel.SetActive(!_creditPanel.activeSelf);
+		// GameController.Instance.menuActive = MenuActive.MENU;
+		// GameController.Instance.EnableMenu(GameController.Instance.menuActive);
 	}
 }

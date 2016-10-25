@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: CreditPanelAnim
+  m_Name: CreditAnim
   serializedVersion: 6
   m_Legacy: 1
   m_Compressed: 0
@@ -20,14 +20,14 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 5000
-        inSlope: -15000
-        outSlope: -15000
+        value: 2000
+        inSlope: -7499.9995
+        outSlope: -7499.9995
         tangentMode: 10
-      - time: 0.33333334
+      - time: 0.26666668
         value: 0
-        inSlope: -15000
-        outSlope: -15000
+        inSlope: -7499.9995
+        outSlope: -7499.9995
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -44,7 +44,7 @@ AnimationClip:
         inSlope: 0
         outSlope: 0
         tangentMode: 10
-      - time: 0.33333334
+      - time: 0.26666668
         value: 0
         inSlope: 0
         outSlope: 0
@@ -70,7 +70,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.33333334
+    m_StopTime: 0.26666668
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -90,14 +90,14 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 5000
-        inSlope: -15000
-        outSlope: -15000
+        value: 2000
+        inSlope: -7499.9995
+        outSlope: -7499.9995
         tangentMode: 10
-      - time: 0.33333334
+      - time: 0.26666668
         value: 0
-        inSlope: -15000
-        outSlope: -15000
+        inSlope: -7499.9995
+        outSlope: -7499.9995
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -114,7 +114,7 @@ AnimationClip:
         inSlope: 0
         outSlope: 0
         tangentMode: 10
-      - time: 0.33333334
+      - time: 0.26666668
         value: 0
         inSlope: 0
         outSlope: 0

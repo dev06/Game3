@@ -49,13 +49,12 @@ public class BackButton : SettingButton {
 			}
 		}
 
-		else
+		else if (_owner == MenuActive.CREDIT)
 		{
 			if (EventManager.OnCreditUnactive != null)
 			{
 				EventManager.OnCreditUnactive();
 			}
-			Debug.Log("Credit back button pressed");
 		}
 	}
 

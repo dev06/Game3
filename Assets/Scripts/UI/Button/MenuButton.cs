@@ -68,9 +68,9 @@ public class MenuButton : ButtonEventHandler {
 
 		} else if (buttonID == ButtonID.CREDIT)
 		{
-			if (EventManager.OnCredit != null)
+			if (EventManager.OnCreditActive != null)
 			{
-				EventManager.OnCredit(buttonID);
+				EventManager.OnCreditActive();
 			}
 
 		} else if (buttonID == ButtonID.QUIT)
