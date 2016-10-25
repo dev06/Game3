@@ -32,6 +32,11 @@ public class EventManager : MonoBehaviour {
 	public static Setting OnSettingActive;
 	public static Setting OnSettingUnactive;
 
+	public delegate void Credit();
+	public static Credit OnCreditActive;
+	public static Credit OnCreditUnactive;
+
+
 
 	//local events
 	public delegate void ShadowToggle();

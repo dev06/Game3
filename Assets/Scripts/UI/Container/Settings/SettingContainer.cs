@@ -28,6 +28,7 @@ public class SettingContainer : MonoBehaviour
 	{
 		settingButtons = new List<ButtonEventHandler>();
 		fullScreenButton = GameObject.FindWithTag("Settings/FullScreen").transform.FindChild("CheckBackGround").GetComponent<FullScreenButton>();
+		transform.FindChild("BackButton").GetComponent<BackButton>().SetOwner(MenuActive.SETTING);
 		_animation = GetComponent<Animation>();
 		_animation[_animation.clip.name].speed = 0;
 
@@ -35,17 +36,6 @@ public class SettingContainer : MonoBehaviour
 
 	void Update()
 	{
-		// if (!GameController.Instance.HasGameStarted)
-		// {
-		// 	if (GetAnimationState() == 0)
-		// 	{
-		// 		GameController.Instance.menuActive = MenuActive.MENU;
-		// 		GameController.Instance.EnableMenu(GameController.Instance.menuActive);
-		// 	}
-		// } else
-		// {
-
-
 
 		if (_previousMenuActive != MenuActive.NONE)
 		{

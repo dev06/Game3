@@ -18,6 +18,7 @@ public class Menu_ButtonContainer : Container {
 		EventManager.OnCredit += OnButtonClick;
 		EventManager.OnSettingUnactive += OnSettingUnactive;
 		EventManager.OnSettingActive += OnSettingActive;
+		EventManager.OnCreditUnactive += OnCreditUnacitve;
 	}
 
 	void OnDisable()
@@ -27,6 +28,8 @@ public class Menu_ButtonContainer : Container {
 		EventManager.OnCredit -= OnButtonClick;
 		EventManager.OnSettingUnactive -= OnSettingUnactive;
 		EventManager.OnSettingActive -= OnSettingActive;
+		EventManager.OnCreditUnactive -= OnCreditUnacitve;
+
 
 	}
 
@@ -56,12 +59,23 @@ public class Menu_ButtonContainer : Container {
 		}
 	}
 
+	/// <summary>
+	/// Called when setting becomes active
+	/// </summary>
 	private void OnSettingActive()
 	{
 		if (GameController.Instance.menuActive != MenuActive.GAME)
 		{
 			PlayAnimation(-1);
 		}
+	}
+
+	/// <summary>
+	/// Called when Credit becomes unactive
+	/// </summary>
+	private void OnCreditUnacitve()
+	{
+		PlayAnimation(1);
 	}
 
 	void Update()
@@ -84,6 +98,9 @@ public class Menu_ButtonContainer : Container {
 				{
 					OnMenuContainerAnimFinished(_buttonClickedId);
 				}
+
+				_buttonClickedId = ButtonID.NONE;
+				Debug.Log("Called");
 			}
 		}
 	}

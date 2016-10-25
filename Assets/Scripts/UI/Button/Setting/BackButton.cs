@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class BackButton : SettingButton {
 
 
+	private MenuActive _owner;
 
 	void Start ()
 	{
@@ -40,10 +41,27 @@ public class BackButton : SettingButton {
 	public override void OnPointerClick(PointerEventData data)
 	{
 		base.OnPointerClick(data);
-		if (EventManager.OnSettingUnactive != null)
+		if (_owner == MenuActive.SETTING)
 		{
-			EventManager.OnSettingUnactive();
+			if (EventManager.OnSettingUnactive != null)
+			{
+				EventManager.OnSettingUnactive();
+			}
 		}
+
+		else
+		{
+			if (EventManager.OnCreditUnactive != null)
+			{
+				EventManager.OnCreditUnactive();
+			}
+			Debug.Log("Credit back button pressed");
+		}
+	}
+
+	public void SetOwner(MenuActive _menu)
+	{
+		_owner = _menu;
 	}
 
 }

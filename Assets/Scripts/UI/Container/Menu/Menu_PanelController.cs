@@ -11,13 +11,15 @@ public class Menu_PanelController : MonoBehaviour {
 	{
 
 		Menu_ButtonContainer.OnMenuContainerAnimFinished += OnButtonClick;
-		EventManager.OnCredit += OnCredit;
+		EventManager.OnCreditUnactive += OnCreditUnactive;
+
 	}
 
 	void OnDisable()
 	{
 		Menu_ButtonContainer.OnMenuContainerAnimFinished -= OnButtonClick;
-		EventManager.OnCredit -= OnCredit;
+		EventManager.OnCreditUnactive -= OnCreditUnactive;
+
 	}
 
 	// this is also a test line for commit
@@ -47,13 +49,21 @@ public class Menu_PanelController : MonoBehaviour {
 				GameController.Instance.EnableMenu(GameController.Instance.menuActive);
 				break;
 			}
+
+			case ButtonID.CREDIT:
+			{
+				GameController.Instance.menuActive = MenuActive.CREDIT;
+				//GameController.Instance.EnableMenu(GameController.Instance.menuActive);
+				_creditPanel.SetActive(!_creditPanel.activeSelf);
+				break;
+			}
 		}
 	}
 
-	private void OnCredit(ButtonID id)
+	void OnCreditUnactive()
 	{
 		_creditPanel.SetActive(!_creditPanel.activeSelf);
+		GameController.Instance.menuActive = MenuActive.MENU;
+		GameController.Instance.EnableMenu(GameController.Instance.menuActive);
 	}
-
-
 }
