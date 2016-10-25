@@ -7128,7 +7128,7 @@ MonoBehaviour:
   RestSprite: {fileID: 21300000, guid: b4945b5da19d796409f9cd9b69dddf62, type: 3}
   HoverColor: {r: 0, g: 0.5953452, b: 0.71323526, a: 1}
   RestColor: {r: 0, g: 0.2946038, b: 0.35294116, a: 1}
-  HoverSize: 1.1
+  HoverSize: 1.05
   RestSize: 1
   buttonID: 15
 --- !u!114 &614031713
@@ -7456,7 +7456,7 @@ MonoBehaviour:
   RestSprite: {fileID: 21300000, guid: b4945b5da19d796409f9cd9b69dddf62, type: 3}
   HoverColor: {r: 1, g: 0, b: 0, a: 1}
   RestColor: {r: 0.6985294, g: 0, b: 0, a: 0.8235294}
-  HoverSize: 1.1
+  HoverSize: 1.05
   RestSize: 1
   buttonID: 11
 --- !u!1 &660501244
@@ -10542,7 +10542,7 @@ MonoBehaviour:
   RestSprite: {fileID: 21300000, guid: b4945b5da19d796409f9cd9b69dddf62, type: 3}
   HoverColor: {r: 0, g: 0.5953452, b: 0.71323526, a: 1}
   RestColor: {r: 0, g: 0.2946038, b: 0.35294116, a: 1}
-  HoverSize: 1.1
+  HoverSize: 1.05
   RestSize: 1
   buttonID: 8
 --- !u!1001 &790410277
@@ -12282,6 +12282,7 @@ RectTransform:
   - {fileID: 1414269340}
   - {fileID: 1551963956}
   - {fileID: 1798375867}
+  - {fileID: 1957628763}
   m_Father: {fileID: 1715210655}
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
@@ -15494,7 +15495,7 @@ MonoBehaviour:
   RestSprite: {fileID: 21300000, guid: b4945b5da19d796409f9cd9b69dddf62, type: 3}
   HoverColor: {r: 0, g: 0.5953452, b: 0.71323526, a: 1}
   RestColor: {r: 0, g: 0.2946038, b: 0.35294116, a: 1}
-  HoverSize: 1.1
+  HoverSize: 1.05
   RestSize: 1
   buttonID: 29
 --- !u!114 &1102099901
@@ -19824,7 +19825,7 @@ MonoBehaviour:
   RestSprite: {fileID: 21300000, guid: b4945b5da19d796409f9cd9b69dddf62, type: 3}
   HoverColor: {r: 0, g: 0.5953452, b: 0.71323526, a: 1}
   RestColor: {r: 0, g: 0.2946038, b: 0.35294116, a: 1}
-  HoverSize: 1.1
+  HoverSize: 1.05
   RestSize: 1
   buttonID: 9
 --- !u!1 &1544474980
@@ -24038,6 +24039,82 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1944423218}
+--- !u!1 &1957628762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1957628763}
+  - 222: {fileID: 1957628765}
+  - 114: {fileID: 1957628764}
+  m_Layer: 0
+  m_Name: Version
+  m_TagString: Version
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1957628763
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1957628762}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 864066289}
+  m_RootOrder: 3
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 273.19995, y: 54.399994}
+  m_Pivot: {x: 1, y: 0}
+--- !u!114 &1957628764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1957628762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 197bba831f1870f48ab763a50e58219c, type: 3}
+    m_FontSize: 22
+    m_FontStyle: 2
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'VERSION
+
+'
+--- !u!222 &1957628765
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1957628762}
 --- !u!1 &1997789804
 GameObject:
   m_ObjectHideFlags: 0

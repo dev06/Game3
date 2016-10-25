@@ -57,6 +57,7 @@ TagManager:
   - Settings/VSync
   - MenuPanels/CreditPanel
   - MenuPanels/SettingPanel
+  - Version
   layers:
   - Default
   - TransparentFX

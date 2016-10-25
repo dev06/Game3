@@ -24,7 +24,7 @@ public class MenuButton : ButtonEventHandler {
 	/// <param name="data"></param>
 	public override void OnPointerEnter(PointerEventData data)
 	{
-
+		base.OnPointerEnter(data);
 	}
 	/// <summary>
 	/// Overrides the on pointer exit from base class
@@ -32,7 +32,7 @@ public class MenuButton : ButtonEventHandler {
 	/// <param name="data"></param>
 	public override void OnPointerExit(PointerEventData data)
 	{
-
+		base.OnPointerExit(data);
 
 	}
 

@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour {
 
 	#region ----------- PUBLIC MEMBERS----------
 
-
+	public const string VERSION = "v1.0.0 Pre-Alpha";
 	public static GameController Instance;
 
 	public Vector2 WindowResolution;
@@ -72,6 +72,7 @@ public class GameController : MonoBehaviour {
 		_bot = (GameObject)Resources.Load("Prefabs/Bot");
 		_blankImage = GameObject.FindWithTag("UI/GameCanvas").transform.FindChild("Blank").GetComponent<Image>();
 		_shootEffectPrefab = (GameObject)Resources.Load("Prefabs/Particles/ShootEffect");
+		GameObject.FindWithTag("Version").GetComponent<Text>().text = VERSION;
 		activeEntities = GameObject.FindWithTag("ActiveEntities");
 		Player = GameObject.FindGameObjectWithTag("Player");
 
