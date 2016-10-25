@@ -4,24 +4,30 @@ using System.Collections;
 public class Menu_ButtonContainer : Container {
 
 	private Animation _animaiton;
+	private ButtonID _buttonClickedId;
 
-	public delegate void AnimationFinished();
+	public delegate void AnimationFinished(ButtonID id);
 	public static AnimationFinished OnMenuContainerAnimFinished;
+
+
 
 	void OnEnable()
 	{
 		EventManager.OnNewGame += OnButtonClick;
 		EventManager.OnLoadGame += OnButtonClick;
-		EventManager.OnSetting += OnButtonClick;
 		EventManager.OnCredit += OnButtonClick;
+		EventManager.OnSettingUnactive += OnSettingUnactive;
+		EventManager.OnSettingActive += OnSettingActive;
 	}
 
 	void OnDisable()
 	{
 		EventManager.OnNewGame -= OnButtonClick;
 		EventManager.OnLoadGame -= OnButtonClick;
-		EventManager.OnSetting -= OnButtonClick;
 		EventManager.OnCredit -= OnButtonClick;
+		EventManager.OnSettingUnactive -= OnSettingUnactive;
+		EventManager.OnSettingActive -= OnSettingActive;
+
 	}
 
 	void Start ()
@@ -30,13 +36,45 @@ public class Menu_ButtonContainer : Container {
 		_animaiton = GetComponent<Animation>();
 	}
 
-
-	void OnButtonClick()
+	/// <summary>
+	/// Called instantaneously when button is pressed
+	/// </summary>
+	private void OnButtonClick(ButtonID id)
 	{
 		PlayAnimation(-1);
+		_buttonClickedId = id;
+	}
+
+	/// <summary>
+	/// Called when Setting becomes unactive
+	/// </summary>
+	private void OnSettingUnactive()
+	{
+		if (GameController.Instance.menuActive != MenuActive.GAME)
+		{
+			PlayAnimation(1);
+		}
+	}
+
+	private void OnSettingActive()
+	{
+		if (GameController.Instance.menuActive != MenuActive.GAME)
+		{
+			PlayAnimation(-1);
+		}
 	}
 
 	void Update()
+	{
+		OnFinishMenuAnim();
+	}
+
+	/// <summary>
+	/// Methods check whether the menu animation has finished coming from different containers
+	/// for ex. menu scene: coming back from settings to menu.
+	/// </summary>
+
+	private void OnFinishMenuAnim()
 	{
 		if (GameController.Instance.menuActive == MenuActive.MENU)
 		{
@@ -44,15 +82,15 @@ public class Menu_ButtonContainer : Container {
 			{
 				if (OnMenuContainerAnimFinished != null)
 				{
-					OnMenuContainerAnimFinished();
+					OnMenuContainerAnimFinished(_buttonClickedId);
 				}
-				GameController.Instance.menuActive = MenuActive.GAME;
-				GameController.Instance.EnableMenu(GameController.Instance.menuActive);
-				// Debug.Log("Caleed");
 			}
 		}
-
 	}
+
+	/// <summary>
+	/// Return a number between -1, 1 to see the state of the animation.
+	/// </summary>
 
 	private int GetAnimationState()
 	{

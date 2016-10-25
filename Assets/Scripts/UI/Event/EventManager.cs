@@ -40,7 +40,7 @@ public class EventManager : MonoBehaviour {
 
 
 
-	public delegate void MenuButtonEvent();
+	public delegate void MenuButtonEvent(ButtonID id);
 	public static MenuButtonEvent OnNewGame;
 	public static MenuButtonEvent OnLoadGame;
 	public static MenuButtonEvent OnSetting;

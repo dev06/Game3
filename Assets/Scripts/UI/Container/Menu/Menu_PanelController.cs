@@ -10,20 +10,13 @@ public class Menu_PanelController : MonoBehaviour {
 	void OnEnable()
 	{
 
-
-		EventManager.OnNewGame += OnNewGame;
-		EventManager.OnLoadGame += OnLoadGame;
-		EventManager.OnSetting += OnSetting;
+		Menu_ButtonContainer.OnMenuContainerAnimFinished += OnButtonClick;
 		EventManager.OnCredit += OnCredit;
 	}
 
 	void OnDisable()
 	{
-
-
-		EventManager.OnNewGame -= OnNewGame;
-		EventManager.OnLoadGame -= OnLoadGame;
-		EventManager.OnSetting -= OnSetting;
+		Menu_ButtonContainer.OnMenuContainerAnimFinished -= OnButtonClick;
 		EventManager.OnCredit -= OnCredit;
 	}
 
@@ -39,21 +32,25 @@ public class Menu_PanelController : MonoBehaviour {
 
 	}
 
-	void OnNewGame()
+	/// <summary>
+	/// This method is called after transtion when menu button is pressed
+	/// </summary>
+	/// <param name="id"></param>
+	private void OnButtonClick(ButtonID id)
 	{
-		GameController.Instance.HasGameStarted = true;
+		switch (id)
+		{
+			case ButtonID.NEWGAME:
+			{
+				GameController.Instance.HasGameStarted = true;
+				GameController.Instance.menuActive = MenuActive.GAME;
+				GameController.Instance.EnableMenu(GameController.Instance.menuActive);
+				break;
+			}
+		}
 	}
-	void OnLoadGame()
-	{
 
-	}
-
-	void OnSetting()
-	{
-		_settingPanel.SetActive(!_settingPanel.activeSelf);
-	}
-
-	void OnCredit()
+	private void OnCredit(ButtonID id)
 	{
 		_creditPanel.SetActive(!_creditPanel.activeSelf);
 	}

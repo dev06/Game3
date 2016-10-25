@@ -48,22 +48,18 @@ public class MenuButton : ButtonEventHandler {
 		{
 			if (EventManager.OnNewGame != null)
 			{
-				EventManager.OnNewGame();
+				EventManager.OnNewGame(buttonID);
 			}
 
 		} else if (buttonID == ButtonID.LOADGAME)
 		{
 			if (EventManager.OnLoadGame != null)
 			{
-				EventManager.OnLoadGame();
+				EventManager.OnLoadGame(buttonID);
 			}
 
 		} else if (buttonID == ButtonID.SETTINGS)
 		{
-			// if (EventManager.OnSetting != null)
-			// {
-			// 	EventManager.OnSetting();
-			// }
 
 			if (EventManager.OnSettingActive != null)
 			{
@@ -74,7 +70,7 @@ public class MenuButton : ButtonEventHandler {
 		{
 			if (EventManager.OnCredit != null)
 			{
-				EventManager.OnCredit();
+				EventManager.OnCredit(buttonID);
 			}
 
 		} else if (buttonID == ButtonID.QUIT)

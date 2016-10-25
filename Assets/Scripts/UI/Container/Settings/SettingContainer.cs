@@ -45,6 +45,8 @@ public class SettingContainer : MonoBehaviour
 		// } else
 		// {
 
+
+
 		if (_previousMenuActive != MenuActive.NONE)
 		{
 			if (GetAnimationState() == 0)
@@ -65,7 +67,6 @@ public class SettingContainer : MonoBehaviour
 
 		GameController.Instance.menuActive = MenuActive.SETTING;
 		PlayAnimation(1);
-		Debug.Log(_previousMenuActive);
 	}
 
 	void OnSettingUnactive()
