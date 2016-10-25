@@ -8055,6 +8055,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 710679296}
+  - 111: {fileID: 710679298}
+  - 114: {fileID: 710679297}
   m_Layer: 0
   m_Name: CreditPanel
   m_TagString: MenuPanels/CreditPanel
@@ -8084,6 +8086,32 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &710679297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 710679295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 999f2acfcaaf11e4baddca50f1b61b74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!111 &710679298
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 710679295}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: c0bfba2a2bf2f2748a26d1a6d8586c2c, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: c0bfba2a2bf2f2748a26d1a6d8586c2c, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &716085728
 GameObject:
   m_ObjectHideFlags: 0
