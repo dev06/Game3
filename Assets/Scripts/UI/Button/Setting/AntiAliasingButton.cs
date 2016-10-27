@@ -49,19 +49,19 @@ public class AntiAliasingButton : SettingButton {
 	{
 		switch (i)
 		{
-			case 0:
+		case 0:
 			{
 				return "Disabled";
 			}
-			case 1:
+		case 1:
 			{
 				return "2x multi sampling";
 			}
-			case 2:
+		case 2:
 			{
 				return "4x multi sampling";
 			}
-			case 3:
+		case 3:
 			{
 				return "8x multi sampling";
 			}
@@ -90,8 +90,5 @@ public class AntiAliasingButton : SettingButton {
 			QualitySettings.antiAliasing = antiAliasing;
 			_selectorButton_Text.text = SwitchText((int)Mathf.Log(antiAliasing, 2));
 		}
-
-
-
 	}
 }

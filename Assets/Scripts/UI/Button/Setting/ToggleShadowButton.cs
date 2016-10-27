@@ -54,6 +54,12 @@ public class ToggleShadowButton : SettingButton {
 			{
 				EventManager.OnShadowToggleUnactive();
 			}
+		} else
+		{
+			if (EventManager.OnShadowToggleActive != null)
+			{
+				EventManager.OnShadowToggleActive();
+			}
 		}
 	}
 }

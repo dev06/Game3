@@ -11,19 +11,23 @@ public class ShadowQualityButton : SettingButton {
 
 	void OnEnable()
 	{
-		ChangeShadowSettings(2);
+		EventManager.OnShadowToggleUnactive -= OnShadowToggleUnactive;
+		EventManager.OnShadowToggleActive -= OnShadowToggleActive;
+		//ChangeShadowSettings(2);
 	}
 
 	void OnDisable()
 	{
-
-		ChangeShadowSettings(0);
+		EventManager.OnShadowToggleUnactive += OnShadowToggleUnactive;
+		EventManager.OnShadowToggleActive += OnShadowToggleActive;
+		//ChangeShadowSettings(0);
 	}
 
 	void Start ()
 	{
 		InitInstance();
 		_lights = GameObject.FindObjectsOfType(typeof(Light)) as Light[];
+		ChangeShadowSettings(3);
 	}
 
 	void InitInstance()
@@ -70,19 +74,19 @@ public class ShadowQualityButton : SettingButton {
 	{
 		switch (i)
 		{
-			case 0:
+		case 0:
 			{
 				return "Very Low";
 			}
-			case 1:
+		case 1:
 			{
 				return "Low";
 			}
-			case 2:
+		case 2:
 			{
 				return "Medium";
 			}
-			case 3:
+		case 3:
 			{
 				return "High";
 			}
@@ -114,22 +118,22 @@ public class ShadowQualityButton : SettingButton {
 	{
 		switch (level)
 		{
-			case 0:
+		case 0:
 			{
 				SetLightShadow(LightShadows.None);
 				break;
 			}
-			case 1:
+		case 1:
 			{
 				SetLightShadow(LightShadows.Hard);
 				break;
 			}
-			case 2:
+		case 2:
 			{
 				SetLightShadow(LightShadows.Soft);
 				break;
 			}
-			case 3:
+		case 3:
 			{
 				SetLightShadow(LightShadows.Soft);
 				break;
@@ -162,9 +166,13 @@ public class ShadowQualityButton : SettingButton {
 		{
 			SetLightShadow(LightShadows.None);
 		}
+
 	}
 	void OnShadowToggleActive()
 	{
-		ChangeShadowSettings(shadowQuality);
+		if (_lights != null)
+		{
+			ChangeShadowSettings(1);
+		}
 	}
 }

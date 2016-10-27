@@ -32,7 +32,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
 	protected void Init()
 	{
-		gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+		gameController = GameController.Instance;
 		_slotImage = GetComponent<Image>();
 		_slotItemImage = transform.FindChild("ItemImage").GetComponent<Image>();
 		_slotImage.color = RestColor;
@@ -43,15 +43,12 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 			gameController.inventoryManager.inventorySlots.Add(this);
 			_slotItemQuickSelect = _slotItemImage.transform.FindChild("ItemQuickSelect").GetComponent<Text>();
 		}
-
 	}
 
 	void Update()
 	{
 		if (inventoryType != InventoryType.QuickItem)
 		{
-
-
 			if (_onHover)
 			{
 				transform.Rotate(new Vector3(0, 0, -50f * Time.deltaTime));

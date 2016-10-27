@@ -4,6 +4,9 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Text;
+using System.Xml;
+using System.IO;
 public class GameController : MonoBehaviour {
 
 
@@ -85,10 +88,20 @@ public class GameController : MonoBehaviour {
 		{
 			EventManager.OnShoot();
 		}
+
+
+		StartCoroutine("LoadXMLData");
 	}
 
-	public int sx = 0;
-	int sy = 0;
+
+
+	IEnumerator LoadXMLData()
+	{
+		yield return new WaitForSeconds(1);
+		TextAsset asset = (TextAsset)(Resources.Load("GameData/Default"));
+		XmlLoader.LoadDefaultXmlData(asset.text);
+	}
+
 	void Update ()
 	{
 
@@ -375,6 +388,33 @@ public class GameController : MonoBehaviour {
 				{
 					buffManager.UseBuff(_item);
 				}
+			}
+		}
+	}
+
+	private void LoadXML()
+	{
+		XmlDocument doc = new XmlDocument();
+		TextAsset asset = (TextAsset)Resources.Load("MyXML");
+		doc.LoadXml(asset.text);
+		XmlNodeList levelsList = doc.GetElementsByTagName("level");
+		XmlNodeList colorList  = doc.GetElementsByTagName("color");
+		foreach (XmlNode colorInfo in colorList)
+		{
+			foreach (XmlNode childNode in colorInfo)
+			{
+				Debug.Log(childNode.InnerText);
+			}
+		}
+		Debug.Log("");
+		foreach (XmlNode levelInfo in levelsList)
+		{
+			foreach (XmlNode childNode in levelInfo)
+			{
+
+				Debug.Log(childNode.InnerText);
+
+
 			}
 		}
 	}
