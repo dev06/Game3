@@ -54,6 +54,11 @@
 			<count>0</count>
 		</slot12>	
 	</defaultInventory>
-	<defautlSetting>
-	</defautlSetting>
+	<defaultSetting>
+		<textureQuality name = "textureQuality">0</textureQuality>
+		<shadowQuality name = "shadowQuality">2</shadowQuality>
+		<antiAliasing name = "antiAliasing">3</antiAliasing>
+		<fullScreen name = "fullScreen">1</fullScreen>
+		<toggleShadow name = "toggleShadow">1</toggleShadow>
+	</defaultSetting>
 </wrapper>

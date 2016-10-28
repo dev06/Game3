@@ -105,6 +105,7 @@ public class GameController : MonoBehaviour {
 	void Update ()
 	{
 
+		Debug.Log(Constants.toggleShadow);
 		if (menuActive == MenuActive.GAME)
 
 		{

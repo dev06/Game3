@@ -11,6 +11,7 @@ public class XmlLoader : MonoBehaviour
 		XmlDocument _xmlDoc = new XmlDocument();
 		_xmlDoc.LoadXml(path);
 		LoadDefaultInventory(_xmlDoc);
+		LoadDefaultSetting(_xmlDoc);
 
 	}
 
@@ -46,11 +47,37 @@ public class XmlLoader : MonoBehaviour
 		}
 	}
 
-	private static void LoadDefaultSetting()
+	/// <summary>
+	/// Loads the Default game setting from a doc
+	/// </summary>
+	/// <param name="_xmlDoc"></param>
+	private static void LoadDefaultSetting(XmlDocument _xmlDoc)
 	{
-
+		XmlNodeList _settingList = _xmlDoc.GetElementsByTagName("defaultSetting");
+		foreach (XmlNode _settingNode in _settingList)
+		{
+			foreach (XmlNode _settingOption in _settingNode)
+			{
+				switch (_settingOption.Name)
+				{
+				case "textureQuality":
+					{
+						QualitySettings.masterTextureLimit = int.Parse(_settingOption.InnerText);
+						break;
+					}
+				case "antiAliasing":
+					{
+						QualitySettings.antiAliasing = int.Parse(_settingOption.InnerText);
+						break;
+					}
+				case "toggleShadow":
+					{
+						QualitySettings.antiAliasing = int.Parse(_settingOption.InnerText);
+						break;
+					}
+				}
+				Debug.Log(_settingOption.InnerText);
+			}
+		}
 	}
-
-
-
 }

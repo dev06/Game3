@@ -28,6 +28,12 @@ public class AntiAliasingButton : SettingButton {
 		}
 	}
 
+	void Update()
+	{
+		if (_selectorButton != null)
+			_selectorButton_Text.text = SwitchText((int)Mathf.Log(QualitySettings.antiAliasing, 2));
+	}
+
 	/// <summary>
 	/// Overrides the on pointer enter from base class.
 	/// </summary>
@@ -88,7 +94,7 @@ public class AntiAliasingButton : SettingButton {
 		if (buttonID == ButtonID.AA_BUTTON_OPTION)
 		{
 			QualitySettings.antiAliasing = antiAliasing;
-			_selectorButton_Text.text = SwitchText((int)Mathf.Log(antiAliasing, 2));
+			_selectorButton_Text.text = SwitchText((int)Mathf.Log(QualitySettings.antiAliasing, 2));
 		}
 	}
 }
