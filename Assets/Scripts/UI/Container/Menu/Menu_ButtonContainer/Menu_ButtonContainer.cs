@@ -109,7 +109,6 @@ public class Menu_ButtonContainer : Container {
 				}
 
 				_buttonClickedId = ButtonID.NONE;
-				Debug.Log("Called");
 			}
 		}
 	}

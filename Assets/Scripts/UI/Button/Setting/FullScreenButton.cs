@@ -15,6 +15,7 @@ public class FullScreenButton : SettingButton {
 
 	void Update ()
 	{
+		isFullScreen = Constants.FullScreen;
 		_selectorCheckMark.SetActive(isFullScreen);
 	}
 
@@ -43,11 +44,11 @@ public class FullScreenButton : SettingButton {
 	public override void OnPointerClick(PointerEventData data)
 	{
 		base.OnPointerClick(data);
-		isFullScreen = !isFullScreen;
+		Constants.FullScreen = !Constants.FullScreen;
+		isFullScreen = Constants.FullScreen;
 		_selectorCheckMark.SetActive(isFullScreen);
 		Screen.fullScreen = isFullScreen;
 		Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, isFullScreen);
-
 	}
 
 }

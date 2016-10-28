@@ -49,6 +49,15 @@ public class ShadowQualityButton : SettingButton {
 
 	// Update is called once per frame
 	void Update () {
+		if (_selectorButton_Text != null)
+		{
+			_selectorButton_Text.text = SwitchText(Constants.ShadowQuality);
+		}
+
+		if (buttonID == ButtonID.SHADOW_BUTTON_OPTION)
+		{
+			ChangeShadowSettings(Constants.ShadowQuality);
+		}
 
 	}
 
@@ -140,10 +149,8 @@ public class ShadowQualityButton : SettingButton {
 			}
 		}
 
-		if (_selectorButton_Text != null)
-		{
-			_selectorButton_Text.text = SwitchText(level);
-		}
+
+		Constants.ShadowQuality = level;
 	}
 
 	private void SetLightShadow(LightShadows _shadowType)
@@ -172,7 +179,7 @@ public class ShadowQualityButton : SettingButton {
 	{
 		if (_lights != null)
 		{
-			ChangeShadowSettings(1);
+			ChangeShadowSettings(0);
 		}
 	}
 }

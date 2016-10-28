@@ -72,11 +72,22 @@ public class XmlLoader : MonoBehaviour
 					}
 				case "toggleShadow":
 					{
-						QualitySettings.antiAliasing = int.Parse(_settingOption.InnerText);
+						int _parsedValue = int.Parse(_settingOption.InnerText);
+						Constants.ToggleShadow = (_parsedValue == 0) ? false : true;
+						break;
+					}
+				case "shadowQuality":
+					{
+						Constants.ShadowQuality = int.Parse(_settingOption.InnerText);
+						break;
+					}
+				case "fullScreen":
+					{
+						int _parsedValue = int.Parse(_settingOption.InnerText);
+						Constants.FullScreen = (_parsedValue == 0) ? false : true;
 						break;
 					}
 				}
-				Debug.Log(_settingOption.InnerText);
 			}
 		}
 	}

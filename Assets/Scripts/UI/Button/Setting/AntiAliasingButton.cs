@@ -31,7 +31,11 @@ public class AntiAliasingButton : SettingButton {
 	void Update()
 	{
 		if (_selectorButton != null)
+		{
+
 			_selectorButton_Text.text = SwitchText((int)Mathf.Log(QualitySettings.antiAliasing, 2));
+
+		}
 	}
 
 	/// <summary>
@@ -57,21 +61,25 @@ public class AntiAliasingButton : SettingButton {
 		{
 		case 0:
 			{
+				Debug.Log("0");
 				return "Disabled";
 			}
 		case 1:
 			{
+				Debug.Log("1");
 				return "2x multi sampling";
 			}
 		case 2:
-			{
+			{	Debug.Log("2");
 				return "4x multi sampling";
 			}
 		case 3:
 			{
+				Debug.Log("3");
 				return "8x multi sampling";
 			}
 		}
+
 
 		return "";
 	}
