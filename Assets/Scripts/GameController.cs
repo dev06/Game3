@@ -104,7 +104,6 @@ public class GameController : MonoBehaviour {
 
 	void Update ()
 	{
-
 		if (menuActive == MenuActive.GAME)
 
 		{

@@ -29,6 +29,8 @@ public class TextureQualityButton : SettingButton {
 
 	// Update is called once per frame
 	void Update () {
+		if (_selectorButton != null)
+			_selectorButton_Text.text = SwitchText(QualitySettings.masterTextureLimit);
 	}
 
 	/// <summary>
@@ -52,19 +54,19 @@ public class TextureQualityButton : SettingButton {
 	{
 		switch (i)
 		{
-			case 0:
+		case 0:
 			{
 				return "Full Res";
 			}
-			case 1:
+		case 1:
 			{
 				return "Half Res";
 			}
-			case 2:
+		case 2:
 			{
 				return "Quarter Res";
 			}
-			case 3:
+		case 3:
 			{
 				return "Eighth Res";
 			}
@@ -89,7 +91,7 @@ public class TextureQualityButton : SettingButton {
 		if (buttonID == ButtonID.TEXTURE_QUALITY_OPTION_BUTTON)
 		{
 			QualitySettings.masterTextureLimit = textureQuality;
-			_selectorButton_Text.text = SwitchText(textureQuality);
+			_selectorButton_Text.text = SwitchText(QualitySettings.masterTextureLimit);
 		}
 
 		//SetActive(_moreOptions.gameObject, !_moreOptions.gameObject.activeSelf);

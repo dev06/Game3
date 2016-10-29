@@ -101,6 +101,11 @@ public class Constants  {
 	public const float ProjectilePenetration_Percent = 100f; // does x percent more damage then the default value.
 
 
+	public static bool ToggleShadow = true;
+	public static int ShadowQuality = 0;
+	public static bool FullScreen = true;
+
+
 	public static Material Character_Blue_Mat = (Material)Resources.Load("Materials/Entity/Character/character_blue_mat/character_blue_mat");
 	public static Material Character_Purple_Mat = (Material)Resources.Load("Materials/Entity/Character/character_purple_mat/character_purple_mat");
 	public static Material Character_Yellow_Mat = (Material)Resources.Load("Materials/Entity/Character/character_yellow_mat/character_yellow_mat");
