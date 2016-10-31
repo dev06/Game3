@@ -7,31 +7,10 @@ using System.IO;
 public class XmlWrite: MonoBehaviour
 {
 
-	public static void Write()
-	{
-		List<string> list = new List<string>();
-		list.Add("Hellow");
-		list.Add("Apple");
-		using(XmlWriter writer = XmlWriter.Create("testXml.xml"))
-		{
-			writer.WriteStartDocument();
-			writer.WriteStartElement("Test");
-			foreach (string l in list) {
-				writer.WriteStartElement("string");
-
-				writer.WriteElementString("value", "10");
-				writer.WriteEndElement();
-			}
-
-			writer.WriteEndElement();
-			writer.WriteEndDocument();
-		}
-	}
-
 
 	public static void SaveData(string path)
 	{
-
+		Debug.Log(path);
 		using(XmlWriter writer = XmlWriter.Create(path))
 		{
 			writer.WriteStartDocument();

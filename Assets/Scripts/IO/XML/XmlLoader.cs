@@ -6,6 +6,29 @@ using System.IO;
 public class XmlLoader : MonoBehaviour
 {
 
+
+	public static void LoadData()
+	{
+		LoadXMLData();
+	}
+
+	public static void LoadXMLData()
+	{
+
+		try {
+			LoadSavedXmlData(System.IO.File.ReadAllText(Application.persistentDataPath + "/Save.xml"));
+		} catch (System.Exception e)
+		{
+			// TextAsset asset = (TextAsset)(Resources.Load("GameData/Default"));
+			// LoadDefaultXmlData(asset.text);
+			// Debug.LogError(e + "File does not exits");
+		}
+	}
+
+	/// <summary>
+	/// Loads the default xml data when saved file is not found
+	/// </summary>
+	/// <param name="path"></param>
 	public static void LoadDefaultXmlData(string path)
 	{
 		XmlDocument _xmlDoc = new XmlDocument();
@@ -14,6 +37,10 @@ public class XmlLoader : MonoBehaviour
 		LoadDefaultSetting(_xmlDoc);
 	}
 
+	/// <summary>
+	/// Loadsn saved data when the xml file is found
+	/// </summary>
+	/// <param name="path"></param>
 	public static void LoadSavedXmlData(string path)
 	{
 		XmlDocument _xmlDoc = new XmlDocument();
@@ -38,12 +65,12 @@ public class XmlLoader : MonoBehaviour
 
 					switch (elementNode.Name)
 					{
-						case "item":
+					case "item":
 						{
 							_itemId = elementNode.InnerText;
 							break;
 						}
-						case "count":
+					case "count":
 						{
 							_itemCount = int.Parse(elementNode.InnerText);
 							break;
@@ -73,12 +100,12 @@ public class XmlLoader : MonoBehaviour
 
 					switch (elementNode.Name)
 					{
-						case "item":
+					case "item":
 						{
 							_itemId = elementNode.InnerText;
 							break;
 						}
-						case "count":
+					case "count":
 						{
 							_itemCount = int.Parse(elementNode.InnerText);
 							break;
@@ -104,34 +131,34 @@ public class XmlLoader : MonoBehaviour
 			{
 				switch (_settingOption.Name)
 				{
-					case "textureQuality":
+				case "textureQuality":
 					{
 						QualitySettings.masterTextureLimit = int.Parse(_settingOption.InnerText);
 						break;
 					}
-					case "antiAliasing":
+				case "antiAliasing":
 					{
 						Constants.AntiAliasingQuality = int.Parse(_settingOption.InnerText);
 						break;
 					}
-					case "toggleShadow":
+				case "toggleShadow":
 					{
 						int _parsedValue = int.Parse(_settingOption.InnerText);
 						Constants.ToggleShadow = (_parsedValue == 0) ? false : true;
 						break;
 					}
-					case "shadowQuality":
+				case "shadowQuality":
 					{
 						Constants.ShadowQuality = int.Parse(_settingOption.InnerText);
 						break;
 					}
-					case "fullScreen":
+				case "fullScreen":
 					{
 						int _parsedValue = int.Parse(_settingOption.InnerText);
 						Constants.FullScreen = (_parsedValue == 0) ? false : true;
 						break;
 					}
-					case "vSync":
+				case "vSync":
 					{
 						int _parsedValue = int.Parse(_settingOption.InnerText);
 						Constants.VSync = (_parsedValue == 0) ? false : true;

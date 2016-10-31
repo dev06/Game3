@@ -68,24 +68,23 @@ public class InventoryManager {
 
 	public void AddItem(string _itemID, int _count)
 	{
-		Debug.Log(_itemID);
 		switch (_itemID)
 		{
-			case "BlueBall":
+		case "BlueBall":
 			{
 				Item item = ItemList.BlueBall;
 				item.itemQuantity = _count;
 				AddItem(item);
 				break;
 			}
-			case "YellowBall":
+		case "YellowBall":
 			{
 				Item item = ItemList.YellowBall;
 				item.itemQuantity = _count;
 				AddItem(item);
 				break;
 			}
-			case "PurpleBall":
+		case "PurpleBall":
 			{
 				Item item = ItemList.PurpleBall;
 				item.itemQuantity = _count;
@@ -93,14 +92,14 @@ public class InventoryManager {
 
 				break;
 			}
-			case "BasicHealth":
+		case "BasicHealth":
 			{
 				Item item = ItemList.BasicHealth;
 				item.itemQuantity = _count;
 				AddItem(item);
 				break;
 			}
-			case "AdvancedHealth":
+		case "AdvancedHealth":
 			{
 				Item item = ItemList.AdvancedHealth;
 				item.itemQuantity = _count;
@@ -108,35 +107,35 @@ public class InventoryManager {
 				break;
 			}
 
-			case "SuperHealth":
+		case "SuperHealth":
 			{
 				Item item = ItemList.SuperHealth;
 				item.itemQuantity = _count;
 				AddItem(item);
 				break;
 			}
-			case "SpeedBuff":
+		case "SpeedBuff":
 			{
 				Item item = ItemList.SpeedBuff;
 				item.itemQuantity = _count;
 				AddItem(item);
 				break;
 			}
-			case "SlowMotionBuff":
+		case "SlowMotionBuff":
 			{
 				Item item = ItemList.SlowMotionBuff;
 				item.itemQuantity = _count;
 				AddItem(item);
 				break;
 			}
-			case "Teleporter":
+		case "Teleporter":
 			{
 				Item item = ItemList.Teleporter;
 				item.itemQuantity = _count;
 				AddItem(item);
 				break;
 			}
-			case "InterMedHealth":
+		case "InterMedHealth":
 			{
 				Item item = ItemList.IntermediateHealth;
 				item.itemQuantity = _count;
@@ -144,21 +143,21 @@ public class InventoryManager {
 				break;
 			}
 
-			case "Immortality":
+		case "Immortality":
 			{
 				Item item = ItemList.Immortality;
 				item.itemQuantity = _count;
 				AddItem(item);
 				break;
 			}
-			case "Blast":
+		case "Blast":
 			{
 				Item item = ItemList.Blast;
 				item.itemQuantity = _count;
 				AddItem(item);
 				break;
 			}
-			case "Penetration":
+		case "Penetration":
 			{
 				Item item = ItemList.Penetration;
 				item.itemQuantity = _count;
