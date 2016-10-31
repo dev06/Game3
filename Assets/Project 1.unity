@@ -16591,7 +16591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1313770085
 Transform:
   m_ObjectHideFlags: 0
@@ -19279,7 +19279,6 @@ MonoBehaviour:
   botCounter: 0
   activeEntities: {fileID: 0}
   TotalEnemiesSpawned: 0
-  sx: 0
 --- !u!114 &1467298643
 MonoBehaviour:
   m_ObjectHideFlags: 0

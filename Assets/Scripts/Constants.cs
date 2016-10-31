@@ -103,7 +103,9 @@ public class Constants  {
 
 	public static bool ToggleShadow = true;
 	public static int ShadowQuality = 0;
+	public static int AntiAliasingQuality = 0;
 	public static bool FullScreen = true;
+	public static bool VSync = true;
 
 
 	public static Material Character_Blue_Mat = (Material)Resources.Load("Materials/Entity/Character/character_blue_mat/character_blue_mat");

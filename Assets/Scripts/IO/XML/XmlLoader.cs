@@ -12,16 +12,25 @@ public class XmlLoader : MonoBehaviour
 		_xmlDoc.LoadXml(path);
 		LoadDefaultInventory(_xmlDoc);
 		LoadDefaultSetting(_xmlDoc);
+	}
 
+	public static void LoadSavedXmlData(string path)
+	{
+		XmlDocument _xmlDoc = new XmlDocument();
+		_xmlDoc.LoadXml(path);
+		LoadSavedInventory(_xmlDoc);
+		LoadDefaultSetting(_xmlDoc);
 	}
 
 	private static void LoadDefaultInventory(XmlDocument _xmlDoc)
 	{
 		XmlNodeList inventoryList = _xmlDoc.GetElementsByTagName("defaultInventory");
+
 		foreach (XmlNode inventoryNode in inventoryList)
 		{
 			foreach (XmlNode slotNode in inventoryNode)
 			{
+
 				string _itemId = "";
 				int _itemCount = 0;
 				foreach (XmlNode elementNode in slotNode)
@@ -29,18 +38,53 @@ public class XmlLoader : MonoBehaviour
 
 					switch (elementNode.Name)
 					{
-					case "itemID":
+						case "item":
 						{
 							_itemId = elementNode.InnerText;
 							break;
 						}
-					case "count":
+						case "count":
 						{
 							_itemCount = int.Parse(elementNode.InnerText);
 							break;
 						}
-					}
 
+					}
+				}
+				GameController.Instance.inventoryManager.AddItem(_itemId, _itemCount);
+			}
+		}
+	}
+
+
+	private static void LoadSavedInventory(XmlDocument _xmlDoc)
+	{
+		XmlNodeList inventoryList = _xmlDoc.GetElementsByTagName("inventory");
+
+		foreach (XmlNode inventoryNode in inventoryList)
+		{
+			foreach (XmlNode slotNode in inventoryNode)
+			{
+
+				string _itemId = "";
+				int _itemCount = 0;
+				foreach (XmlNode elementNode in slotNode)
+				{
+
+					switch (elementNode.Name)
+					{
+						case "item":
+						{
+							_itemId = elementNode.InnerText;
+							break;
+						}
+						case "count":
+						{
+							_itemCount = int.Parse(elementNode.InnerText);
+							break;
+						}
+
+					}
 				}
 				GameController.Instance.inventoryManager.AddItem(_itemId, _itemCount);
 			}
@@ -60,31 +104,37 @@ public class XmlLoader : MonoBehaviour
 			{
 				switch (_settingOption.Name)
 				{
-				case "textureQuality":
+					case "textureQuality":
 					{
 						QualitySettings.masterTextureLimit = int.Parse(_settingOption.InnerText);
 						break;
 					}
-				case "antiAliasing":
+					case "antiAliasing":
 					{
-						QualitySettings.antiAliasing = int.Parse(_settingOption.InnerText);
+						Constants.AntiAliasingQuality = int.Parse(_settingOption.InnerText);
 						break;
 					}
-				case "toggleShadow":
+					case "toggleShadow":
 					{
 						int _parsedValue = int.Parse(_settingOption.InnerText);
 						Constants.ToggleShadow = (_parsedValue == 0) ? false : true;
 						break;
 					}
-				case "shadowQuality":
+					case "shadowQuality":
 					{
 						Constants.ShadowQuality = int.Parse(_settingOption.InnerText);
 						break;
 					}
-				case "fullScreen":
+					case "fullScreen":
 					{
 						int _parsedValue = int.Parse(_settingOption.InnerText);
 						Constants.FullScreen = (_parsedValue == 0) ? false : true;
+						break;
+					}
+					case "vSync":
+					{
+						int _parsedValue = int.Parse(_settingOption.InnerText);
+						Constants.VSync = (_parsedValue == 0) ? false : true;
 						break;
 					}
 				}

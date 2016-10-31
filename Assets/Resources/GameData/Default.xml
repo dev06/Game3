@@ -2,66 +2,67 @@
 <wrapper>
 	<defaultInventory>
 		<slot0>
-			<itemID></itemID>
-			<count>0</count>
+			<item></item>
+			<count>10</count>
 		</slot0>
 		<slot1>
-			<itemID></itemID>
+			<item></item>
 			<count>0</count>
 		</slot1>
 		<slot2>
-			<itemID></itemID>
+			<item></item>
 			<count>0</count>
 		</slot2>
 		<slot3>
-			<itemID></itemID>
+			<item></item>
 			<count>0</count>
 		</slot3>
 		<slot4>
-			<itemID></itemID>
+			<item></item>
 			<count>0</count>
 		</slot4>
 		<slot5>
-			<itemID></itemID>
+			<item></item>
 			<count>0</count>
 		</slot5>
 		<slot6>
-			<itemID></itemID>
+			<item></item>
 			<count>0</count>
 		</slot6>
 		<slot7>
-			<itemID></itemID>
+			<item></item>
 			<count>0</count>
 		</slot7>
 		<slot8>
-			<itemID></itemID>
+			<item></item>
 			<count>0</count>
 		</slot8>
 		<slot9>
-			<itemID></itemID>
+			<item></item>
 			<count>0</count>
 		</slot9>
 		<slot10>
-			<itemID></itemID>
+			<item></item>
 			<count>0</count>
 		</slot10>
 		<slot11>
-			<itemID></itemID>
+			<item></item>
 			<count>0</count>
 		</slot11>
 		<slot12>
-			<itemID></itemID>
+			<item></item>
 			<count>0</count>
-		</slot12>	
+		</slot12>
 	</defaultInventory>
 	<defaultSetting>
 		<!-- 0 = false 
 			 1 = true
 		-->
-		<textureQuality name = "textureQuality">0</textureQuality>
-		<shadowQuality name = "shadowQuality">3</shadowQuality>
-		<antiAliasing name = "antiAliasing">1</antiAliasing>
-		<fullScreen name = "fullScreen">1</fullScreen>
-		<toggleShadow name = "toggleShadow">1</toggleShadow> 
+		<textureQuality name="textureQuality">0</textureQuality>
+		<shadowQuality name="shadowQuality">3</shadowQuality>
+		<antiAliasing name="antiAliasing">1</antiAliasing>
+		<fullScreen name="fullScreen">1</fullScreen>
+		<toggleShadow name="toggleShadow">1</toggleShadow>
+		<vSync name="vSync">1</vSync>
 	</defaultSetting>
 </wrapper>

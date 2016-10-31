@@ -33,7 +33,7 @@ public class AntiAliasingButton : SettingButton {
 		if (_selectorButton != null)
 		{
 
-			_selectorButton_Text.text = SwitchText((int)Mathf.Log(QualitySettings.antiAliasing, 2));
+			_selectorButton_Text.text = SwitchText((int)Mathf.Log(Constants.AntiAliasingQuality, 2));
 
 		}
 	}
@@ -59,27 +59,23 @@ public class AntiAliasingButton : SettingButton {
 	{
 		switch (i)
 		{
-		case 0:
+			case 0:
 			{
-				Debug.Log("0");
 				return "Disabled";
 			}
-		case 1:
+			case 1:
 			{
-				Debug.Log("1");
 				return "2x multi sampling";
 			}
-		case 2:
-			{	Debug.Log("2");
+			case 2:
+			{
 				return "4x multi sampling";
 			}
-		case 3:
+			case 3:
 			{
-				Debug.Log("3");
 				return "8x multi sampling";
 			}
 		}
-
 
 		return "";
 	}
@@ -101,8 +97,9 @@ public class AntiAliasingButton : SettingButton {
 
 		if (buttonID == ButtonID.AA_BUTTON_OPTION)
 		{
-			QualitySettings.antiAliasing = antiAliasing;
-			_selectorButton_Text.text = SwitchText((int)Mathf.Log(QualitySettings.antiAliasing, 2));
+			Constants.AntiAliasingQuality = antiAliasing;
+			QualitySettings.antiAliasing = Constants.AntiAliasingQuality;
+			_selectorButton_Text.text = SwitchText((int)Mathf.Log(Constants.AntiAliasingQuality, 2));
 		}
 	}
 }
