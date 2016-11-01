@@ -42,6 +42,15 @@ public class Menu_PanelController : MonoBehaviour {
 		{
 		case ButtonID.NEWGAME:
 			{
+				XmlWrite.DeleteFile();
+				GameController.Instance.HasGameStarted = true;
+				GameController.Instance.menuActive = MenuActive.GAME;
+				GameController.Instance.EnableMenu(GameController.Instance.menuActive);
+				break;
+			}
+		case ButtonID.LOADGAME:
+			{
+				XmlLoader.LoadData();
 				GameController.Instance.HasGameStarted = true;
 				GameController.Instance.menuActive = MenuActive.GAME;
 				GameController.Instance.EnableMenu(GameController.Instance.menuActive);

@@ -23,13 +23,10 @@ public class XmlWrite: MonoBehaviour
 				if (slot.item != null)
 				{
 					writer.WriteStartElement("slot" + index);
-
 					//writes item name to xml node
 					writer.WriteElementString("item", slot.item.itemID + "");
 					//writes item count to xml node
 					writer.WriteElementString("count", slot.item.itemQuantity + "");
-
-
 					writer.WriteEndElement();
 
 					index++;
@@ -43,12 +40,37 @@ public class XmlWrite: MonoBehaviour
 					index++;
 				}
 			}
-			writer.WriteEndElement();
-			writer.WriteEndElement();
+			writer.WriteEndElement(); // ends inventory element
+
+
+			writer.WriteStartElement("setting");
+
+			List<KeyValuePair<string, float>> settingKvp = GameController.Instance.settingController.settingKVP;
+
+			foreach (KeyValuePair<string, float> kvp in settingKvp)
+			{
+
+				writer.WriteElementString(kvp.Key, kvp.Value + "");
+
+			}
+
+			writer.WriteEndElement();// end setting element
+
+
+			writer.WriteEndElement(); // ends wrapper element
 			writer.WriteEndDocument();
 		}
 
 		Debug.Log("Data Saved");
+	}
+
+
+	public static void DeleteFile()
+	{
+		if (File.Exists(Application.persistentDataPath + "/Save.xml"))
+		{
+			File.Delete(Application.persistentDataPath + "/Save.xml");
+		}
 	}
 
 }

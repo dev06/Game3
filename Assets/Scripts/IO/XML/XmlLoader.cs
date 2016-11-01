@@ -17,11 +17,12 @@ public class XmlLoader : MonoBehaviour
 
 		try {
 			LoadSavedXmlData(System.IO.File.ReadAllText(Application.persistentDataPath + "/Save.xml"));
+
 		} catch (System.Exception e)
 		{
-			// TextAsset asset = (TextAsset)(Resources.Load("GameData/Default"));
-			// LoadDefaultXmlData(asset.text);
-			// Debug.LogError(e + "File does not exits");
+			TextAsset asset = (TextAsset)(Resources.Load("GameData/Default"));
+			LoadDefaultXmlData(asset.text);
+			Debug.LogError(e + "File does not exits");
 		}
 	}
 
@@ -46,7 +47,7 @@ public class XmlLoader : MonoBehaviour
 		XmlDocument _xmlDoc = new XmlDocument();
 		_xmlDoc.LoadXml(path);
 		LoadSavedInventory(_xmlDoc);
-		LoadDefaultSetting(_xmlDoc);
+		LoadSavedSetting(_xmlDoc);
 	}
 
 	private static void LoadDefaultInventory(XmlDocument _xmlDoc)
@@ -114,6 +115,49 @@ public class XmlLoader : MonoBehaviour
 					}
 				}
 				GameController.Instance.inventoryManager.AddItem(_itemId, _itemCount);
+			}
+		}
+	}
+
+	private static void LoadSavedSetting(XmlDocument _xmlDoc)
+	{
+		XmlNodeList settingList = _xmlDoc.GetElementsByTagName("setting");
+		foreach (XmlNode list in settingList)
+		{
+			foreach (XmlNode settingNode in list)
+			{
+				Debug.Log(settingNode.Name);
+				switch (settingNode.Name)
+				{
+				case "ToggleShadow":
+					{
+						int _rawValue = int.Parse(settingNode.InnerText);
+						Constants.ToggleShadow = (_rawValue == 1) ? true : false;
+						break;
+					}
+				case "FullScreen":
+					{
+						int _rawValue = int.Parse(settingNode.InnerText);
+						Constants.FullScreen = (_rawValue == 1) ? true : false;
+						break;
+					}
+				case "VSync":
+					{
+						int _rawValue = int.Parse(settingNode.InnerText);
+						Constants.VSync = (_rawValue == 1) ? true : false;
+						break;
+					}
+				case "ShadowQuality":
+					{
+						Constants.ShadowQuality = int.Parse(settingNode.InnerText);
+						break;
+					}
+				case "AntiAliasingQuality":
+					{
+						Constants.AntiAliasingQuality = int.Parse(settingNode.InnerText);
+						break;
+					}
+				}
 			}
 		}
 	}
