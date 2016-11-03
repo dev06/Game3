@@ -145,6 +145,12 @@ public class Constants  {
 	public static GameObject ShadowQuality_Option = (GameObject)Resources.Load("Prefabs/UIPrefabs/Menu/Setting/Shadow/_shadowQuality");
 
 
+	public static GameObject BlueBall_Pk = (GameObject)Resources.Load("Prefabs/Entity/Collectibles/BlueBall_Pk");
+	public static GameObject YellowBall_Pk = (GameObject)Resources.Load("Prefabs/Entity/Collectibles/YellowBall_Pk");
+	public static GameObject PurpleBall_Pk = (GameObject)Resources.Load("Prefabs/Entity/Collectibles/PurpleBall_Pk");
+
+
+
 }
 
 public class ItemList

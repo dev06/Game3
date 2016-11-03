@@ -10,6 +10,7 @@ public class XmlLoader : MonoBehaviour
 	public static void LoadData()
 	{
 		LoadXMLData();
+
 	}
 
 	public static void LoadXMLData()
@@ -25,6 +26,9 @@ public class XmlLoader : MonoBehaviour
 			Debug.LogError(e + "File does not exits");
 		}
 	}
+
+
+
 
 	/// <summary>
 	/// Loads the default xml data when saved file is not found
@@ -48,6 +52,7 @@ public class XmlLoader : MonoBehaviour
 		_xmlDoc.LoadXml(path);
 		LoadSavedInventory(_xmlDoc);
 		LoadSavedSetting(_xmlDoc);
+		LoadSavedEntities(_xmlDoc);
 	}
 
 	private static void LoadDefaultInventory(XmlDocument _xmlDoc)
@@ -61,6 +66,7 @@ public class XmlLoader : MonoBehaviour
 
 				string _itemId = "";
 				int _itemCount = 0;
+
 				foreach (XmlNode elementNode in slotNode)
 				{
 
@@ -83,85 +89,6 @@ public class XmlLoader : MonoBehaviour
 			}
 		}
 	}
-
-
-	private static void LoadSavedInventory(XmlDocument _xmlDoc)
-	{
-		XmlNodeList inventoryList = _xmlDoc.GetElementsByTagName("inventory");
-
-		foreach (XmlNode inventoryNode in inventoryList)
-		{
-			foreach (XmlNode slotNode in inventoryNode)
-			{
-
-				string _itemId = "";
-				int _itemCount = 0;
-				foreach (XmlNode elementNode in slotNode)
-				{
-
-					switch (elementNode.Name)
-					{
-					case "item":
-						{
-							_itemId = elementNode.InnerText;
-							break;
-						}
-					case "count":
-						{
-							_itemCount = int.Parse(elementNode.InnerText);
-							break;
-						}
-
-					}
-				}
-				GameController.Instance.inventoryManager.AddItem(_itemId, _itemCount);
-			}
-		}
-	}
-
-	private static void LoadSavedSetting(XmlDocument _xmlDoc)
-	{
-		XmlNodeList settingList = _xmlDoc.GetElementsByTagName("setting");
-		foreach (XmlNode list in settingList)
-		{
-			foreach (XmlNode settingNode in list)
-			{
-				Debug.Log(settingNode.Name);
-				switch (settingNode.Name)
-				{
-				case "ToggleShadow":
-					{
-						int _rawValue = int.Parse(settingNode.InnerText);
-						Constants.ToggleShadow = (_rawValue == 1) ? true : false;
-						break;
-					}
-				case "FullScreen":
-					{
-						int _rawValue = int.Parse(settingNode.InnerText);
-						Constants.FullScreen = (_rawValue == 1) ? true : false;
-						break;
-					}
-				case "VSync":
-					{
-						int _rawValue = int.Parse(settingNode.InnerText);
-						Constants.VSync = (_rawValue == 1) ? true : false;
-						break;
-					}
-				case "ShadowQuality":
-					{
-						Constants.ShadowQuality = int.Parse(settingNode.InnerText);
-						break;
-					}
-				case "AntiAliasingQuality":
-					{
-						Constants.AntiAliasingQuality = int.Parse(settingNode.InnerText);
-						break;
-					}
-				}
-			}
-		}
-	}
-
 	/// <summary>
 	/// Loads the Default game setting from a doc
 	/// </summary>
@@ -212,4 +139,117 @@ public class XmlLoader : MonoBehaviour
 			}
 		}
 	}
+
+
+	private static void LoadSavedInventory(XmlDocument _xmlDoc)
+	{
+		XmlNodeList inventoryList = _xmlDoc.GetElementsByTagName("inventory");
+
+		foreach (XmlNode inventoryNode in inventoryList)
+		{
+			foreach (XmlNode slotNode in inventoryNode)
+			{
+				string _itemId = "";
+				int _itemCount = 0;
+				_itemId = slotNode.Attributes["item"].Value;
+				_itemCount = int.Parse(slotNode.Attributes["itemQuantity"].Value);
+				GameController.Instance.inventoryManager.AddItem(_itemId, _itemCount);
+			}
+		}
+	}
+
+	private static void LoadSavedSetting(XmlDocument _xmlDoc)
+	{
+		XmlNodeList settingList = _xmlDoc.GetElementsByTagName("setting");
+		foreach (XmlNode list in settingList)
+		{
+
+			XmlAttributeCollection attrColl = list.Attributes;
+			foreach (XmlAttribute settingAttr in attrColl)
+			{
+				switch (settingAttr.LocalName)
+				{
+				case "ToggleShadow":
+					{
+						int _rawValue = int.Parse(settingAttr.Value);
+						Constants.ToggleShadow = (_rawValue == 1) ? true : false;
+						break;
+					}
+				case "FullScreen":
+					{
+						int _rawValue = int.Parse(settingAttr.Value);
+						Constants.FullScreen = (_rawValue == 1) ? true : false;
+						break;
+					}
+				case "VSync":
+					{
+						int _rawValue = int.Parse(settingAttr.Value);
+						Constants.VSync = (_rawValue == 1) ? true : false;
+						break;
+					}
+				case "ShadowQuality":
+					{
+						Constants.ShadowQuality = int.Parse(settingAttr.Value);
+						break;
+					}
+				case "AntiAliasingQuality":
+					{
+						Constants.AntiAliasingQuality = int.Parse(settingAttr.Value);
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	private static void LoadSavedEntities(XmlDocument _xmlDoc)
+	{
+		XmlNodeList entityList = _xmlDoc.GetElementsByTagName("entities");
+		foreach (XmlNode entity in entityList)
+		{
+			foreach (XmlNode element in entity)
+			{
+				if (element.Name == "BlueBall_Pk")
+				{
+					foreach (XmlNode subElement in element)
+					{
+
+
+
+						XmlAttributeCollection attrColl = subElement.Attributes;
+						foreach (XmlAttribute attribute in attrColl)
+						{
+							switch (attribute.LocalName)
+							{
+							case "position":
+								{
+									string[] components = attribute.Value.Split(',');
+									Vector3 _pos = Vector3.zero;
+									_pos = new Vector3(float.Parse(components[0]), float.Parse(components[1]), float.Parse(components[2]));
+									GameObject _et = (GameObject)Instantiate(Constants.BlueBall_Pk, _pos, Quaternion.identity);
+									break;
+								}
+							case "rotation":
+								{
+									string[] components = attribute.Value.Split(',');
+									//_et.transform.rotation = Quaternion.Euler(new Vector3(float.Parse(components[0]), float.Parse(components[1]), float.Parse(components[2])));
+									break;
+								}
+							case "active":
+								{
+									//_et.SetActive(bool.Parse(attribute.Value));
+									break;
+								}
+
+							}
+						}
+
+					}
+				}
+
+			}
+		}
+	}
+
+
 }
