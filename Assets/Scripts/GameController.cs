@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour {
 	public ControllerProfile controllerProfile;
 	public InventoryManager inventoryManager;
 	public ProjectileManager projectileManager;
+	public SpawnManager spawnManager;
 	public BuffManager buffManager;
 	public NavMeshController navMeshController;
 	public SaveManager saveManager;
@@ -66,6 +67,7 @@ public class GameController : MonoBehaviour {
 		TogglePlayerMovement = true;
 		navMeshController = GameObject.FindWithTag("Manager/NavMeshManager").GetComponent<NavMeshController>();
 		projectileManager = GameObject.FindWithTag("Manager/ProjectileManager").GetComponent<ProjectileManager>();
+		spawnManager = GameObject.FindObjectOfType<SpawnManager>();
 		buffManager = GameObject.FindWithTag("Manager/BuffManager").GetComponent<BuffManager>();
 
 
