@@ -43,7 +43,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 185184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.053, y: 2.187, z: 14.249}
+  m_LocalPosition: {x: -62.8, y: 2.187, z: 49.3}
   m_LocalScale: {x: 1.5334737, y: 1.5334724, z: 1.5334724}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1609,7 +1609,7 @@ ParticleSystemRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 6a4a32a689e6ff740b187e9cc5d56c20, type: 2}
+  - {fileID: 2100000, guid: 277a663a6b089b140a7b3e4bb3164d3a, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1

@@ -19,8 +19,10 @@ public class GameController : MonoBehaviour {
 	public ControllerProfile controllerProfile;
 	public InventoryManager inventoryManager;
 	public ProjectileManager projectileManager;
+	public SpawnManager spawnManager;
 	public BuffManager buffManager;
 	public NavMeshController navMeshController;
+	public SaveManager saveManager;
 	public static ButtonID selectedButtonID;
 	public MenuActive menuActive;
 	public KeyCode[] customKey;
@@ -37,11 +39,7 @@ public class GameController : MonoBehaviour {
 	#endregion ----------- /PUBLIC MEMBERS----------
 
 	#region------PRIVATE MEMBERS------------
-	private GameObject _largeProjectile;
-	private GameObject _smallProjectile;
 	private GameObject _bot;
-	private GameObject _smoke;
-	private GameObject _shootEffectPrefab;
 	private float _botSpawnCounter;
 	private ControllerProfile[] ControllerProfileList = { ControllerProfile.WASD, ControllerProfile.TGFH};
 	private int _index;
@@ -52,6 +50,7 @@ public class GameController : MonoBehaviour {
 
 	void Awake () {
 
+		Player = (GameObject)Instantiate((GameObject)Resources.Load("Prefabs/Entity/Player/Player"), Vector3.zero, Quaternion.identity);
 		if (Instance != null)
 		{
 			Destroy(gameObject);
@@ -68,16 +67,14 @@ public class GameController : MonoBehaviour {
 		TogglePlayerMovement = true;
 		navMeshController = GameObject.FindWithTag("Manager/NavMeshManager").GetComponent<NavMeshController>();
 		projectileManager = GameObject.FindWithTag("Manager/ProjectileManager").GetComponent<ProjectileManager>();
+		spawnManager = GameObject.FindObjectOfType<SpawnManager>();
 		buffManager = GameObject.FindWithTag("Manager/BuffManager").GetComponent<BuffManager>();
-		_largeProjectile = (GameObject)Resources.Load("Prefabs/LargeProjectile");
-		_smallProjectile = (GameObject)Resources.Load("Prefabs/SmallProjectile");
-		_smoke = (GameObject)Resources.Load("Prefabs/Particles/Smoke");
+
+
 		_bot = (GameObject)Resources.Load("Prefabs/Bot");
 		_blankImage = GameObject.FindWithTag("UI/GameCanvas").transform.FindChild("Blank").GetComponent<Image>();
-		_shootEffectPrefab = (GameObject)Resources.Load("Prefabs/Particles/ShootEffect");
 		GameObject.FindWithTag("Version").GetComponent<Text>().text = VERSION;
 		activeEntities = GameObject.FindWithTag("ActiveEntities");
-		Player = GameObject.FindGameObjectWithTag("Player");
 
 		inventoryManager = new InventoryManager();
 		AddQuickItemSlotToList();
@@ -88,27 +85,21 @@ public class GameController : MonoBehaviour {
 		{
 			EventManager.OnShoot();
 		}
-
 	}
 
-	void Start()
-	{
-		XmlLoader.LoadData();
-	}
+
+
+	// void Start()
+	// {
+	// 	StartCoroutine("LoadXMLData");
+	// }
 
 
 
 	// IEnumerator LoadXMLData()
 	// {
-	// 	yield return new WaitForSeconds(2);
-	// 	try {
-	// 		XmlLoader.LoadSavedXmlData(System.IO.File.ReadAllText(Application.persistentDataPath + "/Save.xml"));
-	// 	} catch (System.Exception e)
-	// 	{
-	// 		TextAsset asset = (TextAsset)(Resources.Load("GameData/Default"));
-	// 		XmlLoader.LoadDefaultXmlData(asset.text);
-	// 		Debug.LogError(e + "File does not exits");
-	// 	}
+	// 	yield return new WaitForSeconds(.1f);
+	// 	XmlLoader.LoadData();
 	// }
 
 	void Update ()
@@ -126,6 +117,7 @@ public class GameController : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.U))
 		{
+			saveManager.UpdateData();
 			XmlWrite.SaveData(Application.persistentDataPath + "/Save.xml");
 		}
 

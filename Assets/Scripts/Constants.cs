@@ -145,6 +145,18 @@ public class Constants  {
 	public static GameObject ShadowQuality_Option = (GameObject)Resources.Load("Prefabs/UIPrefabs/Menu/Setting/Shadow/_shadowQuality");
 
 
+
+	//Pickup item prefab locations.
+	public static GameObject BlueBall_Pk = (GameObject)Resources.Load("Prefabs/Entity/Collectibles/BlueBall_Pk");
+	public static GameObject YellowBall_Pk = (GameObject)Resources.Load("Prefabs/Entity/Collectibles/YellowBall_Pk");
+	public static GameObject PurpleBall_Pk = (GameObject)Resources.Load("Prefabs/Entity/Collectibles/PurpleBall_Pk");
+	public static GameObject BasicHealth_Pk = (GameObject)Resources.Load("Prefabs/Entity/Collectibles/BasicHealth_Pk");
+	public static GameObject SuperHealth_Pk = (GameObject)Resources.Load("Prefabs/Entity/Collectibles/SuperHealth_Pk");
+	public static GameObject IntermediateHealth_Pk = (GameObject)Resources.Load("Prefabs/Entity/Collectibles/IntermediateHealth_Pk");
+	public static GameObject AdvancedHealth_Pk = (GameObject)Resources.Load("Prefabs/Entity/Collectibles/AdvancedHealth_Pk");
+
+
+
 }
 
 public class ItemList
