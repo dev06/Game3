@@ -65,4 +65,48 @@
 		<toggleShadow name="toggleShadow">1</toggleShadow>
 		<vSync name="vSync">1</vSync>
 	</defaultSetting>
+	<defaultEntity>
+		<BlueBall_Pk>
+			<position position="-83.23,2.141702,66.73"/>
+			<rotation rotation="0,0.8551854,0"/>
+			<parent parent="Collection/Collectible"/>
+			<active active="True"/>
+		</BlueBall_Pk>
+		<YellowBall_Pk>
+			<position position="-41.79,2.141702,71.35"/>
+			<rotation rotation="0,0.8179764,0"/>
+			<parent parent="Collection/Collectible"/>
+			<active active="True"/>
+		</YellowBall_Pk>
+		<PurpleBall_Pk>
+			<position position="-62.8,2.141702,49.3"/>
+			<rotation rotation="0,0.9199955,0"/>
+			<parent parent="Collection/Collectible"/>
+			<active active="True"/>
+		</PurpleBall_Pk>
+		<IntermediateHealth_Pk>
+			<position position="-38.65,1.664702,47.83"/>
+			<rotation rotation="0,0.9968115,0"/>
+			<parent parent="Collection/Collectible"/>
+			<active active="True"/>
+		</IntermediateHealth_Pk>
+		<SuperHealth_Pk>
+			<position position="-70.9,1.664702,28.64"/>
+			<rotation rotation="0,0.9928573,0"/>
+			<parent parent="Collection/Collectible"/>
+			<active active="True"/>
+		</SuperHealth_Pk>
+		<AdvancedHealth_Pk>
+			<position position="-76.89,1.664702,86.51"/>
+			<rotation rotation="0,0.9255669,0"/>
+			<parent parent="Collection/Collectible"/>
+			<active active="True"/>
+		</AdvancedHealth_Pk>
+		<BasicHealth_Pk>
+			<position position="-85.8,1.664702,42.2"/>
+			<rotation rotation="0,0.8692698,0"/>
+			<parent parent="Collection/Collectible"/>
+			<active active="True"/>
+		</BasicHealth_Pk>
+	</defaultEntity>
 </wrapper>

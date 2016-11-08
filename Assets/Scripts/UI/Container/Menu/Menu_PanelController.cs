@@ -40,29 +40,31 @@ public class Menu_PanelController : MonoBehaviour {
 	{
 		switch (id)
 		{
-		case ButtonID.NEWGAME:
-			{
-				XmlWrite.DeleteFile();
-				GameController.Instance.HasGameStarted = true;
-				GameController.Instance.menuActive = MenuActive.GAME;
-				GameController.Instance.EnableMenu(GameController.Instance.menuActive);
-				break;
-			}
-		case ButtonID.LOADGAME:
-			{
-				XmlLoader.LoadData();
-				GameController.Instance.HasGameStarted = true;
-				GameController.Instance.menuActive = MenuActive.GAME;
-				GameController.Instance.EnableMenu(GameController.Instance.menuActive);
-				break;
-			}
+			case ButtonID.NEWGAME:
+				{
+					XmlWrite.DeleteFile();
+					TextAsset asset = (TextAsset)(Resources.Load("GameData/Default"));
+					XmlLoader.LoadDefaultXmlData(asset.text);
+					GameController.Instance.HasGameStarted = true;
+					GameController.Instance.menuActive = MenuActive.GAME;
+					GameController.Instance.EnableMenu(GameController.Instance.menuActive);
+					break;
+				}
+			case ButtonID.LOADGAME:
+				{
+					XmlLoader.LoadData();
+					GameController.Instance.HasGameStarted = true;
+					GameController.Instance.menuActive = MenuActive.GAME;
+					GameController.Instance.EnableMenu(GameController.Instance.menuActive);
+					break;
+				}
 
-			// case ButtonID.CREDIT:
-			// 	{
-			// 		GameController.Instance.menuActive = MenuActive.CREDIT;
-			// 		GameController.Instance.EnableMenu(GameController.Instance.menuActive);
-			// 		break;
-			// 	}
+				// case ButtonID.CREDIT:
+				// 	{
+				// 		GameController.Instance.menuActive = MenuActive.CREDIT;
+				// 		GameController.Instance.EnableMenu(GameController.Instance.menuActive);
+				// 		break;
+				// 	}
 		}
 
 

@@ -13,15 +13,45 @@ public class SpawnManager : MonoBehaviour
 					SpawnEntities(Constants.BlueBall_Pk, node);
 					break;
 				}
+			case "YellowBall_Pk":
+				{
+					SpawnEntities(Constants.YellowBall_Pk, node);
+					break;
+				}
+			case "PurpleBall_Pk":
+				{
+					SpawnEntities(Constants.PurpleBall_Pk, node);
+					break;
+				}
+			case "BasicHealth_Pk":
+				{
+					SpawnEntities(Constants.BasicHealth_Pk, node);
+					break;
+				}
+			case "SuperHealth_Pk":
+				{
+					SpawnEntities(Constants.SuperHealth_Pk, node);
+					break;
+				}
+			case "IntermediateHealth_Pk":
+				{
+					SpawnEntities(Constants.IntermediateHealth_Pk, node);
+					break;
+				}
+			case "AdvancedHealth_Pk":
+				{
+					SpawnEntities(Constants.AdvancedHealth_Pk, node);
+					break;
+				}
 		}
 	}
 
 	public void SpawnEntities(GameObject _prefab, XmlNode element)
 	{
 		GameObject _entity = null;
-		Vector3 _position = Vector3.right * 10;
+		Vector3 _position = -Vector3.up * 100;
 		Quaternion _rotation = Quaternion.identity;
-
+		bool _active = true;
 		string _entityParent = "";
 		foreach (XmlNode subElement in element)
 		{
@@ -45,7 +75,7 @@ public class SpawnManager : MonoBehaviour
 						}
 					case "active":
 						{
-							//_entity.SetActive(bool.Parse(attribute.Value));
+							_active = bool.Parse(attribute.Value);
 							break;
 						}
 					case "parent":
@@ -60,5 +90,6 @@ public class SpawnManager : MonoBehaviour
 		_entity.gameObject.name = _prefab.name;
 		_entity.transform.parent = GameObject.FindWithTag(_entityParent).transform;
 		_entity.transform.position = _position;
+		_entity.SetActive(_active);
 	}
 }

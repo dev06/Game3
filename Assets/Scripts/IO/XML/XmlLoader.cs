@@ -40,6 +40,7 @@ public class XmlLoader : MonoBehaviour
 		_xmlDoc.LoadXml(path);
 		LoadDefaultInventory(_xmlDoc);
 		LoadDefaultSetting(_xmlDoc);
+		LoadDefaultEntity(_xmlDoc);
 	}
 
 	/// <summary>
@@ -140,6 +141,24 @@ public class XmlLoader : MonoBehaviour
 		}
 	}
 
+	private static void LoadDefaultEntity(XmlDocument _xmlDoc)
+	{
+		XmlNodeList _entityList = _xmlDoc.GetElementsByTagName("defaultEntity");
+		foreach (XmlNode root in _entityList)
+		{
+			foreach (XmlNode element in root)
+			{
+				GameController.Instance.spawnManager.LoadGameEntites(element);
+			}
+		}
+
+	}
+
+
+
+
+	#region===================================================Saved ==================================================
+
 
 	private static void LoadSavedInventory(XmlDocument _xmlDoc)
 	{
@@ -214,6 +233,9 @@ public class XmlLoader : MonoBehaviour
 			}
 		}
 	}
+
+	#endregion===================================================/Saved ==================================================
+
 
 
 }
