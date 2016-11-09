@@ -59,27 +59,27 @@ public class PlayerController : Mob
 				switch (item.itemID)
 				{
 					case ItemID.BlueBall:
-					{
-						_meshRenderer.material = Constants.Character_Blue_Mat;
-						_hoverEffect.material = Constants.Character_Blue_Hover_Mat;
-						_shootEffect.material = Constants.Character_Blue_Shoot_Mat;
+						{
+							_meshRenderer.material = Constants.Character_Blue_Mat;
+							_hoverEffect.material = Constants.Character_Blue_Hover_Mat;
+							_shootEffect.material = Constants.Character_Blue_Shoot_Mat;
 
-						break;
+							break;
 					} case ItemID.YellowBall:
-					{
-						_meshRenderer.material = Constants.Character_Yellow_Mat;
-						_hoverEffect.material = Constants.Character_Yellow_Hover_Mat;
-						_shootEffect.material = Constants.Character_Yellow_Shoot_Mat;
+						{
+							_meshRenderer.material = Constants.Character_Yellow_Mat;
+							_hoverEffect.material = Constants.Character_Yellow_Hover_Mat;
+							_shootEffect.material = Constants.Character_Yellow_Shoot_Mat;
 
-						break;
-					}
+							break;
+						}
 					case ItemID.PurpleBall:
-					{
-						_meshRenderer.material = Constants.Character_Purple_Mat;
-						_hoverEffect.material = Constants.Character_Purple_Hover_Mat;
-						_shootEffect.material = Constants.Character_Purple_Shoot_Mat;
-						break;
-					}
+						{
+							_meshRenderer.material = Constants.Character_Purple_Mat;
+							_hoverEffect.material = Constants.Character_Purple_Hover_Mat;
+							_shootEffect.material = Constants.Character_Purple_Shoot_Mat;
+							break;
+						}
 				}
 			}
 		}

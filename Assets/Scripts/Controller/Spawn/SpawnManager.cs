@@ -10,61 +10,61 @@ public class SpawnManager : MonoBehaviour
 		switch (node.Name)
 		{
 			case "BlueBall_Pk":
-			{
-				SpawnEntities(Constants.BlueBall_Pk, node);
-				break;
-			}
+				{
+					SpawnEntities(Constants.BlueBall_Pk, node);
+					break;
+				}
 			case "YellowBall_Pk":
-			{
-				SpawnEntities(Constants.YellowBall_Pk, node);
-				break;
-			}
+				{
+					SpawnEntities(Constants.YellowBall_Pk, node);
+					break;
+				}
 			case "PurpleBall_Pk":
-			{
-				SpawnEntities(Constants.PurpleBall_Pk, node);
-				break;
-			}
+				{
+					SpawnEntities(Constants.PurpleBall_Pk, node);
+					break;
+				}
 			case "BasicHealth_Pk":
-			{
-				SpawnEntities(Constants.BasicHealth_Pk, node);
-				break;
-			}
+				{
+					SpawnEntities(Constants.BasicHealth_Pk, node);
+					break;
+				}
 			case "SuperHealth_Pk":
-			{
-				SpawnEntities(Constants.SuperHealth_Pk, node);
-				break;
-			}
+				{
+					SpawnEntities(Constants.SuperHealth_Pk, node);
+					break;
+				}
 			case "IntermediateHealth_Pk":
-			{
-				SpawnEntities(Constants.IntermediateHealth_Pk, node);
-				break;
-			}
+				{
+					SpawnEntities(Constants.IntermediateHealth_Pk, node);
+					break;
+				}
 			case "AdvancedHealth_Pk":
-			{
-				SpawnEntities(Constants.AdvancedHealth_Pk, node);
-				break;
-			}
+				{
+					SpawnEntities(Constants.AdvancedHealth_Pk, node);
+					break;
+				}
 			case "Droid":
-			{
-				SpawnEntities(Constants.Droid, node);
-				break;
-			}
+				{
+					SpawnEntities(Constants.Droid, node);
+					break;
+				}
 			case "Enemy_One":
-			{
-				SpawnEntities(Constants.Enemy_One, node);
-				break;
-			}
+				{
+					SpawnEntities(Constants.Enemy_One, node);
+					break;
+				}
 			case "Enemy_Two":
-			{
-				SpawnEntities(Constants.Enemy_Two, node);
-				break;
-			}
+				{
+					SpawnEntities(Constants.Enemy_Two, node);
+					break;
+				}
 			case "player":
-			{
-				SpawnEntities(Constants.Player, node);
+				{
+					SpawnEntities(Constants.Player, node);
 
-				break;
-			}
+					break;
+				}
 		}
 	}
 
@@ -73,8 +73,11 @@ public class SpawnManager : MonoBehaviour
 		GameObject _entity = null;
 		Vector3 _position = -Vector3.up * 100;
 		Vector3 _rotation = Vector3.zero;
+		EntityType _type = EntityType.NONE;
 		bool _active = true;
 		string _entityParent = "";
+		float _mobHealth = 0;
+
 		foreach (XmlNode subElement in element)
 		{
 			XmlAttributeCollection attrColl = subElement.Attributes;
@@ -82,29 +85,39 @@ public class SpawnManager : MonoBehaviour
 			{
 				switch (attribute.LocalName)
 				{
+					case "type":
+						{
+							_type =  (EntityType)System.Enum.Parse(typeof(EntityType), attribute.Value);
+							break;
+						}
 					case "position":
-					{
-						string[] components = attribute.Value.Split(',');
+						{
+							string[] components = attribute.Value.Split(',');
 
-						_position = new Vector3(float.Parse(components[0]), float.Parse(components[1]), float.Parse(components[2]));
-						break;
-					}
+							_position = new Vector3(float.Parse(components[0]), float.Parse(components[1]), float.Parse(components[2]));
+							break;
+						}
 					case "rotation":
-					{
-						string[] components = attribute.Value.Split(',');
-						_rotation =  new Vector3(float.Parse(components[0]), float.Parse(components[1]), float.Parse(components[2]));
-						break;
-					}
+						{
+							string[] components = attribute.Value.Split(',');
+							_rotation =  new Vector3(float.Parse(components[0]), float.Parse(components[1]), float.Parse(components[2]));
+							break;
+						}
 					case "active":
-					{
-						_active = bool.Parse(attribute.Value);
-						break;
-					}
+						{
+							_active = bool.Parse(attribute.Value);
+							break;
+						}
 					case "parent":
-					{
-						_entityParent = attribute.Value;
-						break;
-					}
+						{
+							_entityParent = attribute.Value;
+							break;
+						}
+					case "health":
+						{
+							_mobHealth = float.Parse(attribute.Value);
+							break;
+						}
 				}
 			}
 		}
@@ -122,9 +135,21 @@ public class SpawnManager : MonoBehaviour
 		{
 			_entity.transform.parent = GameObject.FindWithTag(_entityParent).transform;
 		}
+
 		_entity.transform.position = _position;
 		_entity.transform.rotation = Quaternion.Euler(_rotation);
 		_entity.SetActive(_active);
+
+
+
+
+		if (_type == EntityType.MOB)
+		{
+			_entity.GetComponent<Mob>().GetHealth = _mobHealth;
+		}
+
+
+
 
 	}
 

@@ -125,34 +125,49 @@
 			<active active="True"/>
 		</Droid>
 		<Enemy_One>
+			<type type="MOB"/>
 			<position position="-23.46592,2.743333,-2.122977"/>
 			<rotation rotation="0,0,0"/>
 			<parent parent="Collection/Characters"/>
 			<active active="True"/>
+			<health health="400"/>
+			<maxhealth maxhealth="500"/>
 		</Enemy_One>
 		<Enemy_Two>
+			<type type="MOB"/>
 			<position position="22.71686,3.123333,-41.71462"/>
 			<rotation rotation="0,0,0"/>
 			<parent parent="Collection/GuardEnemy"/>
 			<active active="True"/>
+			<health health="500"/>
+			<maxhealth maxhealth="500"/>
 		</Enemy_Two>
 		<Enemy_Two>
+			<type type="MOB"/>
 			<position position="-8.024529,3.123281,-21.41835"/>
 			<rotation rotation="-0.002911453,0.178276,0.0005274946"/>
 			<parent parent="Collection/GuardEnemy"/>
 			<active active="True"/>
+			<health health="500"/>
+			<maxhealth maxhealth="500"/>
 		</Enemy_Two>
 		<Enemy_Two>
+			<type type="MOB"/>
 			<position position="-62.5,3.123333,-29.2"/>
 			<rotation rotation="0,0.6532885,0"/>
 			<parent parent="Collection/GuardEnemy"/>
 			<active active="True"/>
+			<health health="500"/>
+			<maxhealth maxhealth="500"/>
 		</Enemy_Two>
 		<Enemy_Two>
+			<type type="MOB"/>
 			<position position="74.15686,3.123333,5.299829"/>
 			<rotation rotation="0,0.7073535,0"/>
 			<parent parent="Collection/GuardEnemy"/>
 			<active active="True"/>
+			<health health="500"/>
+			<maxhealth maxhealth="500"/>
 		</Enemy_Two>
 	</defaultEntity>
 </wrapper>

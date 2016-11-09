@@ -52,13 +52,13 @@ public class SaveManager : MonoBehaviour {
 	private void UpdateEntityTransform()
 	{
 		entityTransform.Clear();
-		entityTransform.Add(new EntitySaveData("player", GameController.Instance.Player.transform.position, GameController.Instance.Player.transform.eulerAngles, GameController.Instance.Player.activeSelf, ""));
+		entityTransform.Add(new EntitySaveData(GameController.Instance.Player, "player", GameController.Instance.Player.transform.position, GameController.Instance.Player.transform.eulerAngles, GameController.Instance.Player.activeSelf, "", GameController.Instance.Player.GetComponent<MasterEntity>().entityType));
 		GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>() ;
 		foreach (GameObject _object in allObjects)
 		{
 			if (_object.tag.Contains("Entity"))
 			{
-				entityTransform.Add(new EntitySaveData(_object.name, _object.transform.position, _object.transform.eulerAngles, _object.activeSelf, _object.transform.parent.tag));
+				entityTransform.Add(new EntitySaveData(_object, _object.name, _object.transform.position, _object.transform.eulerAngles, _object.activeSelf, _object.transform.parent.tag, _object.GetComponent<MasterEntity>().entityType));
 			}
 		}
 	}
@@ -69,7 +69,9 @@ public class SaveManager : MonoBehaviour {
 /// </summary>
 public class EntitySaveData
 {
+	public GameObject g_Object;
 	public string name;
+	public EntityType type;
 	public Vector3 position;
 	public Vector3 rotation;
 
@@ -77,12 +79,21 @@ public class EntitySaveData
 	public string parent;
 
 
-	public EntitySaveData(string name, Vector3 position, Vector3 rotation, bool active, string parent)
+	public EntitySaveData(GameObject g_Object, string name, Vector3 position, Vector3 rotation, bool active, string parent, EntityType type)
 	{
+		this.g_Object = g_Object;
 		this.name = name;
 		this.position = position;
 		this.rotation = rotation;
 		this.active = active;
 		this.parent = parent;
+		this.type = type;
 	}
+}
+
+public enum EntityType
+{
+	NONE,
+	COLLECTIBLE,
+	MOB,
 }

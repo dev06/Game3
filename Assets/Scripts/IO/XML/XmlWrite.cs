@@ -38,6 +38,11 @@ public class XmlWrite: MonoBehaviour
 			// Transform elementTransform = transform.Value;
 			writer.WriteStartElement(transform.name);
 
+			writer.WriteStartElement("type");
+			writer.WriteAttributeString("type", transform.type.ToString());
+			writer.WriteEndElement();
+
+
 			writer.WriteStartElement("position");
 			writer.WriteAttributeString("position", transform.position.x.ToString() + "," + transform.position.y.ToString() + "," + transform.position.z.ToString());
 			writer.WriteEndElement();
@@ -53,8 +58,15 @@ public class XmlWrite: MonoBehaviour
 
 			writer.WriteStartElement("active");
 			writer.WriteAttributeString("active", transform.active.ToString());
-
 			writer.WriteEndElement();
+
+			if (transform.type == EntityType.MOB)
+			{
+				writer.WriteStartElement("health");
+				writer.WriteAttributeString("health", transform.g_Object.GetComponent<Mob>().GetHealth.ToString());
+				writer.WriteEndElement();
+			}
+
 
 
 			writer.WriteEndElement();

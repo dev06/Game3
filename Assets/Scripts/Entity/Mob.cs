@@ -4,11 +4,10 @@
 using UnityEngine;
 using System.Collections;
 using  UnityEngine.UI;
-public class Mob : MonoBehaviour {
+public class Mob : MasterEntity {
 
 	public Body body;
 	public EntityBehaviour behaviour;
-
 	#region---- PRIVATE MEMBERS----
 
 	protected float Health;
@@ -29,6 +28,7 @@ public class Mob : MonoBehaviour {
 	void Start ()
 	{
 		Init();
+
 	}
 	/// <summary>
 	/// Inits the components
@@ -37,6 +37,7 @@ public class Mob : MonoBehaviour {
 	{
 		_gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
 		_agent = (GetComponent<NavMeshAgent>() != null) ? transform.GetComponent<NavMeshAgent>() : null;
+		entityType = EntityType.MOB;
 	}
 
 	/// <summary>

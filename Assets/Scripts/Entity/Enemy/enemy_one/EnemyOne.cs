@@ -10,13 +10,14 @@ public class EnemyOne : Mob {
 	{
 		Init();
 		MaxHealth = Constants.PatrolEnemyMaxHealth;
-		Health = MaxHealth;
+		//Health = MaxHealth;
 		_hover = transform.FindChild("HoverEffect").gameObject;
 		_speed = Constants.PatrolEnemySpeed;
 		_agent.speed = _speed;
 		_fillImage = transform.FindChild("HealthBar").gameObject.transform.FindChild("FillImage").GetComponent<Image>();
 		_stillImage = transform.FindChild("HealthBar").gameObject.transform.FindChild("StillImage").GetComponent<Image>();
 		_HealthText = transform.FindChild("HealthBar").gameObject.transform.FindChild("Text").GetComponent<Text>();
+		Debug.Log(Health);
 	}
 
 
