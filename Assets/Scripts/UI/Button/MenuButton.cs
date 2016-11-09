@@ -12,6 +12,12 @@ public class MenuButton : ButtonEventHandler {
 	void Start ()
 	{
 		Init();
+		if (buttonID == ButtonID.LOADGAME)
+		{
+
+			SetInteractable(XmlWrite.DoesFileExists(Application.persistentDataPath + "/Save.xml"));
+
+		}
 	}
 
 	void Update ()
@@ -24,7 +30,21 @@ public class MenuButton : ButtonEventHandler {
 	/// <param name="data"></param>
 	public override void OnPointerEnter(PointerEventData data)
 	{
-		base.OnPointerEnter(data);
+
+		if (buttonID != ButtonID.LOADGAME)
+		{
+
+			base.OnPointerEnter(data);
+		} else
+		{
+			if (isInteractable)
+			{
+
+				base.OnPointerEnter(data);
+			}
+
+		}
+
 	}
 	/// <summary>
 	/// Overrides the on pointer exit from base class
@@ -32,7 +52,20 @@ public class MenuButton : ButtonEventHandler {
 	/// <param name="data"></param>
 	public override void OnPointerExit(PointerEventData data)
 	{
-		base.OnPointerExit(data);
+		if (buttonID != ButtonID.LOADGAME)
+		{
+
+			base.OnPointerExit(data);
+		} else
+		{
+			if (isInteractable)
+			{
+
+				base.OnPointerExit(data);
+			}
+		}
+
+		//WORKING ON INTERACTIBLE FOR LOAD BUTTON
 
 	}
 
@@ -53,9 +86,12 @@ public class MenuButton : ButtonEventHandler {
 
 		} else if (buttonID == ButtonID.LOADGAME)
 		{
-			if (EventManager.OnLoadGame != null)
+			if (isInteractable)
 			{
-				EventManager.OnLoadGame(buttonID);
+				if (EventManager.OnLoadGame != null)
+				{
+					EventManager.OnLoadGame(buttonID);
+				}
 			}
 
 		} else if (buttonID == ButtonID.SETTINGS)

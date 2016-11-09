@@ -1,56 +1,60 @@
 <?xml version = "1.0" encoding = "utf-8" ?>
+<!--
+	This is the default file. 
+	Data here is init at new game
+-->
 <wrapper>
 	<defaultInventory>
 		<slot0>
-			<item></item>
+			<item/>
 			<count>10</count>
 		</slot0>
 		<slot1>
-			<item></item>
+			<item/>
 			<count>0</count>
 		</slot1>
 		<slot2>
-			<item></item>
+			<item/>
 			<count>0</count>
 		</slot2>
 		<slot3>
-			<item></item>
+			<item/>
 			<count>0</count>
 		</slot3>
 		<slot4>
-			<item></item>
+			<item/>
 			<count>0</count>
 		</slot4>
 		<slot5>
-			<item></item>
+			<item/>
 			<count>0</count>
 		</slot5>
 		<slot6>
-			<item></item>
+			<item/>
 			<count>0</count>
 		</slot6>
 		<slot7>
-			<item></item>
+			<item/>
 			<count>0</count>
 		</slot7>
 		<slot8>
-			<item></item>
+			<item/>
 			<count>0</count>
 		</slot8>
 		<slot9>
-			<item></item>
+			<item/>
 			<count>0</count>
 		</slot9>
 		<slot10>
-			<item></item>
+			<item/>
 			<count>0</count>
 		</slot10>
 		<slot11>
-			<item></item>
+			<item/>
 			<count>0</count>
 		</slot11>
 		<slot12>
-			<item></item>
+			<item/>
 			<count>0</count>
 		</slot12>
 	</defaultInventory>
@@ -66,6 +70,12 @@
 		<vSync name="vSync">1</vSync>
 	</defaultSetting>
 	<defaultEntity>
+		<player>
+			<position position="-32.95396,3.395,65.98357"/>
+			<rotation rotation="0,-0.9487278,0"/>
+			<parent parent=""/>
+			<active active="True"/>
+		</player>
 		<BlueBall_Pk>
 			<position position="-83.23,2.141702,66.73"/>
 			<rotation rotation="0,0.8551854,0"/>
@@ -108,5 +118,41 @@
 			<parent parent="Collection/Collectible"/>
 			<active active="True"/>
 		</BasicHealth_Pk>
+		<Droid>
+			<position position="-28.76848,2.354145,68.95309"/>
+			<rotation rotation="0,0.9325722,0"/>
+			<parent parent="Collection/Characters"/>
+			<active active="True"/>
+		</Droid>
+		<Enemy_One>
+			<position position="-23.46592,2.743333,-2.122977"/>
+			<rotation rotation="0,0,0"/>
+			<parent parent="Collection/Characters"/>
+			<active active="True"/>
+		</Enemy_One>
+		<Enemy_Two>
+			<position position="22.71686,3.123333,-41.71462"/>
+			<rotation rotation="0,0,0"/>
+			<parent parent="Collection/GuardEnemy"/>
+			<active active="True"/>
+		</Enemy_Two>
+		<Enemy_Two>
+			<position position="-8.024529,3.123281,-21.41835"/>
+			<rotation rotation="-0.002911453,0.178276,0.0005274946"/>
+			<parent parent="Collection/GuardEnemy"/>
+			<active active="True"/>
+		</Enemy_Two>
+		<Enemy_Two>
+			<position position="-62.5,3.123333,-29.2"/>
+			<rotation rotation="0,0.6532885,0"/>
+			<parent parent="Collection/GuardEnemy"/>
+			<active active="True"/>
+		</Enemy_Two>
+		<Enemy_Two>
+			<position position="74.15686,3.123333,5.299829"/>
+			<rotation rotation="0,0.7073535,0"/>
+			<parent parent="Collection/GuardEnemy"/>
+			<active active="True"/>
+		</Enemy_Two>
 	</defaultEntity>
 </wrapper>

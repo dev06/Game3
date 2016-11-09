@@ -74,15 +74,15 @@ public class XmlLoader : MonoBehaviour
 					switch (elementNode.Name)
 					{
 						case "item":
-							{
-								_itemId = elementNode.InnerText;
-								break;
-							}
+						{
+							_itemId = elementNode.InnerText;
+							break;
+						}
 						case "count":
-							{
-								_itemCount = int.Parse(elementNode.InnerText);
-								break;
-							}
+						{
+							_itemCount = int.Parse(elementNode.InnerText);
+							break;
+						}
 
 					}
 				}
@@ -104,38 +104,38 @@ public class XmlLoader : MonoBehaviour
 				switch (_settingOption.Name)
 				{
 					case "textureQuality":
-						{
-							QualitySettings.masterTextureLimit = int.Parse(_settingOption.InnerText);
-							break;
-						}
+					{
+						QualitySettings.masterTextureLimit = int.Parse(_settingOption.InnerText);
+						break;
+					}
 					case "antiAliasing":
-						{
-							Constants.AntiAliasingQuality = int.Parse(_settingOption.InnerText);
-							break;
-						}
+					{
+						Constants.AntiAliasingQuality = int.Parse(_settingOption.InnerText);
+						break;
+					}
 					case "toggleShadow":
-						{
-							int _parsedValue = int.Parse(_settingOption.InnerText);
-							Constants.ToggleShadow = (_parsedValue == 0) ? false : true;
-							break;
-						}
+					{
+						int _parsedValue = int.Parse(_settingOption.InnerText);
+						Constants.ToggleShadow = (_parsedValue == 0) ? false : true;
+						break;
+					}
 					case "shadowQuality":
-						{
-							Constants.ShadowQuality = int.Parse(_settingOption.InnerText);
-							break;
-						}
+					{
+						Constants.ShadowQuality = int.Parse(_settingOption.InnerText);
+						break;
+					}
 					case "fullScreen":
-						{
-							int _parsedValue = int.Parse(_settingOption.InnerText);
-							Constants.FullScreen = (_parsedValue == 0) ? false : true;
-							break;
-						}
+					{
+						int _parsedValue = int.Parse(_settingOption.InnerText);
+						Constants.FullScreen = (_parsedValue == 0) ? false : true;
+						break;
+					}
 					case "vSync":
-						{
-							int _parsedValue = int.Parse(_settingOption.InnerText);
-							Constants.VSync = (_parsedValue == 0) ? false : true;
-							break;
-						}
+					{
+						int _parsedValue = int.Parse(_settingOption.InnerText);
+						Constants.VSync = (_parsedValue == 0) ? false : true;
+						break;
+					}
 				}
 			}
 		}
@@ -189,33 +189,33 @@ public class XmlLoader : MonoBehaviour
 				switch (settingAttr.LocalName)
 				{
 					case "ToggleShadow":
-						{
-							int _rawValue = int.Parse(settingAttr.Value);
-							Constants.ToggleShadow = (_rawValue == 1) ? true : false;
-							break;
-						}
+					{
+						int _rawValue = int.Parse(settingAttr.Value);
+						Constants.ToggleShadow = (_rawValue == 1) ? true : false;
+						break;
+					}
 					case "FullScreen":
-						{
-							int _rawValue = int.Parse(settingAttr.Value);
-							Constants.FullScreen = (_rawValue == 1) ? true : false;
-							break;
-						}
+					{
+						int _rawValue = int.Parse(settingAttr.Value);
+						Constants.FullScreen = (_rawValue == 1) ? true : false;
+						break;
+					}
 					case "VSync":
-						{
-							int _rawValue = int.Parse(settingAttr.Value);
-							Constants.VSync = (_rawValue == 1) ? true : false;
-							break;
-						}
+					{
+						int _rawValue = int.Parse(settingAttr.Value);
+						Constants.VSync = (_rawValue == 1) ? true : false;
+						break;
+					}
 					case "ShadowQuality":
-						{
-							Constants.ShadowQuality = int.Parse(settingAttr.Value);
-							break;
-						}
+					{
+						Constants.ShadowQuality = int.Parse(settingAttr.Value);
+						break;
+					}
 					case "AntiAliasingQuality":
-						{
-							Constants.AntiAliasingQuality = int.Parse(settingAttr.Value);
-							break;
-						}
+					{
+						Constants.AntiAliasingQuality = int.Parse(settingAttr.Value);
+						break;
+					}
 				}
 			}
 		}

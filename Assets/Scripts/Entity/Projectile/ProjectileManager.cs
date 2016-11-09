@@ -14,7 +14,7 @@ public class ProjectileManager : MonoBehaviour {
 	private GameObject _bulletRight;
 	void Start()
 	{
-		_gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+		_gameController = GameController.Instance;
 		EventManager.OnShoot += EntityOnShoot;
 		_blueBullet = Constants.Blue_Bullet;
 		_yellowBullet = Constants.Yellow_Bullet;

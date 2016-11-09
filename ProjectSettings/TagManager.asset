@@ -71,6 +71,9 @@ TagManager:
   - Entity/Buff/ImmortalityBuff
   - Entity/Buff/BlastBuff
   - Entity/Buff/ProjectilePenetrationBuff
+  - Collection/Collectible
+  - Entity/Player
+  - Collection/Characters
   layers:
   - Default
   - TransparentFX

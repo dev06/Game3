@@ -147,6 +147,11 @@ public class Constants  {
 
 
 	//Pickup item prefab locations.
+	public static GameObject Player = (GameObject)Resources.Load("Prefabs/Entity/Player/Player");
+	public static GameObject Droid = (GameObject)Resources.Load("Prefabs/Entity/Friendly/Droid/Droid");
+	public static GameObject Enemy_One = (GameObject)Resources.Load("Prefabs/Entity/Enemy/Enemy_One");
+	public static GameObject Enemy_Two = (GameObject)Resources.Load("Prefabs/Entity/Enemy/Enemy_Two");
+
 	public static GameObject BlueBall_Pk = (GameObject)Resources.Load("Prefabs/Entity/Collectibles/BlueBall_Pk");
 	public static GameObject YellowBall_Pk = (GameObject)Resources.Load("Prefabs/Entity/Collectibles/YellowBall_Pk");
 	public static GameObject PurpleBall_Pk = (GameObject)Resources.Load("Prefabs/Entity/Collectibles/PurpleBall_Pk");
@@ -154,6 +159,7 @@ public class Constants  {
 	public static GameObject SuperHealth_Pk = (GameObject)Resources.Load("Prefabs/Entity/Collectibles/SuperHealth_Pk");
 	public static GameObject IntermediateHealth_Pk = (GameObject)Resources.Load("Prefabs/Entity/Collectibles/IntermediateHealth_Pk");
 	public static GameObject AdvancedHealth_Pk = (GameObject)Resources.Load("Prefabs/Entity/Collectibles/AdvancedHealth_Pk");
+
 
 
 

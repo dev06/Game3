@@ -10,7 +10,6 @@ public class XmlWrite: MonoBehaviour
 
 	public static void SaveData(string path)
 	{
-		Debug.Log(path);
 		using(XmlWriter writer = XmlWriter.Create(path))
 		{
 			writer.WriteStartDocument();
@@ -117,6 +116,11 @@ public class XmlWrite: MonoBehaviour
 		{
 			File.Delete(Application.persistentDataPath + "/Save.xml");
 		}
+	}
+
+	public static bool DoesFileExists(string path)
+	{
+		return File.Exists(path);
 	}
 
 }

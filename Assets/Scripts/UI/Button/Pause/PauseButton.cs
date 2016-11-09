@@ -57,6 +57,20 @@ public class PauseButton : ButtonEventHandler {
 			}
 		}
 
+		if (buttonID == ButtonID.SAVE)
+		{
+			if (EventManager.OnSave != null)
+			{
+				EventManager.OnSave();
+			}
+		}
+
+
+		if (buttonID == ButtonID.EXIT_TO_MENU)
+		{
+			UnityEngine.SceneManagement.SceneManager.LoadScene("Project 1");
+		}
+
 		if (buttonID == ButtonID.SETTINGS)
 		{
 			if (EventManager.OnSettingActive != null)

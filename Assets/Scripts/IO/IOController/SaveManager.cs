@@ -7,13 +7,28 @@ public class SaveManager : MonoBehaviour {
 	public List<KeyValuePair<string, float>> settingKVP = new List<KeyValuePair<string, float>>();
 	public List<EntitySaveData> entityTransform = new List<EntitySaveData>();
 
+	void OnEnable()
+	{
+		EventManager.OnSave += OnSave;
+	}
+
+	void OnDisable()
+	{
+		EventManager.OnSave -= OnSave;
+	}
+
 	void Start()
 	{
 		GameController.Instance.saveManager = this;
 
 	}
 
+	void OnSave()
+	{
+		UpdateData();
+		XmlWrite.SaveData(Application.persistentDataPath + "/Save.xml");
 
+	}
 
 	public void UpdateData()
 	{
@@ -37,17 +52,15 @@ public class SaveManager : MonoBehaviour {
 	private void UpdateEntityTransform()
 	{
 		entityTransform.Clear();
-		entityTransform.Add(new EntitySaveData("player", GameController.Instance.Player.transform.position, GameController.Instance.Player.transform.rotation, GameController.Instance.Player.activeSelf, ""));
+		entityTransform.Add(new EntitySaveData("player", GameController.Instance.Player.transform.position, GameController.Instance.Player.transform.eulerAngles, GameController.Instance.Player.activeSelf, ""));
 		GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>() ;
 		foreach (GameObject _object in allObjects)
 		{
 			if (_object.tag.Contains("Entity"))
 			{
-				entityTransform.Add(new EntitySaveData(_object.name, _object.transform.position, _object.transform.rotation, _object.activeSelf, _object.transform.parent.tag));
-
+				entityTransform.Add(new EntitySaveData(_object.name, _object.transform.position, _object.transform.eulerAngles, _object.activeSelf, _object.transform.parent.tag));
 			}
 		}
-
 	}
 }
 
@@ -58,11 +71,13 @@ public class EntitySaveData
 {
 	public string name;
 	public Vector3 position;
-	public Quaternion rotation;
+	public Vector3 rotation;
+
 	public bool active;
 	public string parent;
 
-	public EntitySaveData(string name, Vector3 position, Quaternion rotation, bool active, string parent)
+
+	public EntitySaveData(string name, Vector3 position, Vector3 rotation, bool active, string parent)
 	{
 		this.name = name;
 		this.position = position;
