@@ -168,11 +168,19 @@ public class XmlLoader : MonoBehaviour
 		{
 			foreach (XmlNode slotNode in inventoryNode)
 			{
-				string _itemId = "";
-				int _itemCount = 0;
-				_itemId = slotNode.Attributes["item"].Value;
-				_itemCount = int.Parse(slotNode.Attributes["itemQuantity"].Value);
-				GameController.Instance.inventoryManager.AddItem(_itemId, _itemCount);
+				if (slotNode.Name == "quickItemSelect")
+				{
+
+					GameController.Instance.inventoryManager.quickItemSelectedSlot = GameController.Instance.inventoryManager.quickItemSlots[int.Parse(slotNode.Attributes["quickItemSelect"].Value)];
+				} else {
+
+					string _itemId = "";
+					int _itemCount = 0;
+					_itemId = slotNode.Attributes["item"].Value;
+					_itemCount = int.Parse(slotNode.Attributes["itemQuantity"].Value);
+					GameController.Instance.inventoryManager.AddItem(_itemId, _itemCount);
+
+				}
 			}
 		}
 	}
@@ -211,6 +219,7 @@ public class XmlLoader : MonoBehaviour
 							Constants.ShadowQuality = int.Parse(settingAttr.Value);
 							break;
 						}
+
 					case "AntiAliasingQuality":
 						{
 							Constants.AntiAliasingQuality = int.Parse(settingAttr.Value);

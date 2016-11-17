@@ -4,7 +4,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Projectile : MonoBehaviour {
+public class Projectile : MasterEntity {
 
 	[HideInInspector]
 	public Body owner;
@@ -20,6 +20,7 @@ public class Projectile : MonoBehaviour {
 	protected ParticleSystem _trail;
 	protected GameObject _effect;
 	protected float _damage;
+	protected float _lifeTimer;
 	#endregion----PRIVATE MEMBERS-----
 
 
@@ -37,16 +38,37 @@ public class Projectile : MonoBehaviour {
 		_effect = (GameObject)Resources.Load("Prefabs/Particles/Effect");
 		_gameController = FindObjectOfType(typeof(GameController)) as GameController;
 		_maxLife = 3;
-
+		entityType = EntityType.PROJECTILE;
 		if (transform.childCount > 0)
 		{
 			transform.GetChild(0).transform.forward = forward;
 		}
 	}
 
-	protected void MoveTo(Vector3 destination, float velocity)
+
+	public virtual void TransverseBullet()
 	{
-		Vector3.MoveTowards(transform.position, destination, velocity);
+		if (GameController.Instance.menuActive != MenuActive.PAUSE)
+		{
+			float speed = Random.Range(40.0f, 50.0f);
+			transform.Rotate(new Vector3(Time.deltaTime * Time.time * speed,  Time.deltaTime * Time.time * speed, Time.deltaTime * Time.time * speed));
+		}
+
+		DisposeBullet();
 	}
+
+	public void DisposeBullet()
+	{
+		if (GameController.Instance.menuActive != MenuActive.PAUSE)
+		{
+			_lifeTimer += Time.deltaTime;
+			if (_lifeTimer > _maxLife)
+			{
+				Destroy(gameObject);
+				_lifeTimer = 0;
+			}
+		}
+	}
+
 
 }

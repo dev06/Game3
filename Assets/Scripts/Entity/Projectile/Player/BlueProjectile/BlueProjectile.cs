@@ -13,14 +13,25 @@ public class BlueProjectile : Projectile {
 
 	void Update()
 	{
-		Destroy(gameObject, _maxLife);
+
 	}
 
 	void FixedUpdate()
 	{
-		float speed = Random.Range(40.0f, 50.0f);
-		transform.Rotate(new Vector3(Time.deltaTime * Time.time * speed,  Time.deltaTime * Time.time * speed, Time.deltaTime * Time.time * speed));
+		TransverseBullet();
 	}
+
+	public override void TransverseBullet()
+	{
+		base.TransverseBullet();
+		if (GameController.Instance.menuActive == MenuActive.PAUSE)
+		{
+			GetComponent<Rigidbody>().velocity = forward * 0;
+		} else {
+			GetComponent<Rigidbody>().velocity = forward * 50;
+		}
+	}
+
 
 
 	void OnTriggerEnter(Collider col)

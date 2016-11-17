@@ -67,6 +67,14 @@ public class XmlWrite: MonoBehaviour
 				writer.WriteEndElement();
 			}
 
+			if (transform.type == EntityType.PROJECTILE)
+			{
+				writer.WriteStartElement("forward");
+				Vector3 forward = transform.g_Object.GetComponent<Projectile>().forward;
+				writer.WriteAttributeString("forward", forward.x + "," + forward.y + "," + forward.z);
+				writer.WriteEndElement();
+			}
+
 
 
 			writer.WriteEndElement();
@@ -100,7 +108,14 @@ public class XmlWrite: MonoBehaviour
 
 				index++;
 			}
+
+
+
 		}
+
+		writer.WriteStartElement("quickItemSelect");
+		writer.WriteAttributeString("quickItemSelect", GameController.Instance.inventoryManager.GetSlotIndex(GameController.Instance.inventoryManager.quickItemSlots, GameController.Instance.inventoryManager.quickItemSelectedSlot) + "");
+		writer.WriteEndElement();
 		writer.WriteEndElement(); // ends inventory element
 
 	}

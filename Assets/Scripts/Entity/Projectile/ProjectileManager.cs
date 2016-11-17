@@ -42,23 +42,23 @@ public class ProjectileManager : MonoBehaviour {
 				switch (_gameController.inventoryManager.quickItemSelectedSlot.item.itemID)
 				{
 					case ItemID.YellowBall:
-					{
-						Shoot(_yellowBullet, _bulletLeft.transform.position, _forward, Body.Player);
-						Shoot(_yellowBullet, _bulletRight.transform.position, _forward, Body.Player);
-						break;
-					}
+						{
+							Shoot(_yellowBullet, _bulletLeft.transform.position, _forward, Body.Player);
+							Shoot(_yellowBullet, _bulletRight.transform.position, _forward, Body.Player);
+							break;
+						}
 					case ItemID.BlueBall:
-					{
-						Shoot(_blueBullet, _bulletLeft.transform.position, _forward, Body.Player);
-						Shoot(_blueBullet, _bulletRight.transform.position, _forward, Body.Player);
-						break;
-					}
+						{
+							Shoot(_blueBullet, _bulletLeft.transform.position, _forward, Body.Player);
+							Shoot(_blueBullet, _bulletRight.transform.position, _forward, Body.Player);
+							break;
+						}
 					case ItemID.PurpleBall:
-					{
-						Shoot(_purpleBullet, _bulletLeft.transform.position, _forward, Body.Player);
-						Shoot(_purpleBullet, _bulletRight.transform.position, _forward, Body.Player);
-						break;
-					}
+						{
+							Shoot(_purpleBullet, _bulletLeft.transform.position, _forward, Body.Player);
+							Shoot(_purpleBullet, _bulletRight.transform.position, _forward, Body.Player);
+							break;
+						}
 				}
 			}
 		}
@@ -76,6 +76,7 @@ public class ProjectileManager : MonoBehaviour {
 	{
 		GameObject _clone = Instantiate(_prefab, _position , Quaternion.identity) as GameObject;
 		GameObject _effect = Instantiate(_shootEffectPrefab, _position, Quaternion.identity) as GameObject;
+		_clone.name = _prefab.gameObject.name;
 		_clone.GetComponent<Projectile>().forward = _forward;
 		_clone.GetComponent<Projectile>().owner = _owner;
 		_clone.transform.parent = _activeEntities.transform;

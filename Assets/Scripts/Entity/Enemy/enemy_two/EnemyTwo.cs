@@ -14,7 +14,6 @@ public class EnemyTwo : Mob {
 	{
 		Init();
 		MaxHealth = Constants.GuardEnemyMaxHealth;
-		Health = MaxHealth;
 		_hover = transform.FindChild("HoverEffect").gameObject;
 		_bulletRight = transform.FindChild("BulletRight").gameObject;
 		_bulletLeft = transform.FindChild("BulletLeft").gameObject;

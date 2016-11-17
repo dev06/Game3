@@ -96,4 +96,5 @@ public enum EntityType
 	NONE,
 	COLLECTIBLE,
 	MOB,
+	PROJECTILE,
 }

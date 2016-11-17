@@ -59,6 +59,21 @@ public class SpawnManager : MonoBehaviour
 					SpawnEntities(Constants.Enemy_Two, node);
 					break;
 				}
+			case "YellowBullet":
+				{
+					SpawnEntities(Constants.Yellow_Bullet, node);
+					break;
+				}
+			case "PurpleBullet":
+				{
+					SpawnEntities(Constants.Purple_Bullet, node);
+					break;
+				}
+			case "BlueBullet":
+				{
+					SpawnEntities(Constants.Blue_Bullet, node);
+					break;
+				}
 			case "player":
 				{
 					SpawnEntities(Constants.Player, node);
@@ -73,10 +88,12 @@ public class SpawnManager : MonoBehaviour
 		GameObject _entity = null;
 		Vector3 _position = -Vector3.up * 100;
 		Vector3 _rotation = Vector3.zero;
+		Vector3 _forward = Vector3.zero;
 		EntityType _type = EntityType.NONE;
 		bool _active = true;
 		string _entityParent = "";
 		float _mobHealth = 0;
+
 
 		foreach (XmlNode subElement in element)
 		{
@@ -118,6 +135,12 @@ public class SpawnManager : MonoBehaviour
 							_mobHealth = float.Parse(attribute.Value);
 							break;
 						}
+					case "forward":
+						{
+							string[] components = attribute.Value.Split(',');
+							_forward = new Vector3(float.Parse(components[0]), float.Parse(components[1]), float.Parse(components[2]));
+							break;
+						}
 				}
 			}
 		}
@@ -147,6 +170,15 @@ public class SpawnManager : MonoBehaviour
 		{
 			_entity.GetComponent<Mob>().GetHealth = _mobHealth;
 		}
+
+
+		if (_type == EntityType.PROJECTILE)
+		{
+			_entity.GetComponent<Projectile>().forward = _forward;
+			_entity.GetComponent<Rigidbody>().velocity = _forward * 50;
+		}
+
+
 
 
 

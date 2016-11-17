@@ -70,100 +70,100 @@ public class InventoryManager {
 	{
 		switch (_itemID)
 		{
-		case "BlueBall":
-			{
-				Item item = ItemList.BlueBall;
-				item.itemQuantity = _count;
-				AddItem(item);
-				break;
-			}
-		case "YellowBall":
-			{
-				Item item = ItemList.YellowBall;
-				item.itemQuantity = _count;
-				AddItem(item);
-				break;
-			}
-		case "PurpleBall":
-			{
-				Item item = ItemList.PurpleBall;
-				item.itemQuantity = _count;
-				AddItem(item);
+			case "BlueBall":
+				{
+					Item item = ItemList.BlueBall;
+					item.itemQuantity = _count;
+					AddItem(item);
+					break;
+				}
+			case "YellowBall":
+				{
+					Item item = ItemList.YellowBall;
+					item.itemQuantity = _count;
+					AddItem(item);
+					break;
+				}
+			case "PurpleBall":
+				{
+					Item item = ItemList.PurpleBall;
+					item.itemQuantity = _count;
+					AddItem(item);
 
-				break;
-			}
-		case "BasicHealth":
-			{
-				Item item = ItemList.BasicHealth;
-				item.itemQuantity = _count;
-				AddItem(item);
-				break;
-			}
-		case "AdvancedHealth":
-			{
-				Item item = ItemList.AdvancedHealth;
-				item.itemQuantity = _count;
-				AddItem(item);
-				break;
-			}
+					break;
+				}
+			case "BasicHealth":
+				{
+					Item item = ItemList.BasicHealth;
+					item.itemQuantity = _count;
+					AddItem(item);
+					break;
+				}
+			case "AdvancedHealth":
+				{
+					Item item = ItemList.AdvancedHealth;
+					item.itemQuantity = _count;
+					AddItem(item);
+					break;
+				}
 
-		case "SuperHealth":
-			{
-				Item item = ItemList.SuperHealth;
-				item.itemQuantity = _count;
-				AddItem(item);
-				break;
-			}
-		case "SpeedBuff":
-			{
-				Item item = ItemList.SpeedBuff;
-				item.itemQuantity = _count;
-				AddItem(item);
-				break;
-			}
-		case "SlowMotionBuff":
-			{
-				Item item = ItemList.SlowMotionBuff;
-				item.itemQuantity = _count;
-				AddItem(item);
-				break;
-			}
-		case "Teleporter":
-			{
-				Item item = ItemList.Teleporter;
-				item.itemQuantity = _count;
-				AddItem(item);
-				break;
-			}
-		case "InterMedHealth":
-			{
-				Item item = ItemList.IntermediateHealth;
-				item.itemQuantity = _count;
-				AddItem(item);
-				break;
-			}
+			case "SuperHealth":
+				{
+					Item item = ItemList.SuperHealth;
+					item.itemQuantity = _count;
+					AddItem(item);
+					break;
+				}
+			case "SpeedBuff":
+				{
+					Item item = ItemList.SpeedBuff;
+					item.itemQuantity = _count;
+					AddItem(item);
+					break;
+				}
+			case "SlowMotionBuff":
+				{
+					Item item = ItemList.SlowMotionBuff;
+					item.itemQuantity = _count;
+					AddItem(item);
+					break;
+				}
+			case "Teleporter":
+				{
+					Item item = ItemList.Teleporter;
+					item.itemQuantity = _count;
+					AddItem(item);
+					break;
+				}
+			case "InterMedHealth":
+				{
+					Item item = ItemList.IntermediateHealth;
+					item.itemQuantity = _count;
+					AddItem(item);
+					break;
+				}
 
-		case "Immortality":
-			{
-				Item item = ItemList.Immortality;
-				item.itemQuantity = _count;
-				AddItem(item);
-				break;
-			}
-		case "Blast":
-			{
-				Item item = ItemList.Blast;
-				item.itemQuantity = _count;
-				AddItem(item);
-				break;
-			}
-		case "Penetration":
-			{
-				Item item = ItemList.Penetration;
-				item.itemQuantity = _count;
-				AddItem(item);
-				break;
-			}
+			case "Immortality":
+				{
+					Item item = ItemList.Immortality;
+					item.itemQuantity = _count;
+					AddItem(item);
+					break;
+				}
+			case "Blast":
+				{
+					Item item = ItemList.Blast;
+					item.itemQuantity = _count;
+					AddItem(item);
+					break;
+				}
+			case "Penetration":
+				{
+					Item item = ItemList.Penetration;
+					item.itemQuantity = _count;
+					AddItem(item);
+					break;
+				}
 		}
 	}
 
