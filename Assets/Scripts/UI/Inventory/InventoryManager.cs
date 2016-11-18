@@ -14,6 +14,10 @@ public class InventoryManager {
 	public int inventoryCount;
 
 
+	public InventoryManager()
+	{
+
+	}
 
 	public void AddItem(Item item)
 	{

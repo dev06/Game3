@@ -17,6 +17,11 @@ public class EnemyOne : Mob {
 		_fillImage = transform.FindChild("HealthBar").gameObject.transform.FindChild("FillImage").GetComponent<Image>();
 		_stillImage = transform.FindChild("HealthBar").gameObject.transform.FindChild("StillImage").GetComponent<Image>();
 		_HealthText = transform.FindChild("HealthBar").gameObject.transform.FindChild("Text").GetComponent<Text>();
+
+		if (Target == null)
+		{
+			Target = GameController.Instance.Player;
+		}
 	}
 
 
@@ -37,16 +42,16 @@ public class EnemyOne : Mob {
 
 		if (Health > 0)
 		{
-			if (Vector3.Distance(transform.position, _gameController.Player.transform.position) < 10)
+			if (Vector3.Distance(transform.position, Target.transform.position) < 10)
 			{
-				if (Vector3.Distance(transform.position, _gameController.Player.transform.position) < 6)
+				if (Vector3.Distance(transform.position, Target.transform.position) < 6)
 				{
-					_gameController.Player.gameObject.SendMessage("DoDamage", Time.deltaTime * Constants.PatrolEnemyDamage);
+					Target.gameObject.SendMessage("DoDamage", Time.deltaTime * Constants.PatrolEnemyDamage);
 					behaviour = EntityBehaviour.Attack;
 				} else
 				{
-					_agent.SetDestination(_gameController.Player.transform.position);
-					RotateTowards(_gameController.Player.transform);
+					_agent.SetDestination(Target.transform.position);
+					RotateTowards(Target.transform);
 					behaviour = EntityBehaviour.Chase;
 				}
 			} else {

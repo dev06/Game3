@@ -3,6 +3,7 @@ using System.Collections;
 using System.Text;
 using System.Xml;
 using System.IO;
+using System.Collections.Generic;
 public class XmlLoader : MonoBehaviour
 {
 
@@ -55,6 +56,42 @@ public class XmlLoader : MonoBehaviour
 		LoadSavedSetting(_xmlDoc);
 		LoadSavedEntities(_xmlDoc);
 	}
+
+	public static void PopulateUserDatabase(string path)
+	{
+		XmlDocument _xmlDoc = new XmlDocument();
+		_xmlDoc.LoadXml(path);
+		XmlNodeList users = _xmlDoc.GetElementsByTagName("wrapper");
+		foreach (XmlNode node in users )
+		{
+			//creates the users instance
+			User loadUser = new User();
+			foreach (XmlNode currentUser in node)
+			{
+				// sets the user name
+				loadUser.SetUserName(currentUser.Name);
+				XmlAttributeCollection attrColl = currentUser.Attributes;
+				//goes through all its attributes
+				foreach (XmlAttribute attribute in attrColl)
+				{
+					switch (attribute.LocalName)
+					{
+						case "password":
+							{
+								loadUser.SetPassword(attribute.Value);
+								break;
+							}
+					}
+				}
+
+
+			}
+			GameController.Instance.users.Add(loadUser);
+			Debug.Log(GameController.Instance.users.Count);
+		}
+	}
+
+
 
 	private static void LoadDefaultInventory(XmlDocument _xmlDoc)
 	{
@@ -162,6 +199,18 @@ public class XmlLoader : MonoBehaviour
 
 	private static void LoadSavedInventory(XmlDocument _xmlDoc)
 	{
+
+		XmlNodeList currentUserList = _xmlDoc.GetElementsByTagName(GameController.Instance.loggedUser.username);
+
+		foreach (XmlNode currentUserNode in currentUserList)
+		{
+			foreach (XmlNode element in currentUserNode)
+			{
+
+			}
+		}
+
+
 		XmlNodeList inventoryList = _xmlDoc.GetElementsByTagName("inventory");
 
 		foreach (XmlNode inventoryNode in inventoryList)
@@ -170,8 +219,13 @@ public class XmlLoader : MonoBehaviour
 			{
 				if (slotNode.Name == "quickItemSelect")
 				{
+					try {
+						GameController.Instance.inventoryManager.quickItemSelectedSlot =
+						    GameController.Instance.inventoryManager.quickItemSlots[int.Parse(slotNode.Attributes["quickItemSelect"].Value)];
+					} catch (System.Exception e)
+					{
 
-					GameController.Instance.inventoryManager.quickItemSelectedSlot = GameController.Instance.inventoryManager.quickItemSlots[int.Parse(slotNode.Attributes["quickItemSelect"].Value)];
+					}
 				} else {
 
 					string _itemId = "";

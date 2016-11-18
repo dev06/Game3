@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using System.Text;
 using System.Xml;
 using System.IO;
+using System.Collections.Generic;
 public class GameController : MonoBehaviour {
 
 
@@ -15,6 +16,8 @@ public class GameController : MonoBehaviour {
 	public const string VERSION = "v1.0.0 Pre-Alpha";
 	public static GameController Instance;
 
+	public List<User> users;
+	public User loggedUser;
 	public Vector2 WindowResolution;
 	public ControllerProfile controllerProfile;
 	public InventoryManager inventoryManager;
@@ -48,9 +51,10 @@ public class GameController : MonoBehaviour {
 	#endregion------/PRIVATE MEMBERS------------
 
 
+
 	void Awake () {
 
-		Player = (GameObject)Instantiate(Constants.Player, Vector3.zero, Quaternion.identity);
+
 		if (Instance != null)
 		{
 			Destroy(gameObject);
@@ -58,6 +62,22 @@ public class GameController : MonoBehaviour {
 			DontDestroyOnLoad(gameObject);
 			Instance = this;
 		}
+
+
+
+		loggedUser = null;
+		users = new List<User>();
+		users.Add(new User("dev", "1"));
+		try
+		{
+			//XmlLoader.PopulateUserDatabase(System.IO.File.ReadAllText(Application.persistentDataPath + "/Save.xml"));
+		} catch (System.Exception e)
+		{
+
+		}
+
+		Player = (GameObject)Instantiate(Constants.Player, Vector3.zero, Quaternion.identity);
+
 
 		WindowResolution = new Vector2(Screen.currentResolution.width, Screen.currentResolution.height);
 		SetCursorTexture((Texture2D)Resources.Load("UI/cursor"));
@@ -78,7 +98,7 @@ public class GameController : MonoBehaviour {
 
 		inventoryManager = new InventoryManager();
 		AddQuickItemSlotToList();
-		EnableMenu(MenuActive.MENU);
+		EnableMenu(MenuActive.LOGIN);
 
 
 		if (EventManager.OnShoot != null)
@@ -104,6 +124,8 @@ public class GameController : MonoBehaviour {
 
 	void Update ()
 	{
+
+
 		if (menuActive == MenuActive.GAME)
 
 		{
@@ -426,6 +448,8 @@ public enum MenuActive
 	INVENTORY,
 	NONE,
 	CREDIT,
+	LOGIN,
+	REGISTER,
 
 
 }
@@ -516,6 +540,11 @@ public enum ButtonID
 	NONE,
 	SAVE,
 	EXIT_TO_MENU,
+
+
+	LOGIN,
+	REGISTER,
+	CREATE_MY_PROFILE,
 
 }
 

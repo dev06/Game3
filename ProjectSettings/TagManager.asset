@@ -74,6 +74,11 @@ TagManager:
   - Collection/Collectible
   - Entity/Player
   - Collection/Characters
+  - UI/LoginCanvas
+  - Container/RegisterContainer
+  - Container/LoginContainer
+  - Login/Username
+  - Login/Password
   layers:
   - Default
   - TransparentFX

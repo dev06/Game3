@@ -3,6 +3,9 @@ using System.Collections;
 using UnityEngine.UI;
 public class EnemyTwo : Mob {
 
+	public GameObject Target;
+
+
 	private GameObject _hover;
 	private float _shootTimer;
 	private bool _shot;
@@ -23,6 +26,10 @@ public class EnemyTwo : Mob {
 		_fillImage = transform.FindChild("HealthBar").gameObject.transform.FindChild("FillImage").GetComponent<Image>();
 		_stillImage = transform.FindChild("HealthBar").gameObject.transform.FindChild("StillImage").GetComponent<Image>();
 		_HealthText = transform.FindChild("HealthBar").gameObject.transform.FindChild("Text").GetComponent<Text>();
+		if (Target == null)
+		{
+			Target = GameController.Instance.Player;
+		}
 	}
 
 	void Update ()
@@ -42,9 +49,9 @@ public class EnemyTwo : Mob {
 		if (Health > 0)
 		{
 			ManageInitPoints();
-			if (Vector3.Distance(transform.position, _gameController.Player.transform.position) < 35)
+			if (Vector3.Distance(transform.position, Target.transform.position) < 35)
 			{
-				if (Vector3.Distance(transform.position, _gameController.Player.transform.position) < 15)
+				if (Vector3.Distance(transform.position, Target.transform.position) < 15)
 				{
 					if (CanShoot())
 					{
@@ -53,13 +60,13 @@ public class EnemyTwo : Mob {
 						_shot = true;
 					}
 					behaviour = EntityBehaviour.Shoot;
-					_gameController.Player.gameObject.SendMessage("DoDamage", Time.deltaTime * Constants.PatrolEnemyDamage);
+					Target.gameObject.SendMessage("DoDamage", Time.deltaTime * Constants.PatrolEnemyDamage);
 				} else
 				{
 					behaviour = EntityBehaviour.Chase;
 				}
-				_agent.SetDestination(_gameController.Player.transform.position);
-				RotateTowards(_gameController.Player.transform);
+				_agent.SetDestination(Target.transform.position);
+				RotateTowards(Target.transform);
 
 			} else {
 				behaviour = EntityBehaviour.Idle;

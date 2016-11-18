@@ -15,16 +15,28 @@ public class XmlWrite: MonoBehaviour
 			writer.WriteStartDocument();
 			writer.WriteStartElement("wrapper");
 
-
-			WriteInventory(writer);
-			WriteSettings(writer);
-			WriteEntities(writer);
+			SaveUserData(writer, path, GameController.Instance.loggedUser);
 
 			writer.WriteEndElement(); // ends wrapper element
 			writer.WriteEndDocument();
 		}
 
 		Debug.Log("Data Saved");
+	}
+
+	public static void SaveUserData(XmlWriter writer, string path, User loggedUser)
+	{
+		writer.WriteStartElement(loggedUser.username);
+		writer.WriteAttributeString("password", loggedUser.password);
+
+
+		WriteInventory(writer);
+		WriteSettings(writer);
+		WriteEntities(writer);
+
+
+
+		writer.WriteEndElement();
 	}
 
 
@@ -108,13 +120,18 @@ public class XmlWrite: MonoBehaviour
 
 				index++;
 			}
-
-
-
 		}
 
 		writer.WriteStartElement("quickItemSelect");
-		writer.WriteAttributeString("quickItemSelect", GameController.Instance.inventoryManager.GetSlotIndex(GameController.Instance.inventoryManager.quickItemSlots, GameController.Instance.inventoryManager.quickItemSelectedSlot) + "");
+		if (GameController.Instance.inventoryManager.quickItemSelectedSlot != null)
+		{
+			int quickItemIndex = GameController.Instance.inventoryManager.GetSlotIndex(
+			                         GameController.Instance.inventoryManager.quickItemSlots,
+			                         GameController.Instance.inventoryManager.quickItemSelectedSlot);
+
+			writer.WriteAttributeString("quickItemSelect", "" + quickItemIndex);
+
+		}
 		writer.WriteEndElement();
 		writer.WriteEndElement(); // ends inventory element
 

@@ -3,20 +3,21 @@ using System.Collections;
 
 public class Droid : Mob {
 
+	private GameObject[] _enemies;
 	private GameObject _hover;
-	private  float _angularVelocity;
+	private float _angularVelocity;
+	private float _horizontalDistance;
+	private float _verticalDistance;
+	private float _shootTimer;
+	private bool _shot;
+	private bool _guard;
+	private Transform _enemyTarget;
 	private Vector3 _destionationRight;
 	private Vector3 _destionationLeft;
 	private Transform _target;
 	private Transform _bulletLeft;
 	private Transform _bulletRight;
-	private float _horizontalDistance;
-	private float _verticalDistance;
-	private float _shootTimer;
-	private bool _shot;
-	private GameObject[] _enemies;
-	private Transform _enemyTarget;
-	private bool _guard;
+
 	void Start () {
 		Init();
 		MaxHealth = Constants.DroidMaxHealth;
@@ -36,6 +37,16 @@ public class Droid : Mob {
 	}
 
 	void Update ()
+	{
+
+		if (GameController.Instance.menuActive != MenuActive.PAUSE)
+		{
+			UpdateInstance();
+		}
+	}
+
+
+	private void UpdateInstance()
 	{
 		if (Input.GetKeyDown(KeyCode.P))
 		{
@@ -70,7 +81,7 @@ public class Droid : Mob {
 			_enemyTarget = EnemyInRange();
 
 		}
-
+		CheckIfIsDead();
 	}
 
 

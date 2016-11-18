@@ -37,6 +37,13 @@ public class EventManager : MonoBehaviour {
 	public static Credit OnCreditUnactive;
 
 
+	public delegate void Login();
+	public static Login OnLoginButtonPress;
+	public static Login OnRegisterButtonPress;
+	public static Login OnCreateProfileButtonPress;
+	public static Login OnLoginSuccess;
+
+
 	public delegate void IO();
 	public static IO OnSave;
 

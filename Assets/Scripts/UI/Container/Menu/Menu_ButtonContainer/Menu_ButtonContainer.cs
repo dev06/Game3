@@ -20,6 +20,7 @@ public class Menu_ButtonContainer : Container {
 		EventManager.OnSettingActive += OnSettingActive;
 		EventManager.OnCreditUnactive += OnCreditUnacitve;
 		EventManager.OnCreditActive += OnCreditActive;
+		EventManager.OnLoginSuccess += OnLoginSuccess;
 
 	}
 
@@ -32,9 +33,7 @@ public class Menu_ButtonContainer : Container {
 		EventManager.OnSettingActive -= OnSettingActive;
 		EventManager.OnCreditUnactive -= OnCreditUnacitve;
 		EventManager.OnCreditActive -= OnCreditActive;
-
-
-
+		EventManager.OnLoginSuccess -= OnLoginSuccess;
 	}
 
 	void Start ()
@@ -86,6 +85,12 @@ public class Menu_ButtonContainer : Container {
 	{
 		PlayAnimation(-1);
 	}
+
+	private void OnLoginSuccess()
+	{
+		PlayAnimation(1);
+	}
+
 
 	void Update()
 	{
