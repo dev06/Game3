@@ -9,7 +9,7 @@ public class Menu_PanelController : MonoBehaviour {
 
 	void OnEnable()
 	{
-
+		Debug.Log("Sub");
 		Menu_ButtonContainer.OnMenuContainerAnimFinished += OnButtonClick;
 		EventManager.OnCreditUnactive += OnCreditUnactive;
 
@@ -17,6 +17,7 @@ public class Menu_PanelController : MonoBehaviour {
 
 	void OnDisable()
 	{
+		Debug.Log("UNSub");
 		Menu_ButtonContainer.OnMenuContainerAnimFinished -= OnButtonClick;
 		EventManager.OnCreditUnactive -= OnCreditUnactive;
 
@@ -40,21 +41,23 @@ public class Menu_PanelController : MonoBehaviour {
 	/// <param name="id"></param>
 	private void OnButtonClick(ButtonID id)
 	{
+
 		switch (id)
 		{
-			case ButtonID.NEWGAME:
+		case ButtonID.NEWGAME:
 			{
 				GameController.Instance.HasGameStarted = true;
 				GameController.Instance.menuActive = MenuActive.GAME;
 				GameController.Instance.EnableMenu(GameController.Instance.menuActive);
+				Debug.Log("NEW GAME is called");
 				break;
 			}
 
-			case ButtonID.CREDIT:
+		case ButtonID.CREDIT:
 			{
 				GameController.Instance.menuActive = MenuActive.CREDIT;
-				//GameController.Instance.EnableMenu(GameController.Instance.menuActive);
-				_creditPanel.SetActive(!_creditPanel.activeSelf);
+				GameController.Instance.EnableMenu(GameController.Instance.menuActive);
+				Debug.Log("Credit is called");
 				break;
 			}
 		}
@@ -62,8 +65,8 @@ public class Menu_PanelController : MonoBehaviour {
 
 	void OnCreditUnactive()
 	{
-		_creditPanel.SetActive(!_creditPanel.activeSelf);
-		GameController.Instance.menuActive = MenuActive.MENU;
-		GameController.Instance.EnableMenu(GameController.Instance.menuActive);
+		//_creditPanel.SetActive(!_creditPanel.activeSelf);
+		//GameController.Instance.menuActive = MenuActive.MENU;
+		//GameController.Instance.EnableMenu(GameController.Instance.menuActive);
 	}
 }
