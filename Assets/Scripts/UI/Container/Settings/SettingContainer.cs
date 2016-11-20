@@ -19,7 +19,7 @@ public class SettingContainer : MonoBehaviour
 		EventManager.OnSettingUnactive += OnSettingUnactive;
 	}
 
-	void OnDisaable()
+	void OnDisable()
 	{
 		EventManager.OnSettingActive -= OnSettingActive;
 		EventManager.OnSettingUnactive -= OnSettingUnactive;
@@ -31,6 +31,7 @@ public class SettingContainer : MonoBehaviour
 		transform.FindChild("BackButton").GetComponent<BackButton>().SetOwner(MenuActive.SETTING);
 		_animation = GetComponent<Animation>();
 		_animation[_animation.clip.name].speed = 0;
+
 
 	}
 
@@ -85,9 +86,7 @@ public class SettingContainer : MonoBehaviour
 				return 1;
 			}
 		}
-
 		return -1;
-
 	}
 
 	public void PlayAnimation(int direction)

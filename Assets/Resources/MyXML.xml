@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<wrapper>
+	<levels>
+		<level name = "CubeBlock">
+			<name>CubeName</name>
+			<message>This is a cube</message>
+		</level>
+		<level name = "SphereBlock">
+			<name>SphereName</name>
+			<message>This is a sphere</message>
+		</level>
+		<level name = "OtherBlock">
+			<name>BlockName</name>
+			<message>This is a block</message>
+		</level>
+	</levels>
+	<colors>
+		<color name = "CubeColor">
+			<red>.1f</red>
+			<green>1.0f</green>
+			<blue>.1f</blue>
+		</color>
+		<color name = "SphereColor">
+			<red>.4f</red>
+			<green>1.0f</green>
+			<blue>.1f</blue>
+		</color>
+		<color name = "OtherColor">
+			<red>.2f</red>
+			<green>.10f</green>
+			<blue>.8f</blue>
+		</color>
+	</colors>
+</wrapper>

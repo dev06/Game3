@@ -14,7 +14,7 @@ public class AntiAliasingButton : SettingButton {
 	{
 		InitSettingButton();
 		_moreOptions = GameObject.FindWithTag("Settings/AA").transform.FindChild("MoreAntiAliasing");
-
+		Constants.AntiAliasingQuality = 1;
 		if (buttonID == ButtonID.AA_BUTTON)
 		{
 			settingButtons.Add(this);
@@ -24,6 +24,16 @@ public class AntiAliasingButton : SettingButton {
 		} else {
 			_selectorButton = GameObject.FindWithTag("Container/SettingsContainer/AntiAliasing/CurrentAntiAliasing");
 			_selectorButton_Text =	_selectorButton.transform.GetChild(0).GetComponent<Text>();
+
+		}
+	}
+
+	void Update()
+	{
+		if (_selectorButton != null)
+		{
+
+			_selectorButton_Text.text = SwitchText((int)Mathf.Log(Constants.AntiAliasingQuality, 2));
 
 		}
 	}
@@ -49,23 +59,25 @@ public class AntiAliasingButton : SettingButton {
 	{
 		switch (i)
 		{
-			case 0:
+		case 0:
 			{
 				return "Disabled";
 			}
-			case 1:
+		case 1:
 			{
 				return "2x multi sampling";
 			}
-			case 2:
+		case 2:
 			{
 				return "4x multi sampling";
 			}
-			case 3:
+		case 3:
 			{
 				return "8x multi sampling";
 			}
 		}
+
+
 
 		return "";
 	}
@@ -87,11 +99,9 @@ public class AntiAliasingButton : SettingButton {
 
 		if (buttonID == ButtonID.AA_BUTTON_OPTION)
 		{
-			QualitySettings.antiAliasing = antiAliasing;
-			_selectorButton_Text.text = SwitchText((int)Mathf.Log(antiAliasing, 2));
+			Constants.AntiAliasingQuality = antiAliasing;
+			QualitySettings.antiAliasing = Constants.AntiAliasingQuality;
+			_selectorButton_Text.text = SwitchText((int)Mathf.Log(Constants.AntiAliasingQuality, 2));
 		}
-
-
-
 	}
 }

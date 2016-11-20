@@ -12,6 +12,8 @@ public class ButtonEventHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
 	public Sprite RestSprite;
 	public Color HoverColor;
 	public Color RestColor;
+	public Color DisabledColor;
+	public bool  isInteractable;
 	public float HoverSize;
 	public float RestSize;
 	public ButtonID buttonID;
@@ -119,6 +121,27 @@ public class ButtonEventHandler : MonoBehaviour, IPointerEnterHandler, IPointerE
 		} else {
 			OnExit();
 		}
+	}
+
+	public void SetInteractable(bool b)
+	{
+
+		if (_image != null)
+		{
+
+			if (!b)
+			{
+				_image.color = DisabledColor ;
+
+			}
+
+			_image.sprite = RestSprite;
+
+		}
+
+
+		isInteractable = b;
+
 	}
 
 

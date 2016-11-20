@@ -19,6 +19,9 @@ public class Menu_ButtonContainer : Container {
 		EventManager.OnSettingUnactive += OnSettingUnactive;
 		EventManager.OnSettingActive += OnSettingActive;
 		EventManager.OnCreditUnactive += OnCreditUnacitve;
+		EventManager.OnCreditActive += OnCreditActive;
+		EventManager.OnLoginSuccess += OnLoginSuccess;
+
 	}
 
 	void OnDisable()
@@ -29,8 +32,8 @@ public class Menu_ButtonContainer : Container {
 		EventManager.OnSettingUnactive -= OnSettingUnactive;
 		EventManager.OnSettingActive -= OnSettingActive;
 		EventManager.OnCreditUnactive -= OnCreditUnacitve;
-
-
+		EventManager.OnCreditActive -= OnCreditActive;
+		EventManager.OnLoginSuccess -= OnLoginSuccess;
 	}
 
 	void Start ()
@@ -78,6 +81,17 @@ public class Menu_ButtonContainer : Container {
 		PlayAnimation(1);
 	}
 
+	private void OnCreditActive()
+	{
+		PlayAnimation(-1);
+	}
+
+	private void OnLoginSuccess()
+	{
+		PlayAnimation(1);
+	}
+
+
 	void Update()
 	{
 		OnFinishMenuAnim();
@@ -100,7 +114,6 @@ public class Menu_ButtonContainer : Container {
 				}
 
 				_buttonClickedId = ButtonID.NONE;
-				Debug.Log("Called");
 			}
 		}
 	}

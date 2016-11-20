@@ -9,13 +9,14 @@ public class VSyncButton : SettingButton {
 	void Start () {
 		Init();
 		_selectorCheckMark = transform.FindChild("checkmark").gameObject;
-		isVSyncOn = true;
+		isVSyncOn = Constants.VSync;
 		_selectorCheckMark.SetActive(isVSyncOn);
 	}
 
 	void Update ()
 	{
-		_selectorCheckMark.SetActive(isVSyncOn);
+		_selectorCheckMark.SetActive(Constants.VSync);
+		QualitySettings.vSyncCount = (Constants.VSync) ? 1 : 0;
 	}
 
 	/// <summary>
@@ -43,7 +44,8 @@ public class VSyncButton : SettingButton {
 	public override void OnPointerClick(PointerEventData data)
 	{
 		base.OnPointerClick(data);
-		isVSyncOn = !isVSyncOn;
+		Constants.VSync = !Constants.VSync;
+		isVSyncOn = Constants.VSync;
 		_selectorCheckMark.SetActive(isVSyncOn);
 		QualitySettings.vSyncCount = (isVSyncOn) ? 1 : 0;
 	}

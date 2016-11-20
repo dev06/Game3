@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wrapper>
+	<property>
+		<element name = "TestElement" value = "10" />
+	</property>
+
+</wrapper>

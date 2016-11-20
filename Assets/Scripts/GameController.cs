@@ -4,6 +4,10 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Text;
+using System.Xml;
+using System.IO;
+using System.Collections.Generic;
 public class GameController : MonoBehaviour {
 
 
@@ -12,12 +16,16 @@ public class GameController : MonoBehaviour {
 	public const string VERSION = "v1.0.0 Pre-Alpha";
 	public static GameController Instance;
 
+	public List<User> users;
+	public User loggedUser;
 	public Vector2 WindowResolution;
 	public ControllerProfile controllerProfile;
 	public InventoryManager inventoryManager;
 	public ProjectileManager projectileManager;
+	public SpawnManager spawnManager;
 	public BuffManager buffManager;
 	public NavMeshController navMeshController;
+	public SaveManager saveManager;
 	public static ButtonID selectedButtonID;
 	public MenuActive menuActive;
 	public KeyCode[] customKey;
@@ -34,11 +42,7 @@ public class GameController : MonoBehaviour {
 	#endregion ----------- /PUBLIC MEMBERS----------
 
 	#region------PRIVATE MEMBERS------------
-	private GameObject _largeProjectile;
-	private GameObject _smallProjectile;
 	private GameObject _bot;
-	private GameObject _smoke;
-	private GameObject _shootEffectPrefab;
 	private float _botSpawnCounter;
 	private ControllerProfile[] ControllerProfileList = { ControllerProfile.WASD, ControllerProfile.TGFH};
 	private int _index;
@@ -47,7 +51,9 @@ public class GameController : MonoBehaviour {
 	#endregion------/PRIVATE MEMBERS------------
 
 
+
 	void Awake () {
+
 
 		if (Instance != null)
 		{
@@ -57,6 +63,22 @@ public class GameController : MonoBehaviour {
 			Instance = this;
 		}
 
+
+
+		loggedUser = null;
+		users = new List<User>();
+		users.Add(new User("dev", "1"));
+		try
+		{
+			//XmlLoader.PopulateUserDatabase(System.IO.File.ReadAllText(Application.persistentDataPath + "/Save.xml"));
+		} catch (System.Exception e)
+		{
+
+		}
+
+		Player = (GameObject)Instantiate(Constants.Player, Vector3.zero, Quaternion.identity);
+
+
 		WindowResolution = new Vector2(Screen.currentResolution.width, Screen.currentResolution.height);
 		SetCursorTexture((Texture2D)Resources.Load("UI/cursor"));
 		controllerProfile = ControllerProfile.WASD;
@@ -65,18 +87,22 @@ public class GameController : MonoBehaviour {
 		TogglePlayerMovement = true;
 		navMeshController = GameObject.FindWithTag("Manager/NavMeshManager").GetComponent<NavMeshController>();
 		projectileManager = GameObject.FindWithTag("Manager/ProjectileManager").GetComponent<ProjectileManager>();
+		spawnManager = GameObject.FindObjectOfType<SpawnManager>();
 		buffManager = GameObject.FindWithTag("Manager/BuffManager").GetComponent<BuffManager>();
+<<<<<<< HEAD
 		_smoke = (GameObject)Resources.Load("Prefabs/Particles/Smoke");
+=======
+
+
+>>>>>>> 5c6cb6cb8272e3712852ede6456b7a4206e04e02
 		_bot = (GameObject)Resources.Load("Prefabs/Bot");
 		_blankImage = GameObject.FindWithTag("UI/GameCanvas").transform.FindChild("Blank").GetComponent<Image>();
-		_shootEffectPrefab = (GameObject)Resources.Load("Prefabs/Particles/ShootEffect");
 		GameObject.FindWithTag("Version").GetComponent<Text>().text = VERSION;
 		activeEntities = GameObject.FindWithTag("ActiveEntities");
-		Player = GameObject.FindGameObjectWithTag("Player");
 
 		inventoryManager = new InventoryManager();
 		AddQuickItemSlotToList();
-		EnableMenu(MenuActive.MENU);
+		EnableMenu(MenuActive.LOGIN);
 
 
 		if (EventManager.OnShoot != null)
@@ -85,10 +111,25 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	public int sx = 0;
-	int sy = 0;
+
+
+	// void Start()
+	// {
+	// 	StartCoroutine("LoadXMLData");
+	// }
+
+
+
+	// IEnumerator LoadXMLData()
+	// {
+	// 	yield return new WaitForSeconds(.1f);
+	// 	XmlLoader.LoadData();
+	// }
+
 	void Update ()
 	{
+
+
 		if (menuActive == MenuActive.GAME)
 
 		{
@@ -98,6 +139,9 @@ public class GameController : MonoBehaviour {
 				UseItem();
 			}
 		}
+
+
+
 
 		SpawnBots(Constants.StartBotSpawningDelay, Constants.BotSpawnDelay, KeepSpawning);
 		DecreaseGameCanvasBlankAlpha();
@@ -132,6 +176,7 @@ public class GameController : MonoBehaviour {
 
 		switch (_menu)
 		{
+<<<<<<< HEAD
 		case MenuActive.GAME:
 			ActivateUICanvas(false, "GameCanvas");
 			GameObject.FindGameObjectWithTag("UI/GameCanvas").GetComponent<Canvas>().enabled = true;
@@ -167,6 +212,40 @@ public class GameController : MonoBehaviour {
 
 
 
+=======
+			case MenuActive.GAME:
+				ActivateUICanvas(false, "GameCanvas");
+				GameObject.FindGameObjectWithTag("UI/GameCanvas").GetComponent<Canvas>().enabled = true;
+				ActivateChild(GameObject.FindWithTag("UI/GameCanvas"), "", true);
+				menuActive = MenuActive.GAME;
+				break;
+			case MenuActive.MENU:
+				GameObject.FindGameObjectWithTag("UI/MenuCanvas").GetComponent<Canvas>().enabled = true;
+				ActivateUICanvas(false, "MenuCanvas");
+				menuActive = MenuActive.MENU;
+				break;
+			case MenuActive.RETRY:
+				GameObject.FindGameObjectWithTag("UI/RetryCanvas").GetComponent<Canvas>().enabled = true;
+				ActivateUICanvas(false, "RetryCanvas");
+				menuActive = MenuActive.RETRY;
+				break;
+			case MenuActive.INVENTORY:
+				GameObject.FindGameObjectWithTag("UI/InventoryCanvas").GetComponent<Canvas>().enabled = true;
+				ActivateUICanvas(false, "InventoryCanvas");
+				ActivateChild(GameObject.FindWithTag("UI/GameCanvas"), "QuickItem", false);
+				menuActive = MenuActive.INVENTORY;
+				break;
+			case MenuActive.PAUSE:
+				GameObject.FindGameObjectWithTag("UI/PauseCanvas").GetComponent<Canvas>().enabled = true;
+				ActivateUICanvas(false, "PauseCanvas");
+				menuActive = MenuActive.PAUSE;
+				break;
+			case MenuActive.CREDIT:
+				GameObject.FindGameObjectWithTag("UI/CreditCanvas").GetComponent<Canvas>().enabled = true;
+				ActivateUICanvas(false, "CreditCanvas");
+				menuActive = MenuActive.CREDIT;
+				break;
+>>>>>>> 5c6cb6cb8272e3712852ede6456b7a4206e04e02
 		}
 	}
 
@@ -411,6 +490,10 @@ public enum MenuActive
 	INVENTORY,
 	NONE,
 	CREDIT,
+	LOGIN,
+	REGISTER,
+
+
 }
 
 public enum InventoryType
@@ -497,6 +580,13 @@ public enum ButtonID
 	LOADGAME,
 
 	NONE,
+	SAVE,
+	EXIT_TO_MENU,
+
+
+	LOGIN,
+	REGISTER,
+	CREATE_MY_PROFILE,
 
 }
 

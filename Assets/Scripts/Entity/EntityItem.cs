@@ -2,7 +2,7 @@
 using System.Collections;
 
 
-public class Entity: MonoBehaviour
+public class Entity: MasterEntity
 {
 
 
@@ -15,6 +15,7 @@ public class Entity: MonoBehaviour
 	void Start()
 	{
 		Init();
+
 	}
 
 	protected void Init()
@@ -50,6 +51,7 @@ public class EntityItem : Entity {
 	void Start()
 	{
 		Init();
+		entityType = EntityType.COLLECTIBLE;
 	}
 
 	void OnTriggerEnter(Collider col)

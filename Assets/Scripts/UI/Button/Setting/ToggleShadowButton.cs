@@ -9,7 +9,7 @@ public class ToggleShadowButton : SettingButton {
 	private GameObject _shadowQuality;
 	void Start () {
 		Init();
-		isShadowOn = true;
+		isShadowOn = Constants.ToggleShadow;
 		_selectorCheckMark = transform.FindChild("checkmark").gameObject;
 		_selectorCheckMark.SetActive(isShadowOn);
 		_shadowQuality = GameObject.FindWithTag("Settings/ShadowQuality").gameObject;
@@ -17,7 +17,9 @@ public class ToggleShadowButton : SettingButton {
 
 	void Update ()
 	{
+		isShadowOn = Constants.ToggleShadow;
 		_selectorCheckMark.SetActive(isShadowOn);
+		_shadowQuality.SetActive(isShadowOn);
 	}
 
 	/// <summary>
@@ -45,7 +47,8 @@ public class ToggleShadowButton : SettingButton {
 	public override void OnPointerClick(PointerEventData data)
 	{
 		base.OnPointerClick(data);
-		isShadowOn = !isShadowOn;
+		Constants.ToggleShadow = !Constants.ToggleShadow;
+		isShadowOn = Constants.ToggleShadow;
 		_selectorCheckMark.SetActive(isShadowOn);
 		_shadowQuality.SetActive(isShadowOn);
 		if (isShadowOn == false)
@@ -53,6 +56,12 @@ public class ToggleShadowButton : SettingButton {
 			if (EventManager.OnShadowToggleUnactive != null)
 			{
 				EventManager.OnShadowToggleUnactive();
+			}
+		} else
+		{
+			if (EventManager.OnShadowToggleActive != null)
+			{
+				EventManager.OnShadowToggleActive();
 			}
 		}
 	}

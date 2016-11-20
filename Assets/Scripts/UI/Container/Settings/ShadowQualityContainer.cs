@@ -8,6 +8,7 @@ public class ShadowQualityContainer : Container {
 
 	public GameObject _parent;
 	private float _spacing;
+
 	void Start () {
 		Init();
 		_spacing = 8.488f;
@@ -27,19 +28,19 @@ public class ShadowQualityContainer : Container {
 	{
 		switch (i)
 		{
-			case 0:
+		case 0:
 			{
 				return "Very Low";
 			}
-			case 1:
+		case 1:
 			{
 				return "Low";
 			}
-			case 2:
+		case 2:
 			{
 				return "Medium";
 			}
-			case 3:
+		case 3:
 			{
 				return "High";
 			}
@@ -47,6 +48,9 @@ public class ShadowQualityContainer : Container {
 
 		return "";
 	}
+
+
+
 	// Update is called once per frame
 	void Update () {
 

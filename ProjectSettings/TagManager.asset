@@ -58,6 +58,27 @@ TagManager:
   - MenuPanels/CreditPanel
   - MenuPanels/SettingPanel
   - Version
+  - UI/CreditCanvas
+  - New Tag
+  - Manager/IOManager
+  - Entity/SuperHealth
+  - Entity/Friendly/Droid
+  - Collection/GuardEnemy
+  - Collection/Collectibles
+  - Collection/Buffs
+  - Entity/Buff/SlowMotionBuff
+  - Entity/Buff/TeleportationBuff
+  - Entity/Buff/ImmortalityBuff
+  - Entity/Buff/BlastBuff
+  - Entity/Buff/ProjectilePenetrationBuff
+  - Collection/Collectible
+  - Entity/Player
+  - Collection/Characters
+  - UI/LoginCanvas
+  - Container/RegisterContainer
+  - Container/LoginContainer
+  - Login/Username
+  - Login/Password
   layers:
   - Default
   - TransparentFX

@@ -101,9 +101,11 @@ public class Constants  {
 	public const float ProjectilePenetration_Percent = 100f; // does x percent more damage then the default value.
 
 
-
-
-
+	public static bool ToggleShadow = true;
+	public static int ShadowQuality = 0;
+	public static int AntiAliasingQuality = 0;
+	public static bool FullScreen = true;
+	public static bool VSync = true;
 
 
 	public static Material Character_Blue_Mat = (Material)Resources.Load("Materials/Entity/Character/character_blue_mat/character_blue_mat");
@@ -141,6 +143,84 @@ public class Constants  {
 	public static GameObject AA_Option = (GameObject)Resources.Load("Prefabs/UIPrefabs/Menu/Setting/AA/_aa");
 	public static GameObject TextureQuality_Option = (GameObject)Resources.Load("Prefabs/UIPrefabs/Menu/Setting/TextureQuality/_textureQuality");
 	public static GameObject ShadowQuality_Option = (GameObject)Resources.Load("Prefabs/UIPrefabs/Menu/Setting/Shadow/_shadowQuality");
+
+
+
+	//Pickup item prefab locations.
+	public static GameObject Player = (GameObject)Resources.Load("Prefabs/Entity/Player/Player");
+	public static GameObject Droid = (GameObject)Resources.Load("Prefabs/Entity/Friendly/Droid/Droid");
+	public static GameObject Enemy_One = (GameObject)Resources.Load("Prefabs/Entity/Enemy/Enemy_One");
+	public static GameObject Enemy_Two = (GameObject)Resources.Load("Prefabs/Entity/Enemy/Enemy_Two");
+
+	public static GameObject BlueBall_Pk = (GameObject)Resources.Load("Prefabs/Entity/Collectibles/BlueBall_Pk");
+	public static GameObject YellowBall_Pk = (GameObject)Resources.Load("Prefabs/Entity/Collectibles/YellowBall_Pk");
+	public static GameObject PurpleBall_Pk = (GameObject)Resources.Load("Prefabs/Entity/Collectibles/PurpleBall_Pk");
+	public static GameObject BasicHealth_Pk = (GameObject)Resources.Load("Prefabs/Entity/Collectibles/BasicHealth_Pk");
+	public static GameObject SuperHealth_Pk = (GameObject)Resources.Load("Prefabs/Entity/Collectibles/SuperHealth_Pk");
+	public static GameObject IntermediateHealth_Pk = (GameObject)Resources.Load("Prefabs/Entity/Collectibles/IntermediateHealth_Pk");
+	public static GameObject AdvancedHealth_Pk = (GameObject)Resources.Load("Prefabs/Entity/Collectibles/AdvancedHealth_Pk");
+
+
+
+
+}
+
+public class ItemList
+{
+	public static Item BlueBall =  new Item("Blue Ball",
+	                                        "A projectile that does " + Constants.Character_BlueProjectileDamage + " points of damage." ,
+	                                        Resources.Load<Sprite>("Item/blueBall"), 150, ItemID.BlueBall, ItemType.Projectile);
+
+	public static Item YellowBall = new Item("Yellow Ball",
+	        "A projectile that does " + Constants.Character_YellowProjectileDamage + " points of damage.",
+	        Resources.Load<Sprite>("Item/yellowBall"), 150, ItemID.YellowBall, ItemType.Projectile);
+
+	public static Item PurpleBall = new Item("Purple Ball",
+	        "A projectile that does  " + Constants.Character_PurpleProjectileDamage + " points of damage.",
+	        Resources.Load<Sprite>("Item/purpleBall"), 100, ItemID.PurpleBall, ItemType.Projectile);
+
+
+	public static Item BasicHealth =  new Item("Basic Health",
+	        "A Simple Medkit that restores " +  Constants.BasicHealthRepletion + " health points" ,
+	        Resources.Load<Sprite>("Item/greenHealth"), 4, ItemID.BasicHealth, ItemType.Collectible);
+
+	public static Item IntermediateHealth = new Item("Intermediate Health",
+	        "A little advanced Medkit that restores " + Constants.InterMedHealthRepletion + " health points" ,
+	        Resources.Load<Sprite>("Item/redHealth"), 3, ItemID.InterMedHealth, ItemType.Collectible);
+
+	public static Item AdvancedHealth = new Item("Advanced Health",
+	        "A advanced Medkit that restores " + Constants.AdvancedHealthRepletion + " health points" ,
+	        Resources.Load<Sprite>("Item/orangeHealth"), 3, ItemID.AdvancedHealth, ItemType.Collectible);
+
+	public static Item SuperHealth = new Item("Super Health",
+	        "A Super Medkit that restores " + Constants.SuperHealthRepletion + " health points" ,
+	        Resources.Load<Sprite>("Item/blueHealth"), 1, ItemID.SuperHealth, ItemType.Collectible);
+
+	public static Item SpeedBuff = new Item("Speed Buff",
+	                                        "Increases player speed for certain amount of time" ,
+	                                        Resources.Load<Sprite>("Item/buff"), 1, ItemID.SpeedBuff, ItemType.Buff);
+
+	public static Item SlowMotionBuff = new Item("Slow motion Buff",
+	        "Slows down time for certain amount of period." ,
+	        Resources.Load<Sprite>("Item/slowMotion_buff"), 1, ItemID.SlowMotionBuff, ItemType.Buff);
+
+	public static Item Teleporter = new Item("Teleporter",
+	        "Teleports you to certain location" ,
+	        Resources.Load<Sprite>("Item/teleport_buff"), 1, ItemID.TeleportationBuff, ItemType.Buff);
+
+	public static Item Immortality = new Item("Immortality",
+	        "Makes you immortal for certain period of time." ,
+	        Resources.Load<Sprite>("Item/immortal_buff"), 1, ItemID.ImmortalityBuff, ItemType.Buff);
+
+	public static Item Blast = new Item("Blast",
+	                                    "Creates a blast shock wave near the player and damages near by enemies by " + Constants.BlastDamage + " health points." ,
+	                                    Resources.Load<Sprite>("Item/blast_buff"), 1, ItemID.BlastBuff, ItemType.Buff);
+
+	public static Item Penetration = new Item("Penetration",
+	        "Projectiles does " + Constants.ProjectilePenetration_Percent + " more damage allowing a massive to the enemies." ,
+	        Resources.Load<Sprite>("Item/projectile_penetration_buff"), 1, ItemID.ProjectilePenetrationBuff, ItemType.Buff);
+
+
 
 
 }
