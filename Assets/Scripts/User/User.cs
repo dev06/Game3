@@ -3,20 +3,27 @@ using System.Collections;
 
 public class User
 {
-
+	public string name;
 	public string username;
 	public string password;
 
 	public User()
 	{
+		name = "";
 		username = "";
 		password = "";
 	}
 
-	public User(string _userName, string _password)
+	public User(string _name, string _userName, string _password)
 	{
+		this.name = _name;
 		this.username = _userName;
 		this.password = _password;
+	}
+
+	public void SetName(string name)
+	{
+		this.name = name;
 	}
 
 	public void SetUserName(string username)
@@ -31,6 +38,6 @@ public class User
 
 	public override string ToString()
 	{
-		return "Username " + username + " Password " + password;
+		return "Name " + name + " Username " + username + " Password " + password;
 	}
 }

@@ -33,11 +33,6 @@ public class LoginController : MonoBehaviour {
 		_wrong_credentials = _credentialsContainer.GetComponent<Animation>();
 	}
 
-	void Update ()
-	{
-
-	}
-
 	private void OnLoginButtonPress()
 	{
 		//login into profile
@@ -64,11 +59,10 @@ public class LoginController : MonoBehaviour {
 	private bool UserExists(string username, string password)
 	{
 		int databaseCount = GameController.Instance.users.Count;
-
 		for (int i = 0; i < databaseCount; i++)
 		{
 			User user = GameController.Instance.users[i];
-			if (user.username == username &&  user.password == user.password)
+			if (user.username == username &&  user.password == password)
 			{
 				GameController.Instance.loggedUser = user;
 				return true;
@@ -88,4 +82,6 @@ public class LoginController : MonoBehaviour {
 		}
 		Debug.Log("Welcome");
 	}
+
+
 }

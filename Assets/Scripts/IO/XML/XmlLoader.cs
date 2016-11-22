@@ -7,6 +7,18 @@ using System.Collections.Generic;
 public class XmlLoader : MonoBehaviour
 {
 
+	public static string SAVE_DATA_PATH = Application.persistentDataPath + "/Save_data.xml";
+
+
+	void Start()
+	{
+		try
+		{
+			PopulateUserDatabase(SAVE_DATA_PATH);
+		} catch (System.Exception e)
+		{
+		}
+	}
 
 	public static void LoadData()
 	{
@@ -18,7 +30,7 @@ public class XmlLoader : MonoBehaviour
 	{
 
 		try {
-			LoadSavedXmlData(System.IO.File.ReadAllText(Application.persistentDataPath + "/Save.xml"));
+			LoadSavedXmlData(System.IO.File.ReadAllText(SAVE_DATA_PATH));
 
 		} catch (System.Exception e)
 		{
@@ -52,22 +64,51 @@ public class XmlLoader : MonoBehaviour
 	{
 		XmlDocument _xmlDoc = new XmlDocument();
 		_xmlDoc.LoadXml(path);
-		LoadSavedInventory(_xmlDoc);
-		LoadSavedSetting(_xmlDoc);
-		LoadSavedEntities(_xmlDoc);
+		XmlNodeList currentUserNode = _xmlDoc.GetElementsByTagName(GameController.Instance.loggedUser.username);
+		foreach (XmlNode n in currentUserNode)
+		{
+			foreach (XmlNode n1 in n)
+			{
+				switch (n1.Name)
+				{
+					case "inventory":
+					{
+						LoadSavedInventory(n1);
+
+
+						break;
+					}
+					case "setting":
+					{
+						LoadSavedSetting(n1);
+						break;
+					}
+					case "entities":
+					{
+						LoadSavedEntities(n1);
+						break;
+					}
+				}
+
+			}
+		}
+
+
+
 	}
 
 	public static void PopulateUserDatabase(string path)
 	{
 		XmlDocument _xmlDoc = new XmlDocument();
-		_xmlDoc.LoadXml(path);
+		_xmlDoc.Load(path);
 		XmlNodeList users = _xmlDoc.GetElementsByTagName("wrapper");
 		foreach (XmlNode node in users )
 		{
 			//creates the users instance
-			User loadUser = new User();
+
 			foreach (XmlNode currentUser in node)
 			{
+				User loadUser = new User();
 				// sets the user name
 				loadUser.SetUserName(currentUser.Name);
 				XmlAttributeCollection attrColl = currentUser.Attributes;
@@ -77,17 +118,22 @@ public class XmlLoader : MonoBehaviour
 					switch (attribute.LocalName)
 					{
 						case "password":
-							{
-								loadUser.SetPassword(attribute.Value);
-								break;
-							}
+						{
+							loadUser.SetPassword(attribute.Value);
+							break;
+						}
+
+						case "name":
+						{
+							loadUser.SetName(attribute.Value);
+							break;
+						}
 					}
 				}
 
-
+				GameController.Instance.users.Add(loadUser);
 			}
-			GameController.Instance.users.Add(loadUser);
-			Debug.Log(GameController.Instance.users.Count);
+
 		}
 	}
 
@@ -111,15 +157,15 @@ public class XmlLoader : MonoBehaviour
 					switch (elementNode.Name)
 					{
 						case "item":
-							{
-								_itemId = elementNode.InnerText;
-								break;
-							}
+						{
+							_itemId = elementNode.InnerText;
+							break;
+						}
 						case "count":
-							{
-								_itemCount = int.Parse(elementNode.InnerText);
-								break;
-							}
+						{
+							_itemCount = int.Parse(elementNode.InnerText);
+							break;
+						}
 
 					}
 				}
@@ -141,38 +187,38 @@ public class XmlLoader : MonoBehaviour
 				switch (_settingOption.Name)
 				{
 					case "textureQuality":
-						{
-							QualitySettings.masterTextureLimit = int.Parse(_settingOption.InnerText);
-							break;
-						}
+					{
+						QualitySettings.masterTextureLimit = int.Parse(_settingOption.InnerText);
+						break;
+					}
 					case "antiAliasing":
-						{
-							Constants.AntiAliasingQuality = int.Parse(_settingOption.InnerText);
-							break;
-						}
+					{
+						Constants.AntiAliasingQuality = int.Parse(_settingOption.InnerText);
+						break;
+					}
 					case "toggleShadow":
-						{
-							int _parsedValue = int.Parse(_settingOption.InnerText);
-							Constants.ToggleShadow = (_parsedValue == 0) ? false : true;
-							break;
-						}
+					{
+						int _parsedValue = int.Parse(_settingOption.InnerText);
+						Constants.ToggleShadow = (_parsedValue == 0) ? false : true;
+						break;
+					}
 					case "shadowQuality":
-						{
-							Constants.ShadowQuality = int.Parse(_settingOption.InnerText);
-							break;
-						}
+					{
+						Constants.ShadowQuality = int.Parse(_settingOption.InnerText);
+						break;
+					}
 					case "fullScreen":
-						{
-							int _parsedValue = int.Parse(_settingOption.InnerText);
-							Constants.FullScreen = (_parsedValue == 0) ? false : true;
-							break;
-						}
+					{
+						int _parsedValue = int.Parse(_settingOption.InnerText);
+						Constants.FullScreen = (_parsedValue == 0) ? false : true;
+						break;
+					}
 					case "vSync":
-						{
-							int _parsedValue = int.Parse(_settingOption.InnerText);
-							Constants.VSync = (_parsedValue == 0) ? false : true;
-							break;
-						}
+					{
+						int _parsedValue = int.Parse(_settingOption.InnerText);
+						Constants.VSync = (_parsedValue == 0) ? false : true;
+						break;
+					}
 				}
 			}
 		}
@@ -197,103 +243,99 @@ public class XmlLoader : MonoBehaviour
 	#region===================================================Saved ==================================================
 
 
-	private static void LoadSavedInventory(XmlDocument _xmlDoc)
+	private static void LoadSavedInventory(XmlNode _xmlDoc)
 	{
 
-		XmlNodeList currentUserList = _xmlDoc.GetElementsByTagName(GameController.Instance.loggedUser.username);
 
-		foreach (XmlNode currentUserNode in currentUserList)
+		//XmlNodeList inventoryList = _xmlDoc.GetElementsByTagName("inventory");
+		foreach (XmlNode inventoryNode in _xmlDoc)
 		{
-			foreach (XmlNode element in currentUserNode)
+
+			if (inventoryNode.Name == "quickItemSelect")
 			{
-
-			}
-		}
-
-
-		XmlNodeList inventoryList = _xmlDoc.GetElementsByTagName("inventory");
-
-		foreach (XmlNode inventoryNode in inventoryList)
-		{
-			foreach (XmlNode slotNode in inventoryNode)
-			{
-				if (slotNode.Name == "quickItemSelect")
+				try {
+					GameController.Instance.inventoryManager.quickItemSelectedSlot =
+					    GameController.Instance.inventoryManager.quickItemSlots[int.Parse(inventoryNode.Attributes["quickItemSelect"].Value)];
+				} catch (System.Exception e)
 				{
-					try {
-						GameController.Instance.inventoryManager.quickItemSelectedSlot =
-						    GameController.Instance.inventoryManager.quickItemSlots[int.Parse(slotNode.Attributes["quickItemSelect"].Value)];
-					} catch (System.Exception e)
-					{
-
-					}
-				} else {
-
-					string _itemId = "";
-					int _itemCount = 0;
-					_itemId = slotNode.Attributes["item"].Value;
-					_itemCount = int.Parse(slotNode.Attributes["itemQuantity"].Value);
-					GameController.Instance.inventoryManager.AddItem(_itemId, _itemCount);
 
 				}
+			} else {
+
+				string _itemId = "";
+				int _itemCount = 0;
+				_itemId = inventoryNode.Attributes["item"].Value;
+				_itemCount = int.Parse(inventoryNode.Attributes["itemQuantity"].Value);
+				GameController.Instance.inventoryManager.AddItem(_itemId, _itemCount);
+
 			}
+
 		}
 	}
 
-	private static void LoadSavedSetting(XmlDocument _xmlDoc)
+	private static void LoadSavedSetting(XmlNode _xmlDoc)
 	{
-		XmlNodeList settingList = _xmlDoc.GetElementsByTagName("setting");
-		foreach (XmlNode list in settingList)
+		//XmlNodeList settingList = _xmlDoc.GetElementsByTagName("setting");
+
+		XmlAttributeCollection attrColl = _xmlDoc.Attributes;
+		foreach (XmlAttribute settingAttr in attrColl)
 		{
-
-			XmlAttributeCollection attrColl = list.Attributes;
-			foreach (XmlAttribute settingAttr in attrColl)
+			switch (settingAttr.LocalName)
 			{
-				switch (settingAttr.LocalName)
+				case "ToggleShadow":
 				{
-					case "ToggleShadow":
-						{
-							int _rawValue = int.Parse(settingAttr.Value);
-							Constants.ToggleShadow = (_rawValue == 1) ? true : false;
-							break;
-						}
-					case "FullScreen":
-						{
-							int _rawValue = int.Parse(settingAttr.Value);
-							Constants.FullScreen = (_rawValue == 1) ? true : false;
-							break;
-						}
-					case "VSync":
-						{
-							int _rawValue = int.Parse(settingAttr.Value);
-							Constants.VSync = (_rawValue == 1) ? true : false;
-							break;
-						}
-					case "ShadowQuality":
-						{
-							Constants.ShadowQuality = int.Parse(settingAttr.Value);
-							break;
-						}
-
-					case "AntiAliasingQuality":
-						{
-							Constants.AntiAliasingQuality = int.Parse(settingAttr.Value);
-							break;
-						}
+					int _rawValue = int.Parse(settingAttr.Value);
+					Constants.ToggleShadow = (_rawValue == 1) ? true : false;
+					break;
 				}
+				case "FullScreen":
+				{
+					int _rawValue = int.Parse(settingAttr.Value);
+					Constants.FullScreen = (_rawValue == 1) ? true : false;
+					break;
+				}
+				case "VSync":
+				{
+					int _rawValue = int.Parse(settingAttr.Value);
+					Constants.VSync = (_rawValue == 1) ? true : false;
+					break;
+				}
+				case "ShadowQuality":
+				{
+					Constants.ShadowQuality = int.Parse(settingAttr.Value);
+					break;
+				}
+
+				case "AntiAliasingQuality":
+				{
+					Constants.AntiAliasingQuality = int.Parse(settingAttr.Value);
+					QualitySettings.antiAliasing = Constants.AntiAliasingQuality;
+					break;
+				}
+
+				case "TextureQuality":
+				{
+					Constants.TextureQuality = int.Parse(settingAttr.Value);
+					QualitySettings.masterTextureLimit = Constants.TextureQuality;
+					break;
+				}
+
+
 			}
 		}
+
 	}
 
-	private static void LoadSavedEntities(XmlDocument _xmlDoc)
+	private static void LoadSavedEntities(XmlNode _xmlDoc)
 	{
-		XmlNodeList entityList = _xmlDoc.GetElementsByTagName("entities");
-		foreach (XmlNode entity in entityList)
-		{
-			foreach (XmlNode element in entity)
-			{
+		//XmlNodeList entityList = _xmlDoc.GetElementsByTagName("entities");
 
-				GameController.Instance.spawnManager.LoadGameEntites(element);
-			}
+		foreach (XmlNode entity in _xmlDoc)
+		{
+
+
+			GameController.Instance.spawnManager.LoadGameEntites(entity);
+
 		}
 	}
 

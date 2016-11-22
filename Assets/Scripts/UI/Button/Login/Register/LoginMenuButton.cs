@@ -70,5 +70,18 @@ public class LoginMenuButton : ButtonEventHandler {
 			}
 		}
 
+		if (buttonID == ButtonID.REGISTER_CANCEL)
+		{
+			if (EventManager.OnRegisterCancelButtonPress != null)
+			{
+				EventManager.OnRegisterCancelButtonPress();
+			}
+		}
+
+		if (buttonID == ButtonID.QUIT)
+		{
+			Application.Quit();
+		}
+
 	}
 }

@@ -104,6 +104,7 @@ public class Constants  {
 	public static bool ToggleShadow = true;
 	public static int ShadowQuality = 0;
 	public static int AntiAliasingQuality = 0;
+	public static int TextureQuality = 0;
 	public static bool FullScreen = true;
 	public static bool VSync = true;
 

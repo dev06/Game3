@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour {
 
 	#region ----------- PUBLIC MEMBERS----------
 
-	public const string VERSION = "v1.0.0 Pre-Alpha";
+	public const string VERSION = "v1.0.0 Alpha";
 	public static GameController Instance;
 
 	public List<User> users;
@@ -67,7 +67,7 @@ public class GameController : MonoBehaviour {
 
 		loggedUser = null;
 		users = new List<User>();
-		users.Add(new User("dev", "1"));
+		//users.Add(new User("dev", "1"));
 		try
 		{
 			//XmlLoader.PopulateUserDatabase(System.IO.File.ReadAllText(Application.persistentDataPath + "/Save.xml"));
@@ -107,20 +107,6 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-
-
-	// void Start()
-	// {
-	// 	StartCoroutine("LoadXMLData");
-	// }
-
-
-
-	// IEnumerator LoadXMLData()
-	// {
-	// 	yield return new WaitForSeconds(.1f);
-	// 	XmlLoader.LoadData();
-	// }
 
 	void Update ()
 	{
@@ -545,6 +531,8 @@ public enum ButtonID
 	LOGIN,
 	REGISTER,
 	CREATE_MY_PROFILE,
+	REGISTER_CANCEL,
+
 
 }
 

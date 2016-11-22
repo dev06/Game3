@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 public class Menu_ButtonContainer : Container {
 
 	private Animation _animaiton;
 	private ButtonID _buttonClickedId;
+	private Text _loggedUser_text;
 
 	public delegate void AnimationFinished(ButtonID id);
 	public static AnimationFinished OnMenuContainerAnimFinished;
-
 
 
 	void OnEnable()
@@ -40,6 +40,7 @@ public class Menu_ButtonContainer : Container {
 	{
 		Init();
 		_animaiton = GetComponent<Animation>();
+		_loggedUser_text = transform.FindChild("User").GetChild(0).GetComponent<Text>();
 	}
 
 	/// <summary>
@@ -89,6 +90,7 @@ public class Menu_ButtonContainer : Container {
 	private void OnLoginSuccess()
 	{
 		PlayAnimation(1);
+		_loggedUser_text.text = "Welcome, " + GameController.Instance.loggedUser.name;
 	}
 
 

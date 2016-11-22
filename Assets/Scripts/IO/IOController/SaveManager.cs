@@ -1,7 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Xml;
 public class SaveManager : MonoBehaviour {
+
+
 
 
 	public List<KeyValuePair<string, float>> settingKVP = new List<KeyValuePair<string, float>>();
@@ -17,16 +22,22 @@ public class SaveManager : MonoBehaviour {
 		EventManager.OnSave -= OnSave;
 	}
 
+	void Awake()
+	{
+
+	}
+
 	void Start()
 	{
 		GameController.Instance.saveManager = this;
-
 	}
+
+
 
 	void OnSave()
 	{
 		UpdateData();
-		XmlWrite.SaveData(Application.persistentDataPath + "/Save.xml");
+		XmlWrite.SaveData(Application.persistentDataPath + "/Save_data.xml");
 
 	}
 
@@ -47,6 +58,7 @@ public class SaveManager : MonoBehaviour {
 		settingKVP.Add(new KeyValuePair<string, float>("AntiAliasingQuality", Constants.AntiAliasingQuality));
 		settingKVP.Add(new KeyValuePair<string, float>("FullScreen", (Constants.FullScreen) ? 1 : 0));
 		settingKVP.Add(new KeyValuePair<string, float>("VSync", (Constants.VSync) ? 1 : 0));
+		settingKVP.Add(new KeyValuePair<string, float>("TextureQuality", Constants.TextureQuality));
 	}
 
 	private void UpdateEntityTransform()

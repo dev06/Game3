@@ -41,6 +41,7 @@ public class EventManager : MonoBehaviour {
 	public static Login OnLoginButtonPress;
 	public static Login OnRegisterButtonPress;
 	public static Login OnCreateProfileButtonPress;
+	public static Login OnRegisterCancelButtonPress;
 	public static Login OnLoginSuccess;
 
 

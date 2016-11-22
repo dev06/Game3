@@ -14,7 +14,7 @@ public class TextureQualityButton : SettingButton {
 	{
 		InitSettingButton();
 		_moreOptions = GameObject.FindWithTag("Settings/TextureQuality").transform.FindChild("MoreTextureQuality");
-
+		Constants.TextureQuality = 0;
 		if (buttonID == ButtonID.TEXTURE_QUALITY_BUTTON)
 		{
 			settingButtons.Add(this);
@@ -29,8 +29,9 @@ public class TextureQualityButton : SettingButton {
 
 	// Update is called once per frame
 	void Update () {
-		if (_selectorButton != null)
-			_selectorButton_Text.text = SwitchText(QualitySettings.masterTextureLimit);
+		if (_selectorButton != null) {
+			_selectorButton_Text.text = SwitchText(Constants.TextureQuality);
+		}
 	}
 
 	/// <summary>
@@ -54,19 +55,19 @@ public class TextureQualityButton : SettingButton {
 	{
 		switch (i)
 		{
-		case 0:
+			case 0:
 			{
 				return "Full Res";
 			}
-		case 1:
+			case 1:
 			{
 				return "Half Res";
 			}
-		case 2:
+			case 2:
 			{
 				return "Quarter Res";
 			}
-		case 3:
+			case 3:
 			{
 				return "Eighth Res";
 			}
@@ -90,7 +91,8 @@ public class TextureQualityButton : SettingButton {
 
 		if (buttonID == ButtonID.TEXTURE_QUALITY_OPTION_BUTTON)
 		{
-			QualitySettings.masterTextureLimit = textureQuality;
+			Constants.TextureQuality = textureQuality;
+			QualitySettings.masterTextureLimit = Constants.TextureQuality;
 			_selectorButton_Text.text = SwitchText(QualitySettings.masterTextureLimit);
 		}
 

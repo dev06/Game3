@@ -83,19 +83,19 @@ public class ShadowQualityButton : SettingButton {
 	{
 		switch (i)
 		{
-		case 0:
+			case 0:
 			{
 				return "Very Low";
 			}
-		case 1:
+			case 1:
 			{
 				return "Low";
 			}
-		case 2:
+			case 2:
 			{
 				return "Medium";
 			}
-		case 3:
+			case 3:
 			{
 				return "High";
 			}
@@ -127,22 +127,22 @@ public class ShadowQualityButton : SettingButton {
 	{
 		switch (level)
 		{
-		case 0:
+			case 0:
 			{
 				SetLightShadow(LightShadows.None);
 				break;
 			}
-		case 1:
+			case 1:
 			{
 				SetLightShadow(LightShadows.Hard);
 				break;
 			}
-		case 2:
+			case 2:
 			{
 				SetLightShadow(LightShadows.Soft);
 				break;
 			}
-		case 3:
+			case 3:
 			{
 				SetLightShadow(LightShadows.Soft);
 				break;

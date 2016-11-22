@@ -9,14 +9,28 @@ public class MenuButton : ButtonEventHandler {
 
 	private float _speed = 50.0f;
 
+
+	void OnEnable()
+	{
+		EventManager.OnLoginSuccess += OnLoginSuccess;
+	}
+
+	void OnDisable()
+	{
+		EventManager.OnLoginSuccess -= OnLoginSuccess;
+	}
+
 	void Start ()
 	{
 		Init();
+
+	}
+
+	private void OnLoginSuccess()
+	{
 		if (buttonID == ButtonID.LOADGAME)
 		{
-
-			SetInteractable(XmlWrite.DoesFileExists(Application.persistentDataPath + "/Save.xml"));
-
+			SetInteractable(XmlWrite.DoesFileExists(XmlLoader.SAVE_DATA_PATH));
 		}
 	}
 

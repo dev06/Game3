@@ -79,6 +79,7 @@ TagManager:
   - Container/LoginContainer
   - Login/Username
   - Login/Password
+  - User
   layers:
   - Default
   - TransparentFX
