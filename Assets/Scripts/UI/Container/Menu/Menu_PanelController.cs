@@ -42,24 +42,23 @@ public class Menu_PanelController : MonoBehaviour {
 
 		switch (id)
 		{
-<<<<<<< HEAD
-		case ButtonID.NEWGAME:
-			{
-				GameController.Instance.HasGameStarted = true;
-				GameController.Instance.menuActive = MenuActive.GAME;
-				GameController.Instance.EnableMenu(GameController.Instance.menuActive);
-				Debug.Log("NEW GAME is called");
-				break;
-			}
 
-		case ButtonID.CREDIT:
+			// case ButtonID.NEWGAME:
+			// {
+			// 	GameController.Instance.HasGameStarted = true;
+			// 	GameController.Instance.menuActive = MenuActive.GAME;
+			// 	GameController.Instance.EnableMenu(GameController.Instance.menuActive);
+			// 	Debug.Log("NEW GAME is called");
+			// 	break;
+			// }
+
+			case ButtonID.CREDIT:
 			{
 				GameController.Instance.menuActive = MenuActive.CREDIT;
 				GameController.Instance.EnableMenu(GameController.Instance.menuActive);
-				Debug.Log("Credit is called");
 				break;
 			}
-=======
+
 			case ButtonID.NEWGAME:
 			{
 				//XmlWrite.DeleteFile();
@@ -85,7 +84,7 @@ public class Menu_PanelController : MonoBehaviour {
 				// 		GameController.Instance.EnableMenu(GameController.Instance.menuActive);
 				// 		break;
 				// 	}
->>>>>>> 5c6cb6cb8272e3712852ede6456b7a4206e04e02
+
 		}
 
 
@@ -93,14 +92,13 @@ public class Menu_PanelController : MonoBehaviour {
 
 	void OnCreditUnactive()
 	{
-<<<<<<< HEAD
+
 		//_creditPanel.SetActive(!_creditPanel.activeSelf);
 		//GameController.Instance.menuActive = MenuActive.MENU;
 		//GameController.Instance.EnableMenu(GameController.Instance.menuActive);
-=======
+
 		// _creditPanel.SetActive(!_creditPanel.activeSelf);
 		// GameController.Instance.menuActive = MenuActive.MENU;
 		// GameController.Instance.EnableMenu(GameController.Instance.menuActive);
->>>>>>> 5c6cb6cb8272e3712852ede6456b7a4206e04e02
 	}
 }

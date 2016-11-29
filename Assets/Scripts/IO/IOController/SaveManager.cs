@@ -59,6 +59,11 @@ public class SaveManager : MonoBehaviour {
 		settingKVP.Add(new KeyValuePair<string, float>("FullScreen", (Constants.FullScreen) ? 1 : 0));
 		settingKVP.Add(new KeyValuePair<string, float>("VSync", (Constants.VSync) ? 1 : 0));
 		settingKVP.Add(new KeyValuePair<string, float>("TextureQuality", Constants.TextureQuality));
+		settingKVP.Add(new KeyValuePair<string, float>("MusicVolume", Constants.musicVolume));
+		settingKVP.Add(new KeyValuePair<string, float>("SFXVolume", Constants.sfxVolume));
+		Debug.Log("Saved for" + Constants.musicVolume);
+
+
 	}
 
 	private void UpdateEntityTransform()

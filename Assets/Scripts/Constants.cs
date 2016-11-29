@@ -107,6 +107,8 @@ public class Constants  {
 	public static int TextureQuality = 0;
 	public static bool FullScreen = true;
 	public static bool VSync = true;
+	public static float musicVolume = .5f;
+	public static float sfxVolume = .5f;
 
 
 	public static Material Character_Blue_Mat = (Material)Resources.Load("Materials/Entity/Character/character_blue_mat/character_blue_mat");

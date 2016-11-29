@@ -89,12 +89,11 @@ public class GameController : MonoBehaviour {
 		projectileManager = GameObject.FindWithTag("Manager/ProjectileManager").GetComponent<ProjectileManager>();
 		spawnManager = GameObject.FindObjectOfType<SpawnManager>();
 		buffManager = GameObject.FindWithTag("Manager/BuffManager").GetComponent<BuffManager>();
-<<<<<<< HEAD
-		_smoke = (GameObject)Resources.Load("Prefabs/Particles/Smoke");
-=======
+
+		//_smoke = (GameObject)Resources.Load("Prefabs/Particles/Smoke");
 
 
->>>>>>> 5c6cb6cb8272e3712852ede6456b7a4206e04e02
+
 		_bot = (GameObject)Resources.Load("Prefabs/Bot");
 		_blankImage = GameObject.FindWithTag("UI/GameCanvas").transform.FindChild("Blank").GetComponent<Image>();
 		GameObject.FindWithTag("Version").GetComponent<Text>().text = VERSION;
@@ -162,43 +161,7 @@ public class GameController : MonoBehaviour {
 
 		switch (_menu)
 		{
-<<<<<<< HEAD
-		case MenuActive.GAME:
-			ActivateUICanvas(false, "GameCanvas");
-			GameObject.FindGameObjectWithTag("UI/GameCanvas").GetComponent<Canvas>().enabled = true;
-			ActivateChild(GameObject.FindWithTag("UI/GameCanvas"), "", true);
-			menuActive = MenuActive.GAME;
-			break;
-		case MenuActive.MENU:
-			GameObject.FindGameObjectWithTag("UI/MenuCanvas").GetComponent<Canvas>().enabled = true;
-			ActivateUICanvas(false, "MenuCanvas");
-			menuActive = MenuActive.MENU;
-			break;
-		case MenuActive.RETRY:
-			GameObject.FindGameObjectWithTag("UI/RetryCanvas").GetComponent<Canvas>().enabled = true;
-			ActivateUICanvas(false, "RetryCanvas");
-			menuActive = MenuActive.RETRY;
-			break;
-		case MenuActive.INVENTORY:
-			GameObject.FindGameObjectWithTag("UI/InventoryCanvas").GetComponent<Canvas>().enabled = true;
-			ActivateUICanvas(false, "InventoryCanvas");
-			ActivateChild(GameObject.FindWithTag("UI/GameCanvas"), "QuickItem", false);
-			menuActive = MenuActive.INVENTORY;
-			break;
-		case MenuActive.PAUSE:
-			GameObject.FindGameObjectWithTag("UI/PauseCanvas").GetComponent<Canvas>().enabled = true;
-			ActivateUICanvas(false, "PauseCanvas");
-			menuActive = MenuActive.PAUSE;
-			break;
-		case MenuActive.CREDIT:
-			GameObject.FindGameObjectWithTag("UI/CreditCanvas").GetComponent<Canvas>().enabled = true;
-			ActivateUICanvas(false, "CreditCanvas");
-			menuActive = MenuActive.CREDIT;
-			break;
 
-
-
-=======
 			case MenuActive.GAME:
 				ActivateUICanvas(false, "GameCanvas");
 				GameObject.FindGameObjectWithTag("UI/GameCanvas").GetComponent<Canvas>().enabled = true;
@@ -231,7 +194,39 @@ public class GameController : MonoBehaviour {
 				ActivateUICanvas(false, "CreditCanvas");
 				menuActive = MenuActive.CREDIT;
 				break;
->>>>>>> 5c6cb6cb8272e3712852ede6456b7a4206e04e02
+
+				// case MenuActive.GAME:
+				// 	ActivateUICanvas(false, "GameCanvas");
+				// 	GameObject.FindGameObjectWithTag("UI/GameCanvas").GetComponent<Canvas>().enabled = true;
+				// 	ActivateChild(GameObject.FindWithTag("UI/GameCanvas"), "", true);
+				// 	menuActive = MenuActive.GAME;
+				// 	break;
+				// case MenuActive.MENU:
+				// 	GameObject.FindGameObjectWithTag("UI/MenuCanvas").GetComponent<Canvas>().enabled = true;
+				// 	ActivateUICanvas(false, "MenuCanvas");
+				// 	menuActive = MenuActive.MENU;
+				// 	break;
+				// case MenuActive.RETRY:
+				// 	GameObject.FindGameObjectWithTag("UI/RetryCanvas").GetComponent<Canvas>().enabled = true;
+				// 	ActivateUICanvas(false, "RetryCanvas");
+				// 	menuActive = MenuActive.RETRY;
+				// 	break;
+				// case MenuActive.INVENTORY:
+				// 	GameObject.FindGameObjectWithTag("UI/InventoryCanvas").GetComponent<Canvas>().enabled = true;
+				// 	ActivateUICanvas(false, "InventoryCanvas");
+				// 	ActivateChild(GameObject.FindWithTag("UI/GameCanvas"), "QuickItem", false);
+				// 	menuActive = MenuActive.INVENTORY;
+				// 	break;
+				// case MenuActive.PAUSE:
+				// 	GameObject.FindGameObjectWithTag("UI/PauseCanvas").GetComponent<Canvas>().enabled = true;
+				// 	ActivateUICanvas(false, "PauseCanvas");
+				// 	menuActive = MenuActive.PAUSE;
+				// 	break;
+				// case MenuActive.CREDIT:
+				// 	GameObject.FindGameObjectWithTag("UI/CreditCanvas").GetComponent<Canvas>().enabled = true;
+				// 	ActivateUICanvas(false, "CreditCanvas");
+				// 	menuActive = MenuActive.CREDIT;
+				// 	break;
 		}
 	}
 
@@ -241,22 +236,22 @@ public class GameController : MonoBehaviour {
 		GameObject quickItemInventory = GameObject.FindWithTag("ContainerControl/InventoryContainer/QuickItem").gameObject;
 		switch (key)
 		{
-		case KeyCode.Alpha1:
-			inventoryManager.AddToQuickItem(inventoryManager.hoverItem, quickItemInventory.transform.FindChild("QS_Slot1").GetComponent<InventorySlot>());
-			qsIndex = 1;
-			break;
-		case KeyCode.Alpha2:
-			inventoryManager.AddToQuickItem(inventoryManager.hoverItem, quickItemInventory.transform.FindChild("QS_Slot2").GetComponent<InventorySlot>());
-			qsIndex = 2;
-			break;
-		case KeyCode.Alpha3:
-			inventoryManager.AddToQuickItem(inventoryManager.hoverItem, quickItemInventory.transform.FindChild("QS_Slot3").GetComponent<InventorySlot>());
-			qsIndex = 3;
-			break;
-		case KeyCode.Alpha4:
-			inventoryManager.AddToQuickItem(inventoryManager.hoverItem, quickItemInventory.transform.FindChild("QS_Slot4").GetComponent<InventorySlot>());
-			qsIndex = 4;
-			break;
+			case KeyCode.Alpha1:
+				inventoryManager.AddToQuickItem(inventoryManager.hoverItem, quickItemInventory.transform.FindChild("QS_Slot1").GetComponent<InventorySlot>());
+				qsIndex = 1;
+				break;
+			case KeyCode.Alpha2:
+				inventoryManager.AddToQuickItem(inventoryManager.hoverItem, quickItemInventory.transform.FindChild("QS_Slot2").GetComponent<InventorySlot>());
+				qsIndex = 2;
+				break;
+			case KeyCode.Alpha3:
+				inventoryManager.AddToQuickItem(inventoryManager.hoverItem, quickItemInventory.transform.FindChild("QS_Slot3").GetComponent<InventorySlot>());
+				qsIndex = 3;
+				break;
+			case KeyCode.Alpha4:
+				inventoryManager.AddToQuickItem(inventoryManager.hoverItem, quickItemInventory.transform.FindChild("QS_Slot4").GetComponent<InventorySlot>());
+				qsIndex = 4;
+				break;
 
 		}
 	}

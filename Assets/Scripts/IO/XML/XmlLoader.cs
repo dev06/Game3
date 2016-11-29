@@ -219,6 +219,17 @@ public class XmlLoader : MonoBehaviour
 						Constants.VSync = (_parsedValue == 0) ? false : true;
 						break;
 					}
+					case "musicVolume":
+					{
+						Constants.musicVolume = float.Parse(_settingOption.InnerText);
+						break;
+					}
+					case "sfxVolume":
+					{
+						Constants.sfxVolume = float.Parse(_settingOption.InnerText);
+						break;
+					}
+
 				}
 			}
 		}
@@ -317,6 +328,18 @@ public class XmlLoader : MonoBehaviour
 				{
 					Constants.TextureQuality = int.Parse(settingAttr.Value);
 					QualitySettings.masterTextureLimit = Constants.TextureQuality;
+					break;
+				}
+				case "MusicVolume":
+				{
+					Constants.musicVolume = float.Parse(settingAttr.Value);
+					AudioManager.Instance.musicSlider.value = Constants.musicVolume;
+					break;
+				}
+				case "SFXVolume":
+				{
+					Constants.sfxVolume = float.Parse(settingAttr.Value);
+					AudioManager.Instance.sfxSlider.value = Constants.sfxVolume;
 					break;
 				}
 

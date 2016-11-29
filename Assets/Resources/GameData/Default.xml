@@ -68,6 +68,9 @@
 		<fullScreen name="fullScreen">1</fullScreen>
 		<toggleShadow name="toggleShadow">1</toggleShadow>
 		<vSync name="vSync">1</vSync>
+		<musicVolume name = "musicVolume">.5</musicVolume>
+		<sfxVolume name = "sfxVolume">.5</sfxVolume>
+	
 	</defaultSetting>
 	<defaultEntity>
 		<player>

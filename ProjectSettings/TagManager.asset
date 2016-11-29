@@ -80,6 +80,8 @@ TagManager:
   - Login/Username
   - Login/Password
   - User
+  - Settings/MusicVolume
+  - Settings/SFXVolume
   layers:
   - Default
   - TransparentFX
