@@ -75,7 +75,13 @@ public class SaveManager : MonoBehaviour {
 		{
 			if (_object.tag.Contains("Entity"))
 			{
-				entityTransform.Add(new EntitySaveData(_object, _object.name, _object.transform.position, _object.transform.eulerAngles, _object.activeSelf, _object.transform.parent.tag, _object.GetComponent<MasterEntity>().entityType));
+				try
+				{
+					entityTransform.Add(new EntitySaveData(_object, _object.name, _object.transform.position, _object.transform.eulerAngles, _object.activeSelf, _object.transform.parent.tag, _object.GetComponent<MasterEntity>().entityType));
+				} catch (System.Exception e)
+				{
+
+				}
 			}
 		}
 	}

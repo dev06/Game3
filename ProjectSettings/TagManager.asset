@@ -82,6 +82,7 @@ TagManager:
   - User
   - Settings/MusicVolume
   - Settings/SFXVolume
+  - Environment/Pillar
   layers:
   - Default
   - TransparentFX

@@ -24,7 +24,7 @@ public class Constants  {
 
 	public const float PatrolEnemyMaxHealth = 400.0f;
 	public const float PatrolEnemyDamage = 10.0f;
-	public const float PatrolEnemySpeed = 10.0f;
+	public const float PatrolEnemySpeed = 7.0f;
 
 
 	//Guard Enemy

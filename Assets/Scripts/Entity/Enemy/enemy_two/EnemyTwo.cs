@@ -28,7 +28,7 @@ public class EnemyTwo : Mob {
 		_HealthText = transform.FindChild("HealthBar").gameObject.transform.FindChild("Text").GetComponent<Text>();
 		if (Target == null)
 		{
-			Target = GameController.Instance.Player;
+			Target = GameObject.Find("Droid");
 		}
 	}
 
@@ -38,8 +38,22 @@ public class EnemyTwo : Mob {
 		{
 			CheckIfIsDead();
 			ManageHoverEffect();
-			Move();
+			if (Target != null)
+			{
+				Move();
+
+			}
 			UpdateHealthQuad();
+
+			if (Target == null)
+			{
+				if (GameController.Instance.Player != null)
+				{
+					Target = GameController.Instance.Player;
+
+				}
+			}
+
 		}
 	}
 

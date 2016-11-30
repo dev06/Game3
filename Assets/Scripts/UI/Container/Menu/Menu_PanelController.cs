@@ -9,7 +9,6 @@ public class Menu_PanelController : MonoBehaviour {
 
 	void OnEnable()
 	{
-		Debug.Log("Sub");
 		Menu_ButtonContainer.OnMenuContainerAnimFinished += OnButtonClick;
 		EventManager.OnCreditUnactive += OnCreditUnactive;
 
@@ -17,10 +16,8 @@ public class Menu_PanelController : MonoBehaviour {
 
 	void OnDisable()
 	{
-		Debug.Log("UNSub");
 		Menu_ButtonContainer.OnMenuContainerAnimFinished -= OnButtonClick;
 		EventManager.OnCreditUnactive -= OnCreditUnactive;
-
 	}
 
 	// this is also a test line for commit
@@ -53,30 +50,30 @@ public class Menu_PanelController : MonoBehaviour {
 			// }
 
 			case ButtonID.CREDIT:
-			{
-				GameController.Instance.menuActive = MenuActive.CREDIT;
-				GameController.Instance.EnableMenu(GameController.Instance.menuActive);
-				break;
-			}
+				{
+					GameController.Instance.menuActive = MenuActive.CREDIT;
+					GameController.Instance.EnableMenu(GameController.Instance.menuActive);
+					break;
+				}
 
 			case ButtonID.NEWGAME:
-			{
-				//XmlWrite.DeleteFile();
-				TextAsset asset = (TextAsset)(Resources.Load("GameData/Default"));
-				XmlLoader.LoadDefaultXmlData(asset.text);
-				GameController.Instance.HasGameStarted = true;
-				GameController.Instance.menuActive = MenuActive.GAME;
-				GameController.Instance.EnableMenu(GameController.Instance.menuActive);
-				break;
-			}
+				{
+					//XmlWrite.DeleteFile();
+					TextAsset asset = (TextAsset)(Resources.Load("GameData/Default"));
+					XmlLoader.LoadDefaultXmlData(asset.text);
+					GameController.Instance.HasGameStarted = true;
+					GameController.Instance.menuActive = MenuActive.GAME;
+					GameController.Instance.EnableMenu(GameController.Instance.menuActive);
+					break;
+				}
 			case ButtonID.LOADGAME:
-			{
-				XmlLoader.LoadData();
-				GameController.Instance.HasGameStarted = true;
-				GameController.Instance.menuActive = MenuActive.GAME;
-				GameController.Instance.EnableMenu(GameController.Instance.menuActive);
-				break;
-			}
+				{
+					XmlLoader.LoadData();
+					GameController.Instance.HasGameStarted = true;
+					GameController.Instance.menuActive = MenuActive.GAME;
+					GameController.Instance.EnableMenu(GameController.Instance.menuActive);
+					break;
+				}
 
 				// case ButtonID.CREDIT:
 				// 	{

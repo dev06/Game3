@@ -20,7 +20,7 @@ public class EnemyOne : Mob {
 
 		if (Target == null)
 		{
-			Target = GameController.Instance.Player;
+			Target = GameObject.Find("Droid");
 		}
 	}
 
@@ -29,10 +29,23 @@ public class EnemyOne : Mob {
 	{
 		if (_gameController.menuActive == MenuActive.GAME)
 		{
+
 			CheckIfIsDead();
 			ManageHoverEffect();
-			Move();
+			if (Target != null)
+			{
+				Move();
+
+			}
 			UpdateHealthQuad();
+			if (Target == null)
+			{
+				if (GameController.Instance.Player != null)
+				{
+					Target = GameController.Instance.Player;
+				}
+			}
+
 		}
 
 	}
