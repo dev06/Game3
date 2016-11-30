@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 public class Enemy_Three : Mob {
 
 	public GameObject Target;
@@ -11,7 +11,9 @@ public class Enemy_Three : Mob {
 		MaxHealth = Constants.PatrolEnemyMaxHealth;
 		_speed = Constants.PatrolEnemySpeed;
 		_agent.speed = _speed;
-
+		_fillImage = transform.FindChild("HealthBar").gameObject.transform.FindChild("FillImage").GetComponent<Image>();
+		_stillImage = transform.FindChild("HealthBar").gameObject.transform.FindChild("StillImage").GetComponent<Image>();
+		_HealthText = transform.FindChild("HealthBar").gameObject.transform.FindChild("Text").GetComponent<Text>();
 
 		if (Target == null)
 		{
@@ -27,12 +29,14 @@ public class Enemy_Three : Mob {
 		if (_gameController.menuActive == MenuActive.GAME)
 		{
 
-
+			CheckIfIsDead();
 			if (Target != null)
 			{
 				Move();
 
 			}
+
+			UpdateHealthQuad();
 			if (Target == null)
 			{
 				if (GameController.Instance.Player != null)
@@ -64,6 +68,8 @@ public class Enemy_Three : Mob {
 				behaviour = EntityBehaviour.Chase;
 			}
 		} else {
+			_animator.SetBool("attack", false);
+			_animator.SetInteger("Walk", 1);
 			if (_gameController.navMeshController.navMesh_wayPoints.Count > 0)
 			{
 				if (_agent.remainingDistance < 10)

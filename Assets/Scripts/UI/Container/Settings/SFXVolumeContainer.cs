@@ -35,6 +35,7 @@ public class SFXVolumeContainer : MonoBehaviour {
 		if (AudioManager.Instance.Sources != null)
 		{
 			AudioManager.Instance.Sources[1].volume = _slider.value;
+			AudioManager.Instance.Sources[2].volume = _slider.value;
 		}
 	}
 

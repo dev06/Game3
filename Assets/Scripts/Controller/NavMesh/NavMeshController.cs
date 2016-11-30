@@ -8,7 +8,7 @@ public class NavMeshController : MonoBehaviour {
 	int point = 0;
 	void Start()
 	{
-		GameObject[] _pillars = GameObject.FindGameObjectsWithTag("Entity/Pillar");
+		GameObject[] _pillars = GameObject.FindGameObjectsWithTag("Environment/Pillar");
 
 		for (int i = 0; i < _pillars.Length; i++)
 		{
@@ -19,8 +19,8 @@ public class NavMeshController : MonoBehaviour {
 	public int GetNextWayPoint()
 	{
 		point += GetDirection();
-		if (point < 0) point = 0;
-		if (point > navMesh_wayPoints.Count - 1) point = navMesh_wayPoints.Count - 1;
+		if (point < 0) { point = 0; }
+		if (point > navMesh_wayPoints.Count - 1) { point = navMesh_wayPoints.Count - 1; }
 		return point;
 	}
 

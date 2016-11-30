@@ -48,6 +48,8 @@ public class EntityItem : Entity {
 
 	public GameItem gameItem;
 
+
+
 	void Start()
 	{
 		Init();
@@ -90,12 +92,21 @@ public class EntityItem : Entity {
 						_gameController.inventoryManager.AddItem(SwithGameItemToItemID(gameItem));
 					}
 				}
+
+				if (EventManager.OnItemPickUp != null)
+				{
+					EventManager.OnItemPickUp();
+				}
+
+
 			} else
 			{
 				SpawnPickUpNotification("Inventory is full", null);
 			}
 		}
 	}
+
+
 
 	private Item SwithGameItemToItemID(GameItem item)
 	{

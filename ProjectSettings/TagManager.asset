@@ -83,6 +83,8 @@ TagManager:
   - Settings/MusicVolume
   - Settings/SFXVolume
   - Environment/Pillar
+  - Collide
+  - Entity/Enemy
   layers:
   - Default
   - TransparentFX

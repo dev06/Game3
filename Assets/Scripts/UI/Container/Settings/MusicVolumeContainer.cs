@@ -30,7 +30,7 @@ public class MusicVolumeContainer : MonoBehaviour {
 	{
 		//	_slider.value = Constants.musicVolume;
 		Constants.musicVolume = _slider.value;
-		Debug.Log(Constants.musicVolume);
+
 	}
 
 	public void OnValueChange()

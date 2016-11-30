@@ -68,14 +68,14 @@ public class EnemyOne : Mob {
 					behaviour = EntityBehaviour.Chase;
 				}
 			} else {
-				if (_gameController.navMeshController.navMesh_wayPoints.Count > 0)
-				{
-					if (_agent.remainingDistance < 10)
-					{
-						_agent.SetDestination(_gameController.navMeshController.navMesh_wayPoints[_gameController.navMeshController.GetNextWayPoint()].transform.position);
-						behaviour = EntityBehaviour.Patrol;
-					}
-				}
+				// if (_gameController.navMeshController.navMesh_wayPoints.Count > 0)
+				// {
+				// 	if (_agent.remainingDistance < 10)
+				// 	{
+				// 		_agent.SetDestination(_gameController.navMeshController.navMesh_wayPoints[_gameController.navMeshController.GetNextWayPoint()].transform.position);
+				// 		behaviour = EntityBehaviour.Patrol;
+				// 	}
+				// }
 			}
 		}
 	}

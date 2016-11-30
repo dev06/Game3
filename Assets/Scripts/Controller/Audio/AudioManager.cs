@@ -13,6 +13,7 @@ public class AudioManager : MonoBehaviour {
 
 	public AudioSource music_one;
 	public AudioSource shoot;
+	public AudioSource pickup;
 
 
 	void Awake()
@@ -29,11 +30,13 @@ public class AudioManager : MonoBehaviour {
 	void OnEnable()
 	{
 		EventManager.OnShoot += OnShoot;
+		EventManager.OnItemPickUp += OnItemPickUp;
 	}
 
 	void OnDisable()
 	{
 		EventManager.OnShoot -= OnShoot;
+		EventManager.OnItemPickUp -= OnItemPickUp;
 	}
 
 	void Start ()
@@ -45,11 +48,13 @@ public class AudioManager : MonoBehaviour {
 
 		music_one = sources[0];
 		shoot = sources[1];
+		pickup = sources[2];
 
 
 
 		music_one.volume = musicSlider.value;
 		shoot.volume = sfxSlider.value;
+		pickup.volume = sfxSlider.value;
 	}
 
 	void Update ()
@@ -66,6 +71,15 @@ public class AudioManager : MonoBehaviour {
 		{
 			sources[1].Play();
 		}
+	}
+
+	private void OnItemPickUp()
+	{
+		if (sources != null)
+		{
+			sources[2].Play();
+		}
+
 	}
 
 

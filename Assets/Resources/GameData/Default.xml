@@ -172,5 +172,14 @@
 			<health health="500"/>
 			<maxhealth maxhealth="500"/>
 		</Enemy_Two>
+		<Enemy_Three>
+			<type type="MOB"/>
+			<position position="-4.69,0,11.89"/>
+			<rotation rotation="0,0.7073535,0"/>
+			<parent parent="Collection/GuardEnemy"/>
+			<active active="True"/>
+			<health health="500"/>
+			<maxhealth maxhealth="500"/>
+		</Enemy_Three>
 	</defaultEntity>
 </wrapper>

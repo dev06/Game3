@@ -43,6 +43,7 @@ public class BlueProjectile : Projectile {
 			if (col.gameObject.GetComponent<Mob>().body != owner)
 			{
 				col.gameObject.SendMessage("DoDamage", _damage);
+
 				Destroy(gameObject);
 			}
 
